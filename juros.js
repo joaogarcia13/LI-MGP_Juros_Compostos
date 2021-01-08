@@ -1,10 +1,52 @@
+//Notas: A calculadora está a funcionar da maneira mais simples mas ainda falta
+//adicionar as periodicidades de juro e os incrementos
+
 var ValFinal;
 var ValInicial;
-var tempo = document.getElementById("duracao").value;
-var Valjuro; //tem de ser decimal//
-var ValPerJuro; //numero de vezes que o juro é aplicado por ano//
+var Retorno;
+var tempo;
+var tempograf = document.getElementById("duracao").value; //isto nao pode tar assim que tas a dar valor a variavel quando 
+//a pagina carrega e vai ser sempre 0 tem de se atribuir o valor qundo se carrega no botao nao ?
+var Valuro; //tem de ser decimal//
+var ValPerJuro = 1 ; //numero de vezes que o juro é aplicado por ano, esta default para 1 vez por ano//
 var ValIncremento; //Incremento opcional//
 var ValPerIncremento; //periodicidade do incremento//
+
+//botao de limpar dados
+function limpar(){
+    $("#valorInitial").val('');
+    $("#tempo").val('');
+    $("#juro").val('');
+    $("#periodo").val('');
+    $("#ValFinal").val('');
+    $("#Retorno").val('');
+}
+
+//validação de dados para a função calcular()
+function validate(){
+    ValInicial = $("#valorInitial").val();
+    tempo = $("#tempo").val();
+    ValJuro = $("#juro").val();
+    ValPerJuro = $("#periodo").val();
+    //verifica se os valores sao positivos
+    if(ValInicial < 0 || tempo < 0 || ValJuro < 0 || ValPerJuro < 0){
+        alert("Verifique se todos os valores são positivos.");
+    }else 
+    //verifica se são numeros
+    if($.isNumeric(ValInicial) && $.isNumeric(tempo) && 
+        $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro)){
+            console.log("Os inputs são numeros.")
+        } else  alert("Os campos têm de ser preenchidos com valores numéricos.");
+}
+
+//botao calcular
+function calcular(){
+    validate();
+    ValFinal = Math.pow(ValInicial*(1 + (ValJuro/ValPerJuro)), tempo);
+    Retorno = ValFinal - ValInicial;
+    $("#ValFinal").val(ValFinal);
+    $("#Retorno").val(Retorno);
+}
 
 function anoMes() {
     var meses, ano;
