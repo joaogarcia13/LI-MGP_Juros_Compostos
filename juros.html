@@ -6,58 +6,56 @@
         Simulador Juros Compostos>
     </title>
     <meta charset="utf-8">
+
+    <link href="juros.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 
 <body class="container-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-7">
-                <div id=calculadora>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                        <span class="input-group-text">Valor Inicial</span>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="number" class="form-control" id="duracao" aria-label="Amount (to the nearest dollar)" value="1">
-                        <span class="input-group-text">Tempo</span>
-                        <div class="col-3">
-                            <input type="number" class="form-control">
-                        </div>
-                    </div>
 
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                        <span class="input-group-text">Juro</span>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                        <span class="input-group-text">Periocidade</span>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Calcular</button>
-                    <button type="button" class="btn btn-outline-secondary">Limpar</button>
-                </div>
+    <!--Secção dos simuladores-->
+    <section>
+        <!--Simulador1-->
+        <div id="calculadora1" class="col-5">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">Valor Inicial</span>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div id=tabela>
-                    <table>
-                        <tr>
-                            <th></th>
-                        </tr>
-                    </table>
-                </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">Tempo</span>
             </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">Juro</span>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">Periocidade</span>
+            </div>
+            <button type="button" class="btn btn-primary">Calcular</button>
+            <button type="button" class="btn btn-outline-secondary">Limpar</button>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div id=grafico>
+        <!--Simulador2-->
+        <div id="calculadora2" class="d-none col-5">
 
-                </div>
+        </div>
+    </section>
+
+    <!--Secção que mostra a tabela e o gráfico-->
+    <section id="tabGraf" class="row d-none">
+        <div class="col-6">
+            <table class="table table-hover">
+                ...
+            </table>
+        </div>
+
+        <div class="col-6">
+            <div id=grafico>
+
             </div>
         </div>
-    </div>
+    </section>
 
     <script src="juros.js"></script>
 
