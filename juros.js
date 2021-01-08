@@ -1,6 +1,6 @@
 var ValFinal;
 var ValInicial;
-var tempo = document.getElementById("duracao");
+var tempo = document.getElementById("duracao").value;
 var Valjuro; //tem de ser decimal//
 var ValPerJuro; //numero de vezes que o juro é aplicado por ano//
 var ValIncremento; //Incremento opcional//
@@ -30,20 +30,20 @@ function linhaTempo() {
     return tempo;
 }
 
-//tabela gets.js
-var ctx = document.getElementById('tabelaLinear').getContext('2d');
-var chart = new Chart(tx, {
+//Gráfico de linha 
+var ctx = document.getElementById('myChart').getContext('2d');
+var myLineChart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
 
     // The data for our dataset
     data: {
-        labels: linhaTempo(),
+        labels: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
+            label: 'Valor',
+            backgroundColor: 'transparent',
+            borderColor: 'black',
+            data: [50, 6, 35, 2, 3, 4]
         }]
     },
 
