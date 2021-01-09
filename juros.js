@@ -10,6 +10,8 @@ var ValPerJuro = 1; //numero de vezes que o juro é aplicado por ano, esta defau
 var ValIncremento; //Incremento opcional//
 var ValPerIncremento; //periodicidade do incremento//
 
+
+
 //botao de limpar dados
 function limpar() {
     $("#valorInitial").val('');
