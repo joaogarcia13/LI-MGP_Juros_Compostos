@@ -11,7 +11,6 @@ var ValIncremento; //Incremento opcional//
 var ValPerIncremento; //periodicidade do incremento//
 
 
-
 //botao de limpar dados
 function limpar() {
     $("#valorInitial").val('');
@@ -20,6 +19,8 @@ function limpar() {
     $("#periodo").val('');
     $("#ValFinal").val('');
     $("#Retorno").val('');
+    $("#incremento").val('');
+    $("#perincremento").val('');
 }
 
 //validação de dados para a função calcular()
@@ -28,6 +29,10 @@ function validate() {
     tempo = $("#tempo").val();
     ValJuro = $("#juro").val();
     ValPerJuro = $("#periodo").val();
+    ValIncremento = $("#incremento").val();
+    ValPerIncremento = $("#perincremento").val();
+
+    // fazer cena para o incremento a aprtir daqui para baixo
     //verifica se os valores sao positivos
     if (ValInicial < 0 || tempo < 0 || ValJuro < 0 || ValPerJuro < 0) {
         alert("Verifique se todos os valores são positivos.");
