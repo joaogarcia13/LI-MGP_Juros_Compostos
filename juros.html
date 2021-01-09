@@ -28,12 +28,18 @@
                     <input type="number" class="form-control" id="duracao" >
                     <span class="input-group-text">Tempo</span>
                 </div>
-                <div class="col-1"></div>
-                <div class="input-group mb-3 col-2">
-                    <input type="number" class="form-control" id="tempo" >
-                    <span class="input-group-text">Tempo</span>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="tempo">
+                    <div class="input-group-append">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tempo</button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item">Anos</a>
+                        <a class="dropdown-item">Meses</a>
+                      </div>
+                    </div>
                 </div>
             </div>
+
             <div class="input-group mb-3">
                 <input type="text" class="form-control" id="juro">
                 <span class="input-group-text">Juro</span>

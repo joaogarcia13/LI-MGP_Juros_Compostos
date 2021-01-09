@@ -50,7 +50,7 @@ function calcular(){
 
 function anoMes() {
     var meses, ano;
-
+    
     //Converte mês para ano
     //Variavel tempo vai receber o valor de tempo introduzido pelo utilizador
     meses = tempo * 12;
