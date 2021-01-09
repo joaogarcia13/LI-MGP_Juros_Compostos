@@ -10,6 +10,11 @@ var ValPerJuro = 1; //numero de vezes que o juro é aplicado por ano, esta defau
 var ValIncremento; //Incremento opcional//
 var ValPerIncremento; //periodicidade do incremento//
 
+//Dropdown
+$(document).ready(function() {
+    $('.dropdown-toggle').dropdown();
+});
+
 //botao de limpar dados
 function limpar() {
     $("#valorInitial").val('');
@@ -48,7 +53,7 @@ function calcular() {
 
 function anoMes() {
     var meses, ano;
-    
+
     //Converte mês para ano
     //Variavel tempo vai receber o valor de tempo introduzido pelo utilizador
     meses = tempo * 12;
