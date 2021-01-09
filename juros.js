@@ -5,15 +5,13 @@ var ValFinal;
 var ValInicial;
 var Retorno;
 var tempo;
-var tempograf = document.getElementById("duracao").value; //isto nao pode tar assim que tas a dar valor a variavel quando 
-//a pagina carrega e vai ser sempre 0 tem de se atribuir o valor qundo se carrega no botao nao ?
 var Valuro; //tem de ser decimal//
-var ValPerJuro = 1 ; //numero de vezes que o juro é aplicado por ano, esta default para 1 vez por ano//
+var ValPerJuro = 1; //numero de vezes que o juro é aplicado por ano, esta default para 1 vez por ano//
 var ValIncremento; //Incremento opcional//
 var ValPerIncremento; //periodicidade do incremento//
 
 //botao de limpar dados
-function limpar(){
+function limpar() {
     $("#valorInitial").val('');
     $("#tempo").val('');
     $("#juro").val('');
@@ -23,26 +21,26 @@ function limpar(){
 }
 
 //validação de dados para a função calcular()
-function validate(){
+function validate() {
     ValInicial = $("#valorInitial").val();
     tempo = $("#tempo").val();
     ValJuro = $("#juro").val();
     ValPerJuro = $("#periodo").val();
     //verifica se os valores sao positivos
-    if(ValInicial < 0 || tempo < 0 || ValJuro < 0 || ValPerJuro < 0){
+    if (ValInicial < 0 || tempo < 0 || ValJuro < 0 || ValPerJuro < 0) {
         alert("Verifique se todos os valores são positivos.");
-    }else 
+    } else
     //verifica se são numeros
-    if($.isNumeric(ValInicial) && $.isNumeric(tempo) && 
-        $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro)){
-            console.log("Os inputs são numeros.")
-        } else  alert("Os campos têm de ser preenchidos com valores numéricos.");
+    if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
+        $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro)) {
+        console.log("Os inputs são numeros.")
+    } else alert("Os campos têm de ser preenchidos com valores numéricos.");
 }
 
 //botao calcular
-function calcular(){
+function calcular() {
     validate();
-    ValFinal = Math.pow(ValInicial*(1 + (ValJuro/ValPerJuro)), tempo);
+    ValFinal = Math.pow(ValInicial * (1 + (ValJuro / ValPerJuro)), tempo);
     Retorno = ValFinal - ValInicial;
     $("#ValFinal").val(ValFinal);
     $("#Retorno").val(Retorno);
@@ -54,10 +52,10 @@ function anoMes() {
     //Converte mês para ano
     //Variavel tempo vai receber o valor de tempo introduzido pelo utilizador
     meses = tempo * 12;
-    console.log(meses);
+
     //Converte ano para mês
     ano = tempo / 12;
-    console.log(ano);
+
     //Chamar o id corresponden-te e introduzir o valor (casa)
 }
 
@@ -66,7 +64,7 @@ function linhaTempo() {
     var cont, tempo = new Array();
 
     for (cont = 0; cont <= meses; cont++) {
-        tempo += cont;
+        tempo[cont] += cont;
     }
 
     return tempo;
