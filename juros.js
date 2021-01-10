@@ -45,7 +45,7 @@ function validate() {
     // fazer cena para o incremento a aprtir daqui para baixo
     //verifica se os valores sao positivos
     if (ValInicial <= 0 || tempo <= 0 || ValJuro <= 0 ||
-         ValPerJuro <= 0 || ValIncremento <= 0 || ValPerIncremento <= 0) {
+         ValPerJuro <= 0 && ValIncremento <= 0 && ValPerIncremento <= 0) {
         alert("Verifique se todos os valores são positivos.");
     } else
     //verifica se são numeros
@@ -77,11 +77,11 @@ function calcular() {
     Retorno = ValFinal - ValInicial; 
     
     // Loop de cálculos
-    //if($("#TempoJuros").val() == "Anos"){
-    //    $("#tabela").text() = "<th><td>Ano</td><td>Juros por Mês</td><td>Juros Acumulados</td><td>Montante Acumulado</td></th>";
-    //}else { 
-    //    $("#tabela").text() = "<th><td>Meses</td><td>Juros por Mês</td><td>Juros Acumulados</td><td>Montante Acumulado</td></th>";
-    //      }
+    if($("#TempoJuros").val() == "Anos"){
+        $("#tabela").text() = "<th><td>Ano</td><td>Juros por Mês</td><td>Juros Acumulados</td><td>Montante Acumulado</td></th>";
+    }else { 
+        $("#tabela").text() = "<th><td>Meses</td><td>Juros por Mês</td><td>Juros Acumulados</td><td>Montante Acumulado</td></th>";
+          }
 
     $("#ValFinal").val(ValFinal.toFixed(2));
     $("#Retorno").val(Retorno.toFixed(2));
