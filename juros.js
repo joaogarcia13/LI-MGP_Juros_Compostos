@@ -96,6 +96,15 @@ function calcular() {
         return duracao;
     }
 
+    //Valor inicial
+    function valorInicial() {
+        var cont, valor = new Array(anoMes());
+
+        for (cont = 0; cont <= anoMes(); cont++) {
+            valor[cont] = cont
+        }
+    }
+
     //Gráfico de linha 
     var ctx = document.getElementById('myChart').getContext('2d');
     var linhaInvest = new Chart(ctx, {
