@@ -4,7 +4,7 @@
 var ValFinal;
 var ValInicial;
 var Retorno;
-var tempo /*= anoMes()*/;
+var tempo;
 var ValJuro;
 var ValPerJuro = 1; //numero de vezes que o juro é aplicado por ano, esta default para 1 vez por ano//
 var ValIncremento; //Incremento opcional//
@@ -27,7 +27,7 @@ function limpar() {
 function validate() {
     ValInicial = $("#valorInitial").val();
     
-    //converter anos em meses, com casa decimal
+    //converter meses anos, com casa decimal
     if($("#TempoJuros").val() == "Anos"){
         tempo = $("#tempo").val();
     }else { 
@@ -57,18 +57,6 @@ function validate() {
     } else alert("Os campos têm de ser preenchidos com valores numéricos.");
 }
 
-function anoMes() {
-    var meses, ano;
-
-    //Converte mês para ano
-    //Variavel tempo vai receber o valor de tempo introduzido pelo utilizador
-    //meses = tempo * 12;
-
-    //Converte ano para mês
-    //ano = tempo / 12;
-
-    return meses = 12;
-}
 
 //Cálculos e aparece os gráficos (esta função está dentro da função validate())
 function calcular() {
@@ -77,11 +65,6 @@ function calcular() {
     Retorno = ValFinal - ValInicial; 
     
     // Loop de cálculos
-    if($("#TempoJuros").val() == "Anos"){
-        $("#tabela").text() = "<th><td>Ano</td><td>Juros por Mês</td><td>Juros Acumulados</td><td>Montante Acumulado</td></th>";
-    }else { 
-        $("#tabela").text() = "<th><td>Meses</td><td>Juros por Mês</td><td>Juros Acumulados</td><td>Montante Acumulado</td></th>";
-          }
 
     $("#ValFinal").val(ValFinal.toFixed(2));
     $("#Retorno").val(Retorno.toFixed(2));
@@ -91,9 +74,9 @@ function calcular() {
 
 //EixoX
 function eixoX() {
-    var cont, duracao = new Array(tempo);
+    var cont, duracao;
 
-    for (cont = 0; cont < anoMes(); cont++) {
+    for (cont = 0; cont < tempo; cont++) {
         duracao[cont] = cont + 1;
     }
 
