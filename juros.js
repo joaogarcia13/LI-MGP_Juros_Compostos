@@ -1,11 +1,11 @@
 //Notas: A calculadora está a funcionar da maneira mais simples mas ainda falta
 //adicionar as periodicidades de juro e os incrementos
 
-var ValFinal;
-var ValInicial;
-var Retorno;
-var tempo;
-var ValJuro;
+var ValFinal = 0;
+var ValInicial = 0;
+var Retorno = 0;
+var tempo = 0;
+var ValJuro = 0;
 var ValPerJuro = 1; //numero de vezes que o juro é aplicado por ano, esta default para 1 vez por ano//
 var ValIncremento; //Incremento opcional//
 var ValPerIncremento; //periodicidade do incremento//
@@ -51,8 +51,7 @@ function validate() {
     if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
         $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
         $.isNumeric(ValIncremento) && $.isNumeric(ValPerIncremento)) {
-        console.log("Os inputs são numeros.")
-
+        console.log("Os inputs são numeros.");
         calcular();
     } else alert("Os campos têm de ser preenchidos com valores numéricos.");
 }
@@ -61,17 +60,31 @@ function validate() {
 //Cálculos e aparece os gráficos (esta função está dentro da função validate())
 function calcular() {
     //função de calculos 
-    ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * tempo));
-    Retorno = ValFinal - ValInicial;
+    //ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * tempo));
+    //Retorno = ValFinal - ValInicial;
+
+    var ValIntermedio = 0;
 
     // Loop de cálculos
+    if ($("#TempoJuros").val() == "Anos") {
+        $("#PerTabela").text("Anos");
+        //ValIntermedio = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
+        ValIntermedio = ValInicial + (ValInicial * ValJuro);
+        ValFinal += ValIntermedio;
+        for (var i = 0; i < tempo - 1; i++) {
+            ValIntermedio = ValFinal + (ValFinal * ValJuro);
+            ValFinal += ValIntermedio;
+            //ValFinal = ValFinal + ValIntermedio;
+            //ValIntermedio = ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
 
-    // Loop de cálculos
-    //if ($("#TempoJuros").val() == "Anos") {
-    //    $("#tabela").text() = "<th><td>Ano</td><td>Juros por Mês</td><td>Juros Acumulados</td><td>Montante Acumulado</td></th>";
-    //} else {
-    //    $("#tabela").text() = "<th><td>Meses</td><td>Juros por Mês</td><td>Juros Acumulados</td><td>Montante Acumulado</td></th>";
-    //}
+            //JuroMes = ValIntermedio - ValInicial;
+        }
+        console.log("adf" + ValIntermedio);
+
+        //Retorno = ValFinal - ValInicial;
+    } else {
+        $("#PerTabela").text("Meses");
+    }
 
     function anoMes() {
         var tempo2;
