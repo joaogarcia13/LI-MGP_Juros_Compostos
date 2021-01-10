@@ -42,7 +42,6 @@ function validate() {
     ValIncremento = $("#incremento").val();
     ValPerIncremento = $("#perincremento").val();
 
-    // fazer cena para o incremento a aprtir daqui para baixo
     //verifica se os valores sao positivos
     if (ValInicial <= 0 || tempo <= 0 || ValJuro <= 0 ||
         ValPerJuro <= 0 && ValIncremento <= 0 && ValPerIncremento <= 0) {
@@ -90,14 +89,13 @@ function calcular() {
     function eixoX() {
         var cont, duracao = new Array(anoMes());
 
-        for (cont = 0; cont < anoMes(); cont++) {
-            duracao[cont] = cont + 1;
+        for (cont = 0; cont <= anoMes(); cont++) {
+            duracao[cont] = cont;
         }
 
         return duracao;
     }
-    //EixoY
-    //Falta colocar a escala para o montante que pode ser introduzido
+
     //Gráfico de linha 
     var ctx = document.getElementById('myChart').getContext('2d');
     var linhaInvest = new Chart(ctx, {
@@ -111,14 +109,14 @@ function calcular() {
                     label: 'Inv. Inicial',
                     backgroundColor: 'transparent',
                     borderColor: 'blue',
-                    data: [20, ]
+                    data: [20, 20, 20, 20, 20, 20]
 
                 },
                 {
                     label: 'Acumulado',
                     backgroundColor: 'transparent',
                     borderColor: 'red',
-                    data: [50, 6, 35, 2, 3, 4]
+                    data: [20, 30, 50, 60, 70, 80]
                 }
             ]
         },
