@@ -130,7 +130,7 @@ function calcular() {
             ]
         },
 
-        // Configuration options go here
+        // Configuration options go herealorInicial
         options: {}
     });
 
