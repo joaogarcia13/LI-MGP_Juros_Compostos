@@ -7,8 +7,8 @@ var Retorno = 0;
 var tempo = 0;
 var ValJuro = 0;
 var ValPerJuro = 1; //numero de vezes que o juro é aplicado por ano, esta default para 1 vez por ano//
-var ValIncremento; //Incremento opcional//
-var ValPerIncremento; //periodicidade do incremento//
+var ValIncremento = 0; //Incremento opcional//
+var ValPerIncremento = 0; //periodicidade do incremento//
 
 //botao de limpar dados
 function limpar() {
@@ -63,7 +63,11 @@ function calcular() {
     //ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * tempo));
     //Retorno = ValFinal - ValInicial;
 
+    var ValFinal = 0;
     var ValIntermedio = 0;
+    var JuroMes = 0;
+    var Retorno = 0;
+    var JuroAcumulado;
 
     // Loop de cálculos
     if ($("#TempoJuros").val() == "Anos") {
