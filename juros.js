@@ -53,6 +53,7 @@ function validate() {
         $.isNumeric(ValIncremento) && $.isNumeric(ValPerIncremento)) {
         console.log("Os inputs são numeros.");
         calcular();
+
     } else alert("Os campos têm de ser preenchidos com valores numéricos.");
 }
 
@@ -63,28 +64,23 @@ function calcular() {
     //ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * tempo));
     //Retorno = ValFinal - ValInicial;
 
-    var ValFinal = 0;
+    var Valor1 = 0;
     var ValIntermedio = 0;
     var JuroMes = 0;
-    var Retorno = 0;
     var JuroAcumulado;
 
     // Loop de cálculos
     if ($("#TempoJuros").val() == "Anos") {
         $("#PerTabela").text("Anos");
-        //ValIntermedio = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
-        ValIntermedio = ValInicial + (ValInicial * ValJuro);
-        ValFinal += ValIntermedio;
+        Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1)));
+        $("#ValFinal").val('');
+        ValFinal += Valor1;
         for (var i = 0; i < tempo - 1; i++) {
-            ValIntermedio = ValFinal + (ValFinal * ValJuro);
-            ValFinal += ValIntermedio;
-            //ValFinal = ValFinal + ValIntermedio;
-            //ValIntermedio = ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
+            ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1)));
+            ValFinal = ValIntermedio;
 
             //JuroMes = ValIntermedio - ValInicial;
         }
-        console.log("adf" + ValIntermedio);
-
         //Retorno = ValFinal - ValInicial;
     } else {
         $("#PerTabela").text("Meses");
