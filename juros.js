@@ -1,14 +1,12 @@
 //Notas: A calculadora está a funcionar da maneira mais simples mas ainda falta
 //adicionar as periodicidades de juro e os incrementos
 
-var ValFinal;
-var ValInicial;
-var Retorno;
-var tempo;
-var ValJuro;
+var ValInicial = 0;
+var tempo = 0;
+var ValJuro = 0;
 var ValPerJuro = 1; //numero de vezes que o juro é aplicado por ano, esta default para 1 vez por ano//
-var ValIncremento; //Incremento opcional//
-var ValPerIncremento; //periodicidade do incremento//
+var ValIncremento = 0; //Incremento opcional//
+var ValPerIncremento = 0; //periodicidade do incremento//
 
 //botao de limpar dados
 function limpar() {
@@ -63,20 +61,24 @@ function calcular() {
     //função de calculos 
     //ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * tempo));
     //Retorno = ValFinal - ValInicial;
-    
-    var ValIntermedio;
-    var JuroMes;
+    var ValFinal = 0;
+    var ValIntermedio = 0;
+    var JuroMes = 0;
+    var Retorno = 0;
     var JuroAcumulado;
 
     // Loop de cálculos
     if ($("#TempoJuros").val() == "Anos") {
         $("#PerTabela").text("Anos");
         ValIntermedio = ValInicial * Math.pow(1 + (ValJuro/ValPerJuro), (ValPerJuro * 1));
+        ValFinal = ValFinal + ValIntermedio;
         for(var i = 0; i < tempo - 1; i++){
-            ValFinal = ValFinal + ValIntermedio;
             ValIntermedio = ValFinal * Math.pow(1 + (ValJuro/ValPerJuro), (ValPerJuro * 1));
+            ValFinal = ValFinal + ValIntermedio;
+            console.log(ValIntermedio);
+            console.log(ValFinal);
             
-            JuroMes = ValIntermedio - ValInicial;
+            //JuroMes = ValIntermedio - ValInicial;
         }
         Retorno = ValFinal - ValInicial;
     } else {
