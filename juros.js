@@ -42,7 +42,6 @@ function validate() {
     ValIncremento = $("#incremento").val();
     ValPerIncremento = $("#perincremento").val();
 
-    // fazer cena para o incremento a aprtir daqui para baixo
     //verifica se os valores sao positivos
     if (ValInicial <= 0 || tempo <= 0 || ValJuro <= 0 ||
         ValPerJuro <= 0 && ValIncremento <= 0 && ValPerIncremento <= 0) {
@@ -62,18 +61,31 @@ function validate() {
 //Cálculos e aparece os gráficos (esta função está dentro da função validate())
 function calcular() {
     //função de calculos 
-    ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * tempo));
-    Retorno = ValFinal - ValInicial;
+    //ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * tempo));
+    //Retorno = ValFinal - ValInicial;
+    
+    var ValIntermedio;
+    var JuroMes;
+    var JuroAcumulado;
 
     // Loop de cálculos
+    if ($("#TempoJuros").val() == "Anos") {
+        $("#PerTabela").text("Anos");
+        //ValIntermedio = ValInicial * Math.pow(1 + (ValJuro/ValPerJuro), (ValPerJuro * 1));
+        ValIntermedio = ValInicial + ValInicial * ValJuro;
+        for(var i = 0; i < tempo - 1; i++){
+            ValFinal = ValFinal + ValIntermedio;
+            //ValIntermedio = ValFinal * Math.pow(1 + (ValJuro/ValPerJuro), (ValPerJuro * 1));
+            ValIntermedio = ValFinal + ValFinal * ValJuro;
 
-    // Loop de cálculos
-    //if ($("#TempoJuros").val() == "Anos") {
-    //    $("#tabela").text() = "<th><td>Ano</td><td>Juros por Mês</td><td>Juros Acumulados</td><td>Montante Acumulado</td></th>";
-    //} else {
-    //    $("#tabela").text() = "<th><td>Meses</td><td>Juros por Mês</td><td>Juros Acumulados</td><td>Montante Acumulado</td></th>";
-    //}
+            //JuroMes = ValIntermedio - ValInicial;
+        }
+        Retorno = ValFinal - ValInicial;
+    } else {
+        $("#PerTabela").text("Meses");
+    }
 
+    //Converte
     function anoMes() {
         var tempo2;
         if ($("#TempoJuros").val() == "Anos") {
@@ -96,6 +108,7 @@ function calcular() {
 
         return duracao;
     }
+    var ValGrafico = new Array(anoMes());
     //EixoY
     //Falta colocar a escala para o montante que pode ser introduzido
     //Gráfico de linha 
