@@ -71,14 +71,12 @@ function calcular() {
     // Loop de cálculos
     if ($("#TempoJuros").val() == "Anos") {
         $("#PerTabela").text("Anos");
-        //ValIntermedio = ValInicial * Math.pow(1 + (ValJuro/ValPerJuro), (ValPerJuro * 1));
-        ValIntermedio = ValInicial + ValInicial * ValJuro;
+        ValIntermedio = ValInicial * Math.pow(1 + (ValJuro/ValPerJuro), (ValPerJuro * 1));
         for(var i = 0; i < tempo - 1; i++){
             ValFinal = ValFinal + ValIntermedio;
-            //ValIntermedio = ValFinal * Math.pow(1 + (ValJuro/ValPerJuro), (ValPerJuro * 1));
-            ValIntermedio = ValFinal + ValFinal * ValJuro;
-
-            //JuroMes = ValIntermedio - ValInicial;
+            ValIntermedio = ValFinal * Math.pow(1 + (ValJuro/ValPerJuro), (ValPerJuro * 1));
+            
+            JuroMes = ValIntermedio - ValInicial;
         }
         Retorno = ValFinal - ValInicial;
     } else {
