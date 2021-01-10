@@ -27,7 +27,7 @@ function limpar() {
 function validate() {
     ValInicial = $("#valorInitial").val();
 
-    //converter anos em meses, com casa decimal
+    //converter meses anos, com casa decimal
     if ($("#TempoJuros").val() == "Anos") {
         tempo = $("#tempo").val();
     } else {
@@ -58,11 +58,14 @@ function validate() {
     } else alert("Os campos têm de ser preenchidos com valores numéricos.");
 }
 
+
 //Cálculos e aparece os gráficos (esta função está dentro da função validate())
 function calcular() {
     //função de calculos 
     ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * tempo));
     Retorno = ValFinal - ValInicial;
+
+    // Loop de cálculos
 
     // Loop de cálculos
     //if ($("#TempoJuros").val() == "Anos") {
