@@ -4,7 +4,7 @@
 var ValFinal;
 var ValInicial;
 var Retorno;
-var tempo /*= anoMes()*/;
+var tempo /*= anoMes()*/ ;
 var ValJuro;
 var ValPerJuro = 1; //numero de vezes que o juro é aplicado por ano, esta default para 1 vez por ano//
 var ValIncremento; //Incremento opcional//
@@ -26,13 +26,13 @@ function limpar() {
 //validação de dados para a função calcular() e botão calcular
 function validate() {
     ValInicial = $("#valorInitial").val();
-    
+
     //converter anos em meses, com casa decimal
-    if($("#TempoJuros").val() == "Anos"){
+    if ($("#TempoJuros").val() == "Anos") {
         tempo = $("#tempo").val();
-    }else { 
-            tempo = $("#tempo").val() / 12;
-          }
+    } else {
+        tempo = $("#tempo").val() / 12;
+    }
     console.log(tempo);
 
     ValJuro = $("#juro").val() / 100;
@@ -45,12 +45,12 @@ function validate() {
     // fazer cena para o incremento a aprtir daqui para baixo
     //verifica se os valores sao positivos
     if (ValInicial <= 0 || tempo <= 0 || ValJuro <= 0 ||
-         ValPerJuro <= 0 || ValIncremento <= 0 || ValPerIncremento <= 0) {
+        ValPerJuro <= 0 || ValIncremento <= 0 || ValPerIncremento <= 0) {
         alert("Verifique se todos os valores são positivos.");
     } else
     //verifica se são numeros
     if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
-        $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) && 
+        $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
         $.isNumeric(ValIncremento) && $.isNumeric(ValPerIncremento)) {
         console.log("Os inputs são numeros.")
         calcular();
@@ -58,6 +58,8 @@ function validate() {
 }
 
 function anoMes() {
+    //Valor Inicial
+
     var meses, ano;
 
     //Converte mês para ano
@@ -67,15 +69,15 @@ function anoMes() {
     //Converte ano para mês
     //ano = tempo / 12;
 
-    return meses = 12;
+    return meses = 24;
 }
 
 //Cálculos e aparece os gráficos (esta função está dentro da função validate())
 function calcular() {
     //função de calculos 
-    ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * tempo) );
-    Retorno = ValFinal - ValInicial; 
-    
+    ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * tempo));
+    Retorno = ValFinal - ValInicial;
+
     // Loop de cálculos
     //if($("#TempoJuros").val() == "Anos"){
     //    $("#tabela").text() = "<th><td>Ano</td><td>Juros por Mês</td><td>Juros Acumulados</td><td>Montante Acumulado</td></th>";
@@ -91,7 +93,7 @@ function calcular() {
 
 //EixoX
 function eixoX() {
-    var cont, duracao = new Array(tempo);
+    var cont, duracao = new Array();
 
     for (cont = 0; cont < anoMes(); cont++) {
         duracao[cont] = cont + 1;
