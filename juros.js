@@ -73,7 +73,7 @@ function calcular() {
     if ($("#TempoJuros").val() == "Anos") {
         $("#PerTabela").text("Anos");
         Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1)));
-        $("#ValFinal").val('');
+        ValFinal = 0;
         ValFinal += Valor1;
         for (var i = 0; i < tempo - 1; i++) {
             ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1)));
@@ -138,7 +138,7 @@ function calcular() {
                     label: 'Acumulado',
                     backgroundColor: 'transparent',
                     borderColor: 'red',
-                    data: [20, 30, 50, 60, 70, 80]
+                    data: [20, 30, 50, 60, 70, 80, 32]
                 }
             ]
         },
