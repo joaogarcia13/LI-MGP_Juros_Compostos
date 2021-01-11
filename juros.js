@@ -16,6 +16,8 @@ var Valor1 = 0; // Valor intermedio no calculo do juro do primeiro ano
 var ValIntermedio = 0; // valor intermedio no loop
 var JuroMes = 0; // valor tabela do Juro ganho por ano/mes
 var JuroAcumulado = 0; // valor tabela juros acumulados 
+var eixoY = new Array(); //Array com o ValFinal incrementado para o eixo do Y do grafico
+
 
 //botao de limpar dados
 function limpar() {
@@ -72,14 +74,32 @@ function calcular() {
     document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' id='PerTabela'>Anos</th>" +
         "<th scope='col' id='PerTabela2'>Juros por Mês</th><th scope='col'>Juros Acumulados</th>" +
         "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
-    //ValFinal = 0;
+    ValFinal = 0;
     Retorno = 0;
+    JuroAcumulado = 0;
 
     // Cálculos e tabela
     //Se for escolhido anos
     if ($("#TempoJuros").val() == "Anos") {
         $("#PerTabela").text("Ano");
         $("#PerTabela2").text("Juro por Ano");
+
+        //Loop para o array eixoY com os valores dos anos convertidos em meses
+        Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / (ValPerJuro)), (ValPerJuro * 1 / 12)));
+        JuroMes = Valor1 - ValInicial;
+        ValFinal = Valor1;
+        eixoY[0] = ValInicial;
+        eixoY[1] = ValFinal.toFixed(2);
+        for (var i = 0; i < anoMes() - 1; i++) {
+            var t = i + 2;
+            ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1 / 12)));
+            JuroMes = ValIntermedio - ValFinal;
+            ValFinal = ValIntermedio;
+            eixoY[i + 2] = ValFinal.toFixed(2);
+        }
+        console.log("\n\n\n\n Array eixoY");
+        console.log(eixoY);
+        console.log("\n\n\n\n");
 
         //Calculo Primeiro ano
         Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1)));
@@ -113,26 +133,34 @@ function calcular() {
         JuroMes = Valor1 - ValInicial;
         ValFinal = Valor1;
         JuroAcumulado = JuroMes;
+        eixoY[0] = ValInicial;
+        eixoY[1] = ValFinal.toFixed(2);
 
         //preenchimento da primeira fila da tabela
         document.getElementById("tabela").innerHTML += "<tr><td>" + "1" + "</td><td>" + JuroMes.toFixed(2) + " €" +
             "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
-            //Loop para os meses seguintes
+
+
+        //Loop para os meses seguintes
         for (var i = 0; i < anoMes() - 1; i++) {
             var t = i + 2;
             ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12))));
             JuroMes = ValIntermedio - ValFinal;
             JuroAcumulado += JuroMes;
             ValFinal = ValIntermedio;
+            eixoY[i + 2] = ValFinal.toFixed(2);
 
             //Preenchimento da tabela
             document.getElementById("tabela").innerHTML += "<tr><td>" + t + "</td><td>" + JuroMes.toFixed(2) + " €" +
-                "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
-
+                "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";
         }
         Retorno = ValFinal - ValInicial;
+        console.log("\n\n\n\n Array eixoY");
+        console.log(eixoY);
+        console.log("\n\n\n\n");
     }
 
+    //funcao que converte anos em meses
     function anoMes() {
         var tempo2;
         if ($("#TempoJuros").val() == "Anos") {
@@ -161,8 +189,10 @@ function calcular() {
         var cont, valor = new Array(anoMes());
 
         for (cont = 0; cont <= anoMes(); cont++) {
-            valor[cont] = cont
+            valor[cont] = ValInicial;
         }
+
+        return valor;
     }
 
     //Gráfico de linha 
@@ -176,22 +206,39 @@ function calcular() {
             labels: eixoX(),
             datasets: [{
                     label: 'Inv. Inicial',
-                    backgroundColor: 'transparent',
                     borderColor: 'blue',
-                    data: [20, 20, 20, 20, 20, 20]
-
+                    data: valorInicial(),
+                    fill: false,
                 },
                 {
                     label: 'Acumulado',
-                    backgroundColor: 'transparent',
                     borderColor: 'red',
-                    data: [20, 30, 50, 60, 70, 80, 32]
+                    data: eixoY,
+                    fill: false,
                 }
             ]
         },
 
         // Configuration options go herealorInicial
-        options: {}
+        options: {
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Meses',
+                    },
+
+                }, ],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Dinheiro (€)',
+                    },
+                }, ],
+            },
+        }
     });
 
     $("#ValFinal").val(ValFinal.toFixed(2));
