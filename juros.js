@@ -68,10 +68,12 @@ function validate() {
 //Cálculos e aparece os gráficos (esta função é chamada dentro da função validate())
 function calcular() {
 
-    //reset da tabela
+    //reset da tabela e dos valores Finais e Retorno
     document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' id='PerTabela'>Anos</th>" +
     "<th scope='col' id='PerTabela2'>Juros por Mês</th><th scope='col'>Juros Acumulados</th>" +
     "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
+    ValFinal = 0; 
+    Retorno = 0; 
 
     // Cálculos e tabela
     //Se for escolhido anos
