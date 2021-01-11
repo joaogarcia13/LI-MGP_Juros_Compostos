@@ -6,14 +6,14 @@
 
 var ValFinal = 0;
 var ValInicial = 0;
-var Retorno = 0; 
-var tempo = 0;  
+var Retorno = 0;
+var tempo = 0;
 var ValJuro = 0; // valor do juro
 var ValPerJuro = 1; //numero de vezes que o juro é aplicado por ano, esta default para 1 vez por ano//
 var ValIncremento = 0; //Incremento opcional//
 var ValPerIncremento = 0; //periodicidade do incremento//
 var Valor1 = 0; // Valor intermedio no calculo do juro do primeiro ano
-var ValIntermedio = 0;  // valor intermedio no loop
+var ValIntermedio = 0; // valor intermedio no loop
 var JuroMes = 0; // valor tabela do Juro ganho por ano/mes
 var JuroAcumulado = 0; // valor tabela juros acumulados 
 
@@ -70,28 +70,28 @@ function calcular() {
 
     //reset da tabela e dos valores Finais e Retorno
     document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' id='PerTabela'>Anos</th>" +
-    "<th scope='col' id='PerTabela2'>Juros por Mês</th><th scope='col'>Juros Acumulados</th>" +
-    "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
-    ValFinal = 0; 
-    Retorno = 0; 
+        "<th scope='col' id='PerTabela2'>Juros por Mês</th><th scope='col'>Juros Acumulados</th>" +
+        "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
+    //ValFinal = 0;
+    Retorno = 0;
 
     // Cálculos e tabela
     //Se for escolhido anos
     if ($("#TempoJuros").val() == "Anos") {
         $("#PerTabela").text("Ano");
         $("#PerTabela2").text("Juro por Ano");
-        
+
         //Calculo Primeiro ano
         Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1)));
         JuroMes = Valor1 - ValInicial;
-        ValFinal += Valor1;
-        JuroAcumulado += JuroMes;
+        ValFinal = Valor1;
+        JuroAcumulado = JuroMes;
 
         //preenchimento da primeira fila da tabela
-        document.getElementById("tabela").innerHTML += "<tr><td>" + "1" + "</td><td>" + JuroMes.toFixed(2) + " €"
-            + "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
-        
-            //Loop para os anos seguintes
+        document.getElementById("tabela").innerHTML += "<tr><td>" + "1" + "</td><td>" + JuroMes.toFixed(2) + " €" +
+            "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
+
+        //Loop para os anos seguintes
         for (var i = 0; i < tempo - 1; i++) {
             var t = i + 2;
             ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1)));
@@ -100,36 +100,36 @@ function calcular() {
             ValFinal = ValIntermedio;
 
             //Preenchimento da tabela
-            document.getElementById("tabela").innerHTML += "<tr><td>" + t + "</td><td>" + JuroMes.toFixed(2) + " €"
-            + "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
+            document.getElementById("tabela").innerHTML += "<tr><td>" + t + "</td><td>" + JuroMes.toFixed(2) + " €" +
+                "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
 
         }
         Retorno = ValFinal - ValInicial;
     } else {
         $("#PerTabela").text("Meses");
         $("#PerTabela2").text("Juro por Mês");
-        
+
         //Calculo Primeiro Mês
-        Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1/12))));
+        Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12))));
         JuroMes = Valor1 - ValInicial;
-        ValFinal += Valor1;
-        JuroAcumulado += JuroMes;
+        ValFinal = Valor1;
+        JuroAcumulado = JuroMes;
 
         //preenchimento da primeira fila da tabela
-        document.getElementById("tabela").innerHTML += "<tr><td>" + "1" + "</td><td>" + JuroMes.toFixed(2) + " €"
-            + "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
-        
-            //Loop para os meses seguintes
+        document.getElementById("tabela").innerHTML += "<tr><td>" + "1" + "</td><td>" + JuroMes.toFixed(2) + " €" +
+            "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
+
+        //Loop para os meses seguintes
         for (var i = 0; i < tempo - 1; i++) {
             var t = i + 2;
-            ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1/12))));
+            ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12))));
             JuroMes = ValIntermedio - ValFinal;
             JuroAcumulado += JuroMes;
             ValFinal = ValIntermedio;
 
             //Preenchimento da tabela
-            document.getElementById("tabela").innerHTML += "<tr><td>" + t + "</td><td>" + JuroMes.toFixed(2) + " €"
-            + "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
+            document.getElementById("tabela").innerHTML += "<tr><td>" + t + "</td><td>" + JuroMes.toFixed(2) + " €" +
+                "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
 
         }
         Retorno = ValFinal - ValInicial;
