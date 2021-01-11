@@ -17,6 +17,7 @@ var ValIntermedio = 0;  // valor intermedio no loop
 var JuroMes = 0; // valor tabela do Juro ganho por ano/mes
 var JuroAcumulado = 0; // valor tabela juros acumulados 
 
+
 //botao de limpar dados
 function limpar() {
     $("#valorInitial").val('');
@@ -74,6 +75,7 @@ function calcular() {
     "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
     ValFinal = 0; 
     Retorno = 0; 
+    JuroAcumulado = 0;
 
     // Cálculos e tabela
     //Se for escolhido anos
@@ -115,10 +117,14 @@ function calcular() {
         ValFinal += Valor1;
         JuroAcumulado += JuroMes;
 
+        //var eixoY = new Array(tempo);
+        //eixoY[0] = ValFinal.toFixed(2);
+
         //preenchimento da primeira fila da tabela
         document.getElementById("tabela").innerHTML += "<tr><td>" + "1" + "</td><td>" + JuroMes.toFixed(2) + " €"
             + "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
         
+
             //Loop para os meses seguintes
         for (var i = 0; i < tempo - 1; i++) {
             var t = i + 2;
@@ -126,13 +132,16 @@ function calcular() {
             JuroMes = ValIntermedio - ValFinal;
             JuroAcumulado += JuroMes;
             ValFinal = ValIntermedio;
+            console.log("oi");
+            //eixoY[i+1] = ValFinal.toFixed(2);
 
             //Preenchimento da tabela
             document.getElementById("tabela").innerHTML += "<tr><td>" + t + "</td><td>" + JuroMes.toFixed(2) + " €"
-            + "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
-
+            + "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";
+            console.log("oi");
         }
         Retorno = ValFinal - ValInicial;
+        //console.log(eixoY);
     }
 
     function anoMes() {
