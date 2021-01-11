@@ -102,7 +102,6 @@ function calcular() {
             //Preenchimento da tabela
             document.getElementById("tabela").innerHTML += "<tr><td>" + t + "</td><td>" + JuroMes.toFixed(2) + " €" +
                 "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
-
         }
         Retorno = ValFinal - ValInicial;
     } else {
