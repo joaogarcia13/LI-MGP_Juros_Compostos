@@ -118,9 +118,8 @@ function calcular() {
         //preenchimento da primeira fila da tabela
         document.getElementById("tabela").innerHTML += "<tr><td>" + "1" + "</td><td>" + JuroMes.toFixed(2) + " €" +
             "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>"
-
-        //Loop para os meses seguintes
-        for (var i = 0; i < tempo - 1; i++) {
+            //Loop para os meses seguintes
+        for (var i = 0; i < anoMes() - 1; i++) {
             var t = i + 2;
             ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12))));
             JuroMes = ValIntermedio - ValFinal;
