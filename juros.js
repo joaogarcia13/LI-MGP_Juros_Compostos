@@ -28,11 +28,11 @@ function limpar() {
 }
 
 function escolhe() {
-    document.getElementById("simulador1").onclick = function () {
+    document.getElementById("simulador1").onclick = function() {
         $("#calculadora1").removeClass('d-none');
         $("#calculadora2").addClass('d-none');
     }
-    document.getElementById("simulador2").onclick = function () {
+    document.getElementById("simulador2").onclick = function() {
         $("#calculadora1").addClass('d-none');
         $("#calculadora2").removeClass('d-none');
     }
@@ -62,15 +62,15 @@ function validate() {
         ValPerJuro <= 0 && ValIncremento <= 0) {
         alert("Verifique se todos os valores são positivos.");
     } else
-        //verifica se são numeros
-        if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-            $.isNumeric(ValIncremento)) {
-            console.log("Os inputs são numeros.");
-            //Falta aqui a função para quando for o simulador 2
-            calcular();
+    //verifica se são numeros
+    if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
+        $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+        $.isNumeric(ValIncremento)) {
+        console.log("Os inputs são numeros.");
+        //Falta aqui a função para quando for o simulador 2
+        calcular();
 
-        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+    } else alert("Os campos têm de ser preenchidos com valores numéricos.");
 }
 
 
@@ -92,10 +92,7 @@ function calcular() {
         $("#PerTabela").text("Ano");
         $("#PerTabela2").text("Juro por Ano");
 
-        //Loop para o array eixoY com os valores dos anos convertidos em meses
-        Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / (ValPerJuro)), (ValPerJuro * 1 / 12)));
-        JuroMes = Valor1 - ValInicial;
-        ValFinal = Valor1;
+        //Loop para o array eixoY com os valores"</td><td>" + JuroAcumulado.toFixed(2
         eixoY[0] = ValInicial;
         eixoY[1] = ValFinal.toFixed(2);
         for (var i = 0; i < anoMes() - 1; i++) {
@@ -130,8 +127,6 @@ function calcular() {
             else if ($("#TempoInc").val() == "Mensal") { ValFinal += Mensal(); IncrementoAcumul += Mensal();}
             else if ($("#TempoInc").val() == "Semanal") { ValFinal += Semanal(); IncrementoAcumul += Semanal(); }
             else if ($("#TempoInc").val() == "Diário") { ValFinal += Diario(i + 1); IncrementoAcumul += Diario();}
-
-
 
             //Preenchimento da tabela
             if ($("#incremento").val() > 0) {
@@ -225,17 +220,17 @@ function calcular() {
         data: {
             labels: eixoX(),
             datasets: [{
-                label: 'Val. Investido',
-                borderColor: 'blue',
-                data: valorInicial(),
-                fill: false,
-            },
-            {
-                label: 'Val. Acumulado',
-                borderColor: 'red',
-                data: eixoY,
-                fill: false,
-            }
+                    label: 'Val. Investido',
+                    borderColor: 'blue',
+                    data: valorInicial(),
+                    fill: false,
+                },
+                {
+                    label: 'Val. Acumulado',
+                    borderColor: 'red',
+                    data: eixoY,
+                    fill: false,
+                }
             ]
         },
 
@@ -249,14 +244,14 @@ function calcular() {
                         labelString: 'Meses',
                     },
 
-                },],
+                }, ],
                 yAxes: [{
                     display: true,
                     scaleLabel: {
                         display: true,
                         labelString: 'Dinheiro (€)',
                     },
-                },],
+                }, ],
             },
         },
     });
