@@ -46,8 +46,15 @@
                 <span class="input-group-text">Incremento</span>
             </div>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" id="perincremento" value="0">
-                <span class="input-group-text">Periocidade do Incremento</span>
+                <input type="text" class="form-control" id="perincremento" value="Perido de Incremento" disabled>
+                <div class="input-group-append">
+                    <select class="form-select" aria-label="Default select example" id="TempoInc">
+                        <option selected id="anos">Anual</option>
+                        <option id="meses">Mensal</option>
+                        <option id="meses">Semanal</option>
+                        <option id="meses">Diário</option>
+                    </select>
+                </div>
             </div>
             <div class="row">
                 <div class="input-group mb-3 col-2">
