@@ -65,7 +65,7 @@ function validate() {
     //verifica se são numeros
     if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
         $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-        $.isNumeric(ValIncremento) && $.isNumeric(ValPerIncremento)) {
+        $.isNumeric(ValIncremento) {
         console.log("Os inputs são numeros.");
         //Falta aqui a função para quando for o simulador 2
         calcular();
