@@ -32,6 +32,17 @@ function limpar() {
     $("#tabGraf").addClass('d-none');
 }
 
+function escolhe() {
+    document.getElementById("simulador1").onclick = function() {
+        $("#calculadora1").removeClass('d-none');
+        $("#calculadora2").addClass('d-none');
+    }
+    document.getElementById("simulador2").onclick = function() {
+        $("#calculadora1").addClass('d-none');
+        $("#calculadora2").removeClass('d-none');
+    }
+}
+
 //validação de dados para a função calcular() e botão calcular
 function validate() {
     ValInicial = $("#valorInitial").val();
@@ -61,6 +72,7 @@ function validate() {
         $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
         $.isNumeric(ValIncremento) && $.isNumeric(ValPerIncremento)) {
         console.log("Os inputs são numeros.");
+        //Falta aqui a função para quando for o simulador 2
         calcular();
 
     } else alert("Os campos têm de ser preenchidos com valores numéricos.");
@@ -238,7 +250,7 @@ function calcular() {
                     },
                 }, ],
             },
-        }
+        },
     });
 
     $("#ValFinal").val(ValFinal.toFixed(2));

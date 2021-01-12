@@ -14,6 +14,14 @@
 
 <body class="container-fluid">
 
+    <!--Escolher o simulador-->
+    <section>
+        <div class="row">
+            <button type="button" class="btn btn-outline-secondary col-3" id="simulador1" onclick="escolhe()">Simulador 1</button>
+            <button type="button" class="btn btn-outline-secondary col-3" id="simulador2" onclick="escolhe()">Simulador 2</button>
+        </div>
+    </section>
+
     <!--Secção dos simuladores-->
     <section>
         <!--Simulador1-->
@@ -57,6 +65,40 @@
                     <input type="text" class="form-control" id="Retorno">
                     <span class="input-group-text">Retorno</span>
                 </div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
+            <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
+        </div>
+
+        <!--Simulador 2-->
+        <div id="calculadora2" class="col-5 d-none">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="valorInitial2" value="0">
+                <span class="input-group-text">Valor Inicial</span>
+            </div>
+            <div class="input-group mb-3 col-2">
+                <input type="text" class="form-control" id="ValFinal2">
+                <span class="input-group-text">Montante Final</span>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="juro2" value="00.00">
+                <span class="input-group-text">Juro</span>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="periodo2" value="0">
+                <span class="input-group-text">Periocidade</span>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="incremento2" value="0">
+                <span class="input-group-text">Incremento</span>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="perincremento2" value="0">
+                <span class="input-group-text">Periocidade do Incremento</span>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="duracao2" value="00.00">
+                <span class="input-group-text">Anos atingir o montante inicial</span>
             </div>
             <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
             <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
