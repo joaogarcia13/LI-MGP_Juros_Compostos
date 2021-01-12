@@ -65,7 +65,7 @@ function validate() {
     //verifica se são numeros
     if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
         $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-        $.isNumeric(ValIncremento) {
+        $.isNumeric(ValIncremento)) {
         console.log("Os inputs são numeros.");
         //Falta aqui a função para quando for o simulador 2
         calcular();
@@ -91,10 +91,7 @@ function calcular() {
         $("#PerTabela").text("Ano");
         $("#PerTabela2").text("Juro por Ano");
 
-        //Loop para o array eixoY com os valores dos anos convertidos em meses
-        Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / (ValPerJuro)), (ValPerJuro * 1 / 12)));
-        JuroMes = Valor1 - ValInicial;
-        ValFinal = Valor1;
+        //Loop para o array eixoY com os valores"</td><td>" + JuroAcumulado.toFixed(2
         eixoY[0] = ValInicial;
         eixoY[1] = ValFinal.toFixed(2);
         for (var i = 0; i < anoMes() - 1; i++) {
@@ -125,13 +122,11 @@ function calcular() {
             JuroMes = ValIntermedio - ValFinal;
             JuroAcumulado += JuroMes;
             ValFinal = ValIntermedio;
-            if ($("#TempoInc").val() == "Anual") { ValFinal += Anual(); }
-            else if ($("#TempoInc").val() == "Mensal") { ValFinal += Mensal(); }
-            else if ($("#TempoInc").val() == "Semanal") { ValFinal += Semanal(); }
-            else if ($("#TempoInc").val() == "Diário") { ValFinal += Diario(i + 1); }
+            if ($("#TempoInc").val() == "Anual") { ValFinal += Anual(); } else
+            if ($("#TempoInc").val() == "Mensal") { ValFinal += Mensal(); } else
+            if ($("#TempoInc").val() == "Semanal") { ValFinal += Semanal(); } else
+            if ($("#TempoInc").val() == "Diário") { ValFinal += Diario(i + 1); }
             IncrementoAcumul += ValIncremento;
-
-
 
             //Preenchimento da tabela
             if ($("#incremento").val() > 0) {
@@ -170,10 +165,7 @@ function calcular() {
                 if (i % 12) {
                     ValFinal += Anual();
                 }
-            }
-            else if ($("#TempoInc").val() == "Mensal") { ValFinal += Mensal(); }
-            else if ($("#TempoInc").val() == "Semanal") { ValFinal += Semanal(); }
-            else if ($("#TempoInc").val() == "Diário") { ValFinal += Diario(i + 1); }
+            } else if ($("#TempoInc").val() == "Mensal") { ValFinal += Mensal(); } else if ($("#TempoInc").val() == "Semanal") { ValFinal += Semanal(); } else if ($("#TempoInc").val() == "Diário") { ValFinal += Diario(i + 1); }
 
             IncrementoAcumul += ValIncremento;
             eixoY[i + 2] = ValFinal.toFixed(2);
@@ -225,17 +217,17 @@ function calcular() {
         data: {
             labels: eixoX(),
             datasets: [{
-                label: 'Inv. Inicial',
-                borderColor: 'blue',
-                data: valorInicial(),
-                fill: false,
-            },
-            {
-                label: 'Acumulado',
-                borderColor: 'red',
-                data: eixoY,
-                fill: false,
-            }
+                    label: 'Inv. Inicial',
+                    borderColor: 'blue',
+                    data: valorInicial(),
+                    fill: false,
+                },
+                {
+                    label: 'Acumulado',
+                    borderColor: 'red',
+                    data: eixoY,
+                    fill: false,
+                }
             ]
         },
 
@@ -249,14 +241,14 @@ function calcular() {
                         labelString: 'Meses',
                     },
 
-                },],
+                }, ],
                 yAxes: [{
                     display: true,
                     scaleLabel: {
                         display: true,
                         labelString: 'Dinheiro (€)',
                     },
-                },],
+                }, ],
             },
         },
     });
