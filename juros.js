@@ -102,20 +102,6 @@ function calcular() {
             JuroMes = ValIntermedio - ValFinal;
             ValFinal = ValIntermedio;
             eixoY[i + 2] = ValFinal.toFixed(2);
-
-            if ($("#TempoInc").val() == "Anual") {
-                ValFinal += Anual();
-                IncrementoAcumul += Anual();
-            } else if ($("#TempoInc").val() == "Mensal") {
-                ValFinal += Mensal();
-                IncrementoAcumul += Mensal();
-            } else if ($("#TempoInc").val() == "Semanal") {
-                ValFinal += Semanal();
-                IncrementoAcumul += Semanal();
-            } else if ($("#TempoInc").val() == "Diário") {
-                ValFinal += Diario(i + 1);
-                IncrementoAcumul += Diario();
-            }
         }
         console.log("\n\n\n\n Array eixoY");
         console.log(eixoY);
