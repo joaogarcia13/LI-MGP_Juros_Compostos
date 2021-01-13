@@ -13,7 +13,6 @@ var Valor1 = 0; // Valor intermedio no calculo do juro do primeiro ano
 var ValIntermedio = 0; // valor intermedio no loop
 var JuroMes = 0; // valor tabela do Juro ganho por ano/mes
 var JuroAcumulado = 0; // valor tabela juros acumulados 
-var eixoY = new Array(); //Array com o ValFinal incrementado para o eixo do Y do grafico
 var IncrementoAcumul = 0; // valor total investido em incrementos
 var IncremIntermed = 0; //variavel intermedia usada nas funçoes anual(); mensal(); semanal() e Diario()
 
@@ -89,7 +88,7 @@ function calcular() {
         "<th scope='col' id='PerTabela2'>Juros por Mês</th><th scope='col'>Juros Acumulados</th>" +
         "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
 
-
+    var eixoY = new Array(); //Array com o ValFinal incrementado para o eixo do Y do grafico/Reset do array
     IncrementoAcumul = 0;
 
     // Cálculos e tabela
@@ -303,7 +302,10 @@ function calcular() {
     if (linhaInvest != undefined)
         linhaInvest.destroy();
     var ctx = document.getElementById('myChart').getContext('2d');
-    var linhaInvest = new Chart(ctx, {
+    if (window.linhaInvest && window.linhaInvest !== null) {
+        window.linhaInvest.destroy();
+    }
+    window.linhaInvest = new Chart(ctx, {
         // The type of chart we want to create
         type: 'line',
 
@@ -347,10 +349,10 @@ function calcular() {
         },
     });
 
+
     $("#ValFinal").val(ValFinal.toFixed(2));
     $("#Retorno").val(Retorno.toFixed(2));
     $("#tabGraf").removeClass("d-none");
-
 }
 
 //Incremento anual
@@ -413,15 +415,9 @@ function Diario(i) {
     }
 }
 
-//funcao que converte anos em meses
+//funcao que converte anos em meses2
 function anoMes() {
-    var tempo2;
-    if ($("#TempoJuros").val() == "Anos") {
-        tempo2 = tempo * 12;
-        console.log(tempo2);
-    } else {
-        tempo2 = tempo * 12;
-        console.log(tempo2);
-    }
+    tempo2 = tempo * 12;
+    console.log(tempo2);
     return tempo2;
 }
