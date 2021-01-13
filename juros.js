@@ -1,5 +1,6 @@
 //Notas: o 4º valor da tabela de incrementos quando é incremento semanal e juro anual para valores 2/3/6/9/11/12/13/20/22 e não testei mais;)
-//ele nao obedece a regra do toFixed(2) da função semanal()asdf
+//ele nao obedece a regra do toFixed(2) da função semanal()
+//Para mudar de simulador temos que carregar no inicio duas vezes
 
 var ValFinal = 0;
 var ValInicial = 0;
@@ -278,7 +279,7 @@ function calcular() {
         for (cont = 0; cont <= anoMes(); cont++) {
             var i = cont + 2;
             if ($("#TempoInc").val() == "Anual") {
-                IncrementoAcumul = Anual();
+                IncrementoAcumul = (Anual() / anoMes()).toFixed(2);
             } else if ($("#TempoInc").val() == "Mensal") {
                 IncrementoAcumul = Mensal();
             } else if ($("#TempoInc").val() == "Semanal") {
@@ -299,8 +300,6 @@ function calcular() {
     }
 
     //Gráfico de linha 
-    if (linhaInvest != undefined)
-        linhaInvest.destroy();
     var ctx = document.getElementById('myChart').getContext('2d');
     if (window.linhaInvest && window.linhaInvest !== null) {
         window.linhaInvest.destroy();
@@ -348,9 +347,7 @@ function calcular() {
             },
         },
     });
-
-
-    $("#ValFinal").val(ValFinal.toFixed(2));
+    2
     $("#Retorno").val(Retorno.toFixed(2));
     $("#tabGraf").removeClass("d-none");
 }
@@ -418,6 +415,7 @@ function Diario(i) {
 //funcao que converte anos em meses2
 function anoMes() {
     tempo2 = tempo * 12;
+    2
     console.log(tempo2);
     return tempo2;
 }
