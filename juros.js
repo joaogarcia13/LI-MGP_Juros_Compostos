@@ -108,19 +108,23 @@ function calcular() {
         if ($("#TempoInc").val() == "Anual") {
             ValFinal += Anual();
             IncrementoAcumul += Anual();
-            eixoY[1] = ValFinal.toFixed(2);
+            for( var i = 0; i < 12; i++)
+                eixoY[i+1] = ValFinal.toFixed(2);
         } else if ($("#TempoInc").val() == "Mensal") {
             ValFinal += Mensal();
             IncrementoAcumul += Mensal();
-            eixoY[1] = ValFinal.toFixed(2);
+            for( var i = 0; i < 12; i++)
+                eixoY[i+1] = ValFinal.toFixed(2);
         } else if ($("#TempoInc").val() == "Semanal") {
             ValFinal += Semanal();
             IncrementoAcumul += Semanal();
-            eixoY[1] = ValFinal.toFixed(2);
+            for( var i = 0; i < 12; i++)
+                eixoY[i + 1] = ValFinal.toFixed(2);
         } else if ($("#TempoInc").val() == "Diário") {
             ValFinal += Diario(i + 1);
             IncrementoAcumul += Diario();
-            eixoY[1] = ValFinal.toFixed(2);
+            for( var i = 0; i < 12; i++)
+                eixoY[i + 1] = ValFinal.toFixed(2);
         }
 
 
@@ -142,19 +146,23 @@ function calcular() {
             if ($("#TempoInc").val() == "Anual") {
                 ValFinal += Anual();
                 IncrementoAcumul += Anual();
-                eixoY[i + 2] = ValFinal.toFixed(2);
+                for( var i = 0; i < 12; i++)
+                    eixoY[i+12] = ValFinal.toFixed(2);
             } else if ($("#TempoInc").val() == "Mensal") {
                 ValFinal += Mensal();
                 IncrementoAcumul += Mensal();
-                eixoY[i + 2] = ValFinal.toFixed(2);
+                for( var i = 0; i < 12; i++)
+                    eixoY[i+12] = ValFinal.toFixed(2);
             } else if ($("#TempoInc").val() == "Semanal") {
                 ValFinal += Semanal();
                 IncrementoAcumul += Semanal();
-                eixoY[i + 2] = ValFinal.toFixed(2);
+                for( var i = 0; i < 12; i++)
+                    eixoY[i+12] = ValFinal.toFixed(2);
             } else if ($("#TempoInc").val() == "Diário") {
                 ValFinal += Diario(i + 1);
                 IncrementoAcumul += Diario();
-                eixoY[i + 2] = ValFinal.toFixed(2);
+                for( var i = 0; i < 12; i++)
+                    eixoY[i+1] = ValFinal.toFixed(2);
             }
 
             //Preenchimento da tabela
