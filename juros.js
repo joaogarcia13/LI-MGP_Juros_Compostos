@@ -89,8 +89,7 @@ function calcular() {
         "<th scope='col' id='PerTabela2'>Juros por Mês</th><th scope='col'>Juros Acumulados</th>" +
         "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
 
-    eixoY = [];
-    duração = [];
+
     IncrementoAcumul = 0;
 
     // Cálculos e tabela
@@ -262,7 +261,8 @@ function calcular() {
 
     //EixoX
     function eixoX() {
-        var cont, duracao = new Array(anoMes());
+        var cont;
+        duracao = new Array(anoMes());
 
         for (cont = 0; cont <= anoMes(); cont++) {
             duracao[cont] = cont;
@@ -300,6 +300,8 @@ function calcular() {
     }
 
     //Gráfico de linha 
+    if (linhaInvest != undefined)
+        linhaInvest.destroy();
     var ctx = document.getElementById('myChart').getContext('2d');
     var linhaInvest = new Chart(ctx, {
         // The type of chart we want to create
