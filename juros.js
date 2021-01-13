@@ -1,6 +1,6 @@
 //Notas: o 4º valor da tabela de incrementos quando é incremento semanal e juro anual para valores 2/3/6/9/11/12/13/20/22 e não testei mais;)
 //ele nao obedece a regra do toFixed(2) da função semanal()
-//Para mudar de simulador temos que carregar no inicio duas vezes
+//Para mudar de simulador temos que carregar no inicio duas vezess
 
 var ValFinal = 0;
 var ValInicial = 0;
