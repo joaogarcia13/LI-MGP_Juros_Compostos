@@ -116,6 +116,19 @@ function calcular() {
         JuroMes = Valor1 - ValInicial;
         ValFinal = Valor1;
         JuroAcumulado = JuroMes;
+        if ($("#TempoInc").val() == "Anual") {
+            ValFinal += Anual();
+            IncrementoAcumul += Anual();
+        } else if ($("#TempoInc").val() == "Mensal") {
+            ValFinal += Mensal();
+            IncrementoAcumul += Mensal();
+        } else if ($("#TempoInc").val() == "Semanal") {
+            ValFinal += Semanal();
+            IncrementoAcumul += Semanal();
+        } else if ($("#TempoInc").val() == "Diário") {
+            ValFinal += Diario(i + 1);
+            IncrementoAcumul += Diario();
+        }
 
 
         //preenchimento da primeira fila da tabela
@@ -131,7 +144,7 @@ function calcular() {
             var t = i + 2;
             ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1)));
             JuroMes = ValIntermedio - ValFinal;
-            JuroAcumulado = JuroMes;
+            JuroAcumulado += JuroMes;
             ValFinal = ValIntermedio;
             if ($("#TempoInc").val() == "Anual") {
                 ValFinal += Anual();
@@ -167,6 +180,19 @@ function calcular() {
         JuroAcumulado = JuroMes;
         eixoY[0] = ValInicial;
         eixoY[1] = ValFinal.toFixed(2);
+        if ($("#TempoInc").val() == "Anual") {
+                ValFinal += Anual();
+                IncrementoAcumul += Anual();
+        } else if ($("#TempoInc").val() == "Mensal") {
+            ValFinal += Mensal();
+            IncrementoAcumul += Mensal();
+        } else if ($("#TempoInc").val() == "Semanal") {
+            ValFinal += Semanal();
+            IncrementoAcumul += Semanal();
+        } else if ($("#TempoInc").val() == "Diário") {
+            ValFinal += Diario(i + 1);
+            IncrementoAcumul += Diario();
+        }
 
         //preenchimento da primeira fila da tabela
         if ($("#incremento").val() > 0) {
