@@ -99,14 +99,12 @@ function calcular() {
 
         //Loop para o array eixoY com os valores"</td><td>" + JuroAcumulado.toFixed(2
         Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12))));
-        JuroMes = Valor1 - ValInicial;
         ValFinal = Valor1;
         eixoY[0] = ValInicial;
         eixoY[1] = ValFinal.toFixed(2);
         for (var i = 0; i < anoMes() - 1; i++) {
             var t = i + 2;
             ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1 / 12)));
-            JuroMes = ValIntermedio - ValFinal;
             ValFinal = ValIntermedio;
             eixoY[i + 2] = ValFinal.toFixed(2);
         }
@@ -176,14 +174,16 @@ function calcular() {
         //Calculo Primeiro Mês
         Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12))));
         JuroMes = Valor1 - ValInicial;
-        ValFinal = Valor1;
+        ValFinal = parseFloat(Valor1) + parseFloat(ValIncremento);
         JuroAcumulado = JuroMes;
         eixoY[0] = ValInicial;
         eixoY[1] = ValFinal.toFixed(2);
         if ($("#TempoInc").val() == "Anual") {
-                ValFinal += Anual();
-                IncrementoAcumul += Anual();
+
+            ValFinal += Anual();
+            IncrementoAcumul += Anual();
         } else if ($("#TempoInc").val() == "Mensal") {
+
             ValFinal += Mensal();
             IncrementoAcumul += Mensal();
         } else if ($("#TempoInc").val() == "Semanal") {
@@ -262,11 +262,8 @@ function calcular() {
         valor[0] = ValInicial;
         for (cont = 0; cont <= anoMes(); cont++) {
             var i = cont + 2;
-            var j = i + 1;
             if ($("#TempoInc").val() == "Anual") {
-                if (j % 12 == 0) {
-                    IncrementoAcumul = Anual();
-                }
+                IncrementoAcumul = Anual();
             } else if ($("#TempoInc").val() == "Mensal") {
                 IncrementoAcumul = Mensal();
             } else if ($("#TempoInc").val() == "Semanal") {
