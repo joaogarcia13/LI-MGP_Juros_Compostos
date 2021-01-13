@@ -119,7 +119,6 @@ function calcular() {
 
             ValFinal = parseFloat(ValIntermedio) + Mensal() / 12;
             eixoY[i + 2] = ValFinal.toFixed(2);
-
         }
 
         //Calculo Primeiro ano
