@@ -31,26 +31,15 @@ function limpar() {
 }
 
 $(document).ready(function() {
-        $("#simulador1").click(function() {
-            $("#calculadora2").addClass("d-none");
-            $("#calculadora1").removeClass("d-none");
-        })
-        $("#simulador2").click(function() {
-            $("#calculadora1").addClass("d-none");
-            $("#calculadora2").removeClass("d-none");
-        })
+    $("#simulador1").click(function() {
+        $("#calculadora2").addClass("d-none");
+        $("#calculadora1").removeClass("d-none");
     })
-    /*
-    function escolhe() {
-        document.getElementById("simulador1").onclick = function() {
-            document.getElementById("calculadora1").removeClass('d-none');
-            document.getElementById("calculadora2").addClass('d-none');
-        }
-        document.getElementById("simulador2").onclick = function() {
-            document.getElementById("calculadora1").addClass('d-none');
-            document.getElementById("calculadora2").removeClass('d-none');
-        }
-    }*/
+    $("#simulador2").click(function() {
+        $("#calculadora1").addClass("d-none");
+        $("#calculadora2").removeClass("d-none");
+    })
+})
 
 //validação de dados para a função calcular() e botão calcular
 function validate() {
