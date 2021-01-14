@@ -371,7 +371,7 @@ function Mensal() {
 function Semanal() {
     if ($("#TempoJuros").val() == "Anos") {
         IncremIntermed = ValIncremento * 52.177457;
-        return parseFloat(IncremIntermed.toFixed(2));
+        return (parseFloat(IncremIntermed)).toFixed(2);
     } else if ($("#TempoJuros").val() == "Meses") {
         IncremIntermed = ValIncremento * 4;
         return parseFloat(IncremIntermed);
