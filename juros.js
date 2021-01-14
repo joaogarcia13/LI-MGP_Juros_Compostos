@@ -30,16 +30,27 @@ function limpar() {
     $("#tabGraf").addClass('d-none');
 }
 
-function escolhe() {
-    document.getElementById("simulador1").onclick = function() {
-        $("#calculadora1").removeClass('d-none');
-        $("#calculadora2").addClass('d-none');
-    }
-    document.getElementById("simulador2").onclick = function() {
-        $("#calculadora1").addClass('d-none');
-        $("#calculadora2").removeClass('d-none');
-    }
-}
+$(document).ready(function() {
+        $("#simulador1").click(function() {
+            $("#calculadora2").addClass("d-none");
+            $("#calculadora1").removeClass("d-none");
+        })
+        $("#simulador2").click(function() {
+            $("#calculadora1").addClass("d-none");
+            $("#calculadora2").removeClass("d-none");
+        })
+    })
+    /*
+    function escolhe() {
+        document.getElementById("simulador1").onclick = function() {
+            document.getElementById("calculadora1").removeClass('d-none');
+            document.getElementById("calculadora2").addClass('d-none');
+        }
+        document.getElementById("simulador2").onclick = function() {
+            document.getElementById("calculadora1").addClass('d-none');
+            document.getElementById("calculadora2").removeClass('d-none');
+        }
+    }*/
 
 //validação de dados para a função calcular() e botão calcular
 function validate() {
@@ -99,26 +110,36 @@ function calcular() {
         $("#PerTabela2").text("Juro por Ano");
 
         //Loop para o array eixoY com os valores"</td><td>" + JuroAcumulado.toFixed(2
-        Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12))));
+        Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro / 12)));
+        //ValFinal = parseFloat(Valor1) + parseFloat(ValIncremento / anoMes());
         eixoY[0] = ValInicial;
         if ($("#TempoInc").val() == "Anual") {
-            ValFinal = parseFloat(Valor1) + Anual();
-            eixoY[1] = ValFinal.toFixed(2);
+            ValFinal = parseFloat(Valor1) + (Anual() / 12);
+            //ValFinal += (Anual() * 12) / anoMes();
         } else if ($("#TempoInc").val() == "Mensal") {
-            ValFinal = parseFloat(Valor1) + Mensal();
-            eixoY[1] = ValFinal.toFixed(2);
+            ValFinal = parseFloat(Valor1) + Mensal() / 12;
         } else if ($("#TempoInc").val() == "Semanal") {
-            ValFinal = parseFloat(Valor1) + Semanal();
-            eixoY[1] = ValFinal.toFixed(2);
+            ValFinal = parseFloat(Valor1) + Semanal() / 12;
         } else if ($("#TempoInc").val() == "Diário") {
-            ValFinal = parseFloat(Valor1) + Diario(i + 1);
-            eixoY[1] = ValFinal.toFixed(2);
+            ValFinal = parseFloat(Valor1) + Diario(i + 1) / 12;
         }
+        eixoY[1] = ValFinal.toFixed(2);
         for (var i = 0; i < anoMes() - 1; i++) {
-            ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1 / 12)));
-
-            ValFinal = parseFloat(ValIntermedio) + Mensal() / 12;
+            ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro / 12)));
+            //ValFinal = parseFloat(ValIntermedio) + parseFloat(ValIncremento / anoMes());
+            if ($("#TempoInc").val() == "Anual") {
+                ValFinal = parseFloat(ValIntermedio) + (Anual() / 12);
+                //ValFinal += (Anual() / anoMes());
+            } else if ($("#TempoInc").val() == "Mensal") {
+                ValFinal = parseFloat(ValIntermedio) + Mensal() / 12;
+                //ValFinal += Mensal();
+            } else if ($("#TempoInc").val() == "Semanal") {
+                ValFinal = parseFloat(ValIntermedio) + Semanal() / 12;
+            } else if ($("#TempoInc").val() == "Diário") {
+                ValFinal = parseFloat(ValIntermedio) + Diario(i + 1) / 12;
+            }
             eixoY[i + 2] = ValFinal.toFixed(2);
+
         }
 
         //Calculo Primeiro ano
@@ -194,7 +215,6 @@ function calcular() {
             IncrementoAcumul += Anual();
             eixoY[1] = ValFinal.toFixed(2);
         } else if ($("#TempoInc").val() == "Mensal") {
-
             ValFinal += Mensal();
             IncrementoAcumul += Mensal();
             eixoY[1] = ValFinal.toFixed(2);
@@ -226,10 +246,8 @@ function calcular() {
             JuroAcumulado += JuroMes;
             ValFinal = ValIntermedio;
             if ($("#TempoInc").val() == "Anual") {
-                if (j % 12 == 0) {
-                    ValFinal += Anual();
-                    IncrementoAcumul += Anual();
-                }
+                ValFinal += Anual();
+                IncrementoAcumul += Anual();
             } else if ($("#TempoInc").val() == "Mensal") {
                 ValFinal += Mensal();
                 IncrementoAcumul += Mensal();
@@ -276,9 +294,8 @@ function calcular() {
 
         valor[0] = ValInicial;
         for (cont = 0; cont <= anoMes(); cont++) {
-            var i = cont + 2;
             if ($("#TempoInc").val() == "Anual") {
-                IncrementoAcumul = (Anual() / anoMes()).toFixed(2);
+                IncrementoAcumul = Anual().toFixed(2);
             } else if ($("#TempoInc").val() == "Mensal") {
                 IncrementoAcumul = Mensal();
             } else if ($("#TempoInc").val() == "Semanal") {
@@ -290,7 +307,7 @@ function calcular() {
             if ($("#TempoJuros").val() == "Meses") {
                 valor[cont + 1] = parseFloat(ValInicial) + ((cont + 1) * parseFloat(IncrementoAcumul));
             } else {
-                valor[cont + 1] = parseFloat(ValInicial) + ((cont + 1) * (parseFloat(IncrementoAcumul) / 12));
+                valor[cont + 1] = parseFloat(ValInicial) + ((cont + 1) * (IncrementoAcumul / 12));
 
             }
         }
@@ -346,6 +363,8 @@ function calcular() {
             },
         },
     });
+
+    $("#ValFinal").val(ValFinal.toFixed(2));
     $("#Retorno").val(Retorno.toFixed(2));
     $("#tabGraf").removeClass("d-none");
 }
