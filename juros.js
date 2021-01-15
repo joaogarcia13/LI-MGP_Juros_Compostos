@@ -159,6 +159,7 @@ function calcular() {
                 ArrayDados[i].ValFinal = Valor1 + ValIncremento;
                 ArrayDados[i].JuroMes = Valor1 - ValInicial;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].juroMes;
+                //Aqui nao precisa de ter o calculo do incremento acumulado ?
             } else {
                 ValIntermedio = ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
                 ArrayDados[i].JuroMes = ValIntermedio - ValFinal;
@@ -181,43 +182,14 @@ function calcular() {
         }
         Retorno = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
     }
+
+    EixoY[0] = ValInicial.toFixed(2); 
+    for(var i = 0; i < ArrayDados.length + 1 ; i++){
+        EixoY[i+1] = ArrayDados[i].ValFinal.toFixed(2); 
+    }
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
     $("#Retorno").val(Retorno.toFixed(2));
 }
-
-/*
-//Loop para o array eixoY com os valores"</td><td>" + JuroAcumulado.toFixed(2
-Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro / 12)));
-//ValFinal = parseFloat(Valor1) + parseFloat(ValIncremento / anoMes());
-eixoY[0] = ValInicial;
-if ($("#TempoInc").val() == "Anual") {
-    ValFinal = parseFloat(Valor1) + (Anual() / 12);
-    //ValFinal += (Anual() * 12) / anoMes();
-} else if ($("#TempoInc").val() == "Mensal") {
-    ValFinal = parseFloat(Valor1) + Mensal() / 12;
-} else if ($("#TempoInc").val() == "Semanal") {
-    ValFinal = parseFloat(Valor1) + Semanal() / 12;
-} else if ($("#TempoInc").val() == "Diário") {
-    ValFinal = parseFloat(Valor1) + Diario(i + 1) / 12;
-}
-eixoY[1] = ValFinal.toFixed(2);
-for (var i = 0; i < anoMes() - 1; i++) {
-    ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro / 12)));
-    //ValFinal = parseFloat(ValIntermedio) + parseFloat(ValIncremento / anoMes());
-    if ($("#TempoInc").val() == "Anual") {
-        ValFinal = parseFloat(ValIntermedio) + (Anual() / 12);
-        //ValFinal += (Anual() / anoMes());
-    } else if ($("#TempoInc").val() == "Mensal") {
-        ValFinal = parseFloat(ValIntermedio) + Mensal() / 12;
-        //ValFinal += Mensal();
-    } else if ($("#TempoInc").val() == "Semanal") {
-        ValFinal = parseFloat(ValIntermedio) + Semanal() / 12;
-    } else if ($("#TempoInc").val() == "Diário") {
-        ValFinal = parseFloat(ValIntermedio) + Diario(i + 1) / 12;
-    }
-    eixoY[i + 2] = ValFinal.toFixed(2);
-
-}*/
 
 //Incremento anual
 function Anual() {
@@ -377,6 +349,7 @@ window.linhaInvest = new Chart(ctx, {
     },
 });
 
+/*
 //preenchimento da primeira fila da tabela
 if ($("#incremento").val() > 0) {
     document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
@@ -388,4 +361,5 @@ if ($("#incremento").val() > 0) {
 }
 
 
-$("#tabGraf").removeClass("d-none");
+$("#tabGraf").removeClass("d-none"); 
+*/
