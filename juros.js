@@ -30,6 +30,7 @@ function limpar() {
     $("#tabGraf").addClass('d-none');
 }
 
+//Escolha de simuladores
 $(document).ready(function() {
     $("#simulador1").click(function() {
         $("#calculadora2").addClass("d-none");
