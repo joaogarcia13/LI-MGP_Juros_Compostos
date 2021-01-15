@@ -47,7 +47,7 @@ function validate() {
     if ($("#TempoJuros").val() == "Anos") {
         tempo = $("#tempo").val();
     } else {
-        tempo = $("#tempo").val() / 12;
+        tempo = $("#tempo").val();
     }
     console.log(tempo);
 
@@ -203,7 +203,6 @@ function calcular() {
     for (var i = 0; i < ArrayDados.length; i++) {
         eixoY[i + 1] = ArrayDados[i].ValFinal;
     }
-    console.log("__: " + eixoY);
 
     escrever();
 }
