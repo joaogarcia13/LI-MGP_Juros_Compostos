@@ -122,6 +122,7 @@ function calcular() {
                 ArrayDados[i].JuroAcumulado += ArrayDados[i].JuroMes;
                 ArrayDados[i].ValFinal = ValIntermedio;
                 if ($("#TempoInc").val() == "Anual") {
+                    
                     ArrayDados[i].ValFinal += Anual();
                     ArrayDados[i].IncrementoAcumul += Anual();
                 } else if ($("#TempoInc").val() == "Mensal") {
@@ -144,7 +145,7 @@ function calcular() {
             ArrayDados[i].Tempo = i + 1;
             if (i == 0) {
                 Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
-                ArrayDados[i].ValFinal = Valor1 + ValIncremento;
+                ArrayDados[i].ValFinal = Valor1;
                 ArrayDados[i].JuroMes = Valor1 - ValInicial;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
                 //Duvido
@@ -181,8 +182,10 @@ function calcular() {
                 }
             }
         }
-        Retorno = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
     }
+
+    Retorno = ArrayDados[ArrayDados.length - 1].JuroAcumulado;
+    Retorno = Retorno.toFixed(2);
 
     console.log("\n\n\n");
     console.log(ArrayDados);
@@ -194,7 +197,7 @@ function calcular() {
 function escrever() {
 
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
-    $("#Retorno").val(Retorno.toFixed(2));
+    $("#Retorno").val(Retorno);
 
     // Array do Valor Eixo Y
     if (eixoY != null) { eixoY.length = 0; }
@@ -212,7 +215,7 @@ function escrever() {
     eixoY[0] = ValInicial;
     if ($("#TempoJuros").val() == "Meses") {
         for (var i = 0; i < ArrayDados.length; i++) {
-            eixoY[i + 1] = ArrayDados[i].toFixed(2);
+            eixoY[i + 1] = ArrayDados[i].ValFinal.toFixed(2);
         }
     } else if ($("#TempoJuros").val() == "Anos") {
         for (var i = 0; i < anoMes(); i++) {
@@ -224,7 +227,7 @@ function escrever() {
     //tabela
     var $tabela = $("#resetTabela")
     $(function () {
-        $tabela.bootstrapTable({ ArrayDados: ArrayDados })
+        $tabela.bootstrapTable({ data : ArrayDados })
     })
 
     //Gráfico de linha 
@@ -335,8 +338,8 @@ function Diario(i) {
                 break;
             default:
                 IncremIntermed = ValIncremento * 28;
-                return parseFloat(IncremIntermed);
         }
+        return parseFloat(IncremIntermed);
     }
 }
 
