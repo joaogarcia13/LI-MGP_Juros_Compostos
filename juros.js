@@ -346,7 +346,7 @@ function calcular() {
             },
         },
     });
-    2
+    $("ValFinal").val(ValFinal.toFixed(2));
     $("#Retorno").val(Retorno.toFixed(2));
     $("#tabGraf").removeClass("d-none");
 }
@@ -411,7 +411,7 @@ function Diario(i) {
     }
 }
 
-//funcao que converte anos em meses2
+//funcao que converte anos em meses
 function anoMes() {
     tempo2 = tempo * 12;
     2
