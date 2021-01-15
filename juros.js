@@ -392,5 +392,5 @@ if ($("#incremento").val() > 0) {
 } else {
     document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
         "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";
-}
-*/
+} //ff
+*/  
