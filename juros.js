@@ -28,6 +28,7 @@ function limpar() {
 
 //Escolha de simuladores
 $(document).ready(function() {
+
     $("#simulador1").click(function() {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
@@ -90,8 +91,9 @@ function calcular() {
     // Array do Valor Eixo X
     var eixoY = new Array();
     for (var i = 0; i < anoMes(); i++) {
-        eixoY[i] = 0;
+        eixoY[i + 1] = 0.0;
     }
+
     //Array dos Valores da tabela
     ArrayDados = new Array();
     for (var i = 0; i < tempo; i++) {
@@ -111,7 +113,7 @@ function calcular() {
                 Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
                 ArrayDados[i].JuroMes = Valor1 - ValInicial;
                 ArrayDados[i].ValFinal = Valor1;
-                ArrayDados[i].JuroAcumulado = ArrayDados[0].JuroMes;
+                ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[i].ValFinal += Anual();
                     ArrayDados[i].IncrementoAcumul += Anual();
@@ -126,8 +128,8 @@ function calcular() {
                     ArrayDados[i].IncrementoAcumul += Diario();
                 }
             } else {
-                ValIntermedio = ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
-                ArrayDados[i].JuroMes = ValIntermedio - ArrayDados[i].ValFinal;
+                ValIntermedio = ArrayDados[i - 1].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
+                ArrayDados[i].JuroMes = ValIntermedio - ArrayDados[i - 1].ValFinal;
                 ArrayDados[i].JuroAcumulado += ArrayDados[i].JuroMes;
                 ArrayDados[i].ValFinal = ValIntermedio;
                 if ($("#TempoInc").val() == "Anual") {
@@ -148,13 +150,8 @@ function calcular() {
         Retorno = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
 
     } else {
-
         //Cálculo para os Meses
-        for (var i = 0; i < anoMes(); i++) {
-            ArrayDados[i] = { 'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0, };
-        }
-
-        for (var i = 0; i < anoMes(); i++) {
+        for (var i = 0; i < tempo; i++) {
             ArrayDados[i].Tempo = i + 1;
             if (i == 0) {
                 Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
@@ -208,15 +205,71 @@ function calcular() {
     }
     console.log("__: " + eixoY);
 
-    $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
-    $("#Retorno").val(Retorno.toFixed(2));
     escrever();
 }
 
 function escrever() {
 
+    $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal);
+    $("#Retorno").val(Retorno);
+
+    //tabela
     var $tabela = $("#resetTabela")
-    $tabela.bootstrapTable({ ArrayDados: ArrayDados })
+    $(function() {
+        $tabela.bootstrapTable({ ArrayDados: ArrayDados })
+    })
+
+    //Gráfico de linha 
+    var ctx = document.getElementById('myChart').getContext('2d');
+    if (window.linhaInvest && window.linhaInvest !== null) {
+        window.linhaInvest.destroy();
+    }
+    window.linhaInvest = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: eixoX(),
+            datasets: [{
+                    label: 'Val. Investido',
+                    borderColor: 'blue',
+                    data: valorInicial(),
+                    fill: false,
+                },
+                {
+                    label: 'Val. Acumulado',
+                    borderColor: 'red',
+                    data: eixoY,
+                    fill: false,
+                }
+            ]
+        },
+
+        // Configuration options go herealorInicial
+        options: {
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Meses',
+                    },
+
+                }, ],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Dinheiro (€)',
+                    },
+                }, ],
+            },
+        },
+    });
+
+    //Ultima linha desta função, aparece o grafico e a tabela
+    $("#tabGraf").removeClass("d-none");
 }
 
 //Incremento anual
@@ -231,26 +284,26 @@ function Anual() {
 function Mensal() {
     if ($("#TempoJuros").val() == "Anos") {
         IncremIntermed = ValIncremento * 12;
-        return IncremIntermed;
+        return parseFloat(IncremIntermed);
     } else if ($("#TempoJuros").val() == "Meses") {
-        return ValIncremento;
+        return parseFloat(ValIncremento);
     }
 }
 //Incremento Semanal
 function Semanal() {
     if ($("#TempoJuros").val() == "Anos") {
         IncremIntermed = ValIncremento * 52.177457;
-        return IncremIntermed;
+        return parseFloat(IncremIntermed);
     } else if ($("#TempoJuros").val() == "Meses") {
         IncremIntermed = ValIncremento * 4;
-        return IncremIntermed;
+        return parse(IncremIntermed);
     }
 }
 //incremento Diário
 function Diario(i) {
     if ($("#TempoJuros").val() == "Anos") {
         IncremIntermed = ValIncremento * 365;
-        return IncremIntermed;
+        return parseFloat(IncremIntermed);
     } else if ($("#TempoJuros").val() == "Meses") {
         do {
             i = i - 12;
@@ -274,7 +327,7 @@ function Diario(i) {
                 break;
             default:
                 IncremIntermed = ValIncremento * 28;
-                return IncremIntermed;
+                return parseFloat(IncremIntermed);
         }
     }
 }
@@ -325,68 +378,14 @@ function valorInicial() {
     return valor;
 }
 
-
-
-//funcao escrever
-//Gráfico de linha 
-var ctx = document.getElementById('myChart').getContext('2d');
-if (window.linhaInvest && window.linhaInvest !== null) {
-    window.linhaInvest.destroy();
-}
-window.linhaInvest = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
-
-    // The data for our dataset
-    data: {
-        labels: eixoX(),
-        datasets: [{
-                label: 'Val. Investido',
-                borderColor: 'blue',
-                data: valorInicial(),
-                fill: false,
-            },
-            {
-                label: 'Val. Acumulado',
-                borderColor: 'red',
-                data: /*eixoY*/ [2, 2, 2, 2, 2, 2, 2],
-                fill: false,
-            }
-        ]
-    },
-
-    // Configuration options go herealorInicial
-    options: {
-        scales: {
-            xAxes: [{
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Meses',
-                },
-
-            }, ],
-            yAxes: [{
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Dinheiro (€)',
-                },
-            }, ],
-        },
-    },
-});
-
 /*
 //preenchimento da primeira fila da tabela
-/*if ($("#incremento").val() > 0) {
+if ($("#incremento").val() > 0) {
     document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
         "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td><td>" +
         IncrementoAcumul + " €" + "</td></tr>";
 } else {
     document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
         "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";
-}*/
-
-
-$("#tabGraf").removeClass("d-none");
+}
+*/
