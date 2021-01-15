@@ -88,12 +88,6 @@ function calcular() {
         "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
         */
 
-    // Array do Valor Eixo Y
-    var eixoY = new Array();
-    for (var i = 0; i < anoMes(); i++) {
-        eixoY[i + 1] = 0.0;
-    }
-
     //Array dos Valores da tabela
     ArrayDados = new Array();
     for (var i = 0; i < tempo; i++) {
@@ -157,7 +151,7 @@ function calcular() {
                 Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
                 ArrayDados[i].ValFinal = Valor1 + ValIncremento;
                 ArrayDados[i].JuroMes = Valor1 - ValInicial;
-                ArrayDados[i].JuroAcumulado = ArrayDados[0].JuroMes;
+                ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
                 //Duvido
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[i].ValFinal += Anual();
@@ -199,18 +193,38 @@ function calcular() {
     console.log(ArrayDados);
     console.log("\n\n\n");
 
-    eixoY[0] = ValInicial;
-    for (var i = 0; i < ArrayDados.length; i++) {
-        eixoY[i + 1] = ArrayDados[i].ValFinal;
-    }
-
     escrever();
 }
 
 function escrever() {
 
-    $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal);
-    $("#Retorno").val(Retorno);
+    $("#ValFinal").val((ArrayDados[ArrayDados.length - 1].ValFinal).toFixed(2));
+    $("#Retorno").val((Retorno).toFixed(2));
+
+    // Array do Valor Eixo Y
+    if (eixoY != null) { eixoY.length = 0; }
+    var eixoY = new Array();
+    if ($("#TempoJuros").val() == "Anos") {
+        for (var i = 0; i < anoMes(); i++) {
+            eixoY[i] = 0.0;
+        }
+    } else {
+        for (var i = 0; i < tempo; i++) {
+            eixoY[i] = 0.0;
+        }
+    }
+
+    eixoY[0] = ValInicial;
+    if ($("#TempoJuros").val() == "Meses") {
+        for (var i = 0; i < ArrayDados.length; i++) {
+            eixoY[i + 1] = ArrayDados[i].toFixed(2);
+        }
+    } else if ($("#TempoJuros").val() == "Anos") {
+        for (var i = 0; i < anoMes(); i++) {
+            eixoY[i + 1] = (ArrayDados[i].ValFinal / 12).toFixed(2);
+        }
+    }
+    console.log("__: " + eixoY);
 
     //tabela
     var $tabela = $("#resetTabela")
@@ -385,5 +399,5 @@ if ($("#incremento").val() > 0) {
 } else {
     document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
         "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";
-} //ff
+}
 */
