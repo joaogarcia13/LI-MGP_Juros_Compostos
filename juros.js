@@ -149,7 +149,7 @@ function calcular() {
             ArrayDados[i].Tempo = i + 1;
             if (i == 0) {
                 Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
-                ArrayDados[i].ValFinal = Valor1 + ValIncremento;
+                ArrayDados[i].ValFinal = Valor1;
                 ArrayDados[i].JuroMes = Valor1 - ValInicial;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
                 //Duvido
@@ -224,12 +224,11 @@ function escrever() {
             eixoY[i + 1] = (ArrayDados[i].ValFinal / 12).toFixed(2);
         }
     }
-    console.log("__: " + eixoY);
 
     //tabela
     var $tabela = $("#resetTabela")
     $(function() {
-        $tabela.bootstrapTable({ ArrayDados: ArrayDados })
+        $tabela.bootstrapTable({ data: ArrayDados })
     })
 
     //Gráfico de linha 
@@ -309,7 +308,7 @@ function Semanal() {
         return parseFloat(IncremIntermed);
     } else if ($("#TempoJuros").val() == "Meses") {
         IncremIntermed = ValIncremento * 4;
-        return parse(IncremIntermed);
+        return parseFloat(IncremIntermed);
     }
 }
 //incremento Diário
@@ -340,8 +339,9 @@ function Diario(i) {
                 break;
             default:
                 IncremIntermed = ValIncremento * 28;
-                return parseFloat(IncremIntermed);
+
         }
+        return parseFloat(IncremIntermed);
     }
 }
 
