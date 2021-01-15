@@ -340,8 +340,7 @@ function anoMes() {
 
 //EixoX
 function eixoX() {
-    var cont;
-    duracao = new Array(anoMes());
+    var cont, duracao = new Array(anoMes());
 
     for (cont = 0; cont <= anoMes(); cont++) {
         duracao[cont] = cont;
