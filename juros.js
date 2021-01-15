@@ -88,7 +88,7 @@ function calcular() {
         "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
         */
 
-    // Array do Valor Eixo X
+    // Array do Valor Eixo Y
     var eixoY = new Array();
     for (var i = 0; i < anoMes(); i++) {
         eixoY[i + 1] = 0.0;
@@ -386,4 +386,4 @@ if ($("#incremento").val() > 0) {
     document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
         "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";
 } //ff
-*/  
+*/
