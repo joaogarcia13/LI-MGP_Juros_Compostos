@@ -204,11 +204,12 @@ function calcular() {
     console.log(ArrayDados);
     console.log("\n\n\n");
 
-    eixoY[0] = ValInicial
+    eixoY[0] = ValInicial;
     for (var i = 0; i < ArrayDados.length + 1; i++) {
         eixoY[i + 1] = ArrayDados[i].ValFinal;
+        console.log("__: " + eixoY);
     }
-    console.log("__: " + eixoY);
+
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
     $("#Retorno").val(Retorno.toFixed(2));
     escrever();
@@ -306,7 +307,7 @@ function valorInicial() {
     valor[0] = ValInicial;
     for (cont = 0; cont <= anoMes(); cont++) {
         if ($("#TempoInc").val() == "Anual") {
-            IncrementoAcumul = Anual().toFixed(2);
+            IncrementoAcumul = Anual();
         } else if ($("#TempoInc").val() == "Mensal") {
             IncrementoAcumul = Mensal();
         } else if ($("#TempoInc").val() == "Semanal") {
@@ -316,9 +317,9 @@ function valorInicial() {
         }
 
         if ($("#TempoJuros").val() == "Meses") {
-            valor[cont + 1] = parseFloat(ValInicial) + ((cont + 1) * parseFloat(IncrementoAcumul));
+            valor[cont + 1] = ValInicial + ((cont + 1) * IncrementoAcumul);
         } else {
-            valor[cont + 1] = parseFloat(ValInicial) + ((cont + 1) * (IncrementoAcumul / 12));
+            valor[cont + 1] = ValInicial + ((cont + 1) * (IncrementoAcumul / 12));
 
         }
     }
