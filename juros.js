@@ -27,13 +27,13 @@ function limpar() {
 }
 
 //Escolha de simuladores
-$(document).ready(function () {
+$(document).ready(function() {
 
-    $("#simulador1").click(function () {
+    $("#simulador1").click(function() {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
     })
-    $("#simulador2").click(function () {
+    $("#simulador2").click(function() {
         $("#calculadora1").addClass("d-none");
         $("#calculadora2").removeClass("d-none");
     })
@@ -44,8 +44,13 @@ function validate() {
     ValInicial = $("#valorInitial").val();
 
     //converter meses anos, com casa decimal
-    tempo = $("#tempo").val();
+    if ($("#TempoJuros").val() == "Anos") {
+        tempo = $("#tempo").val();
+    } else {
+        tempo = $("#tempo").val();
+    }
     console.log(tempo);
+
     ValJuro = $("#juro").val() / 100;
     console.log(ValJuro);
     ValPerJuro = $("#periodo").val();
@@ -58,15 +63,15 @@ function validate() {
         ValPerJuro <= 0 && ValIncremento <= 0) {
         alert("Verifique se todos os valores são positivos.");
     } else
-        //verifica se são numeros
-        if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-            $.isNumeric(ValIncremento)) {
-            console.log("Os inputs são numeros.");
-            //Falta aqui a função para quando for o simulador 2
-            calcular();
+    //verifica se são numeros
+    if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
+        $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+        $.isNumeric(ValIncremento)) {
+        console.log("Os inputs são numeros.");
+        //Falta aqui a função para quando for o simulador 2
+        calcular();
 
-        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+    } else alert("Os campos têm de ser preenchidos com valores numéricos.");
 }
 
 
@@ -222,7 +227,6 @@ function escrever() {
             eixoY[i + 1] = (ArrayDados[i].ValFinal / 12).toFixed(2);
         }
     }
-    console.log("__: " + eixoY);
 
     //tabela
     var $tabela = $("#resetTabela")
@@ -243,17 +247,17 @@ function escrever() {
         data: {
             labels: eixoX(),
             datasets: [{
-                label: 'Val. Investido',
-                borderColor: 'blue',
-                data: valorInicial(),
-                fill: false,
-            },
-            {
-                label: 'Val. Acumulado',
-                borderColor: 'red',
-                data: eixoY,
-                fill: false,
-            }
+                    label: 'Val. Investido',
+                    borderColor: 'blue',
+                    data: valorInicial(),
+                    fill: false,
+                },
+                {
+                    label: 'Val. Acumulado',
+                    borderColor: 'red',
+                    data: eixoY,
+                    fill: false,
+                }
             ]
         },
 
@@ -267,14 +271,14 @@ function escrever() {
                         labelString: 'Meses',
                     },
 
-                },],
+                }, ],
                 yAxes: [{
                     display: true,
                     scaleLabel: {
                         display: true,
                         labelString: 'Dinheiro (€)',
                     },
-                },],
+                }, ],
             },
         },
     });
@@ -352,8 +356,7 @@ function anoMes() {
 
 //EixoX
 function eixoX() {
-    var cont;
-    duracao = new Array(anoMes());
+    var cont, duracao = new Array(anoMes());
 
     for (cont = 0; cont <= anoMes(); cont++) {
         duracao[cont] = cont;
