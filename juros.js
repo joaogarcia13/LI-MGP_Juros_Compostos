@@ -12,11 +12,6 @@ var ValPerIncremento = 0; //periodicidade do incremento//
 var Valor1 = 0; // Valor intermedio no calculo do juro do primeiro ano
 var ValIntermedio = 0; // valor intermedio no loop
 var IncremIntermed = 0; //variavel intermedia usada nas funçoes anual(); mensal(); semanal() e Diario()
-var eixoY = new Array(); //Array com o ValFinal incrementado para o eixo do Y do grafico
-
-//Array dos dados tods e atribuiçao de um valor base
-var ArrayDados = new Array();
-ArrayDados[0] = { 'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0, };
 
 //botao de limpar dados
 function limpar() {
@@ -33,7 +28,7 @@ function limpar() {
 
 //Escolha de simuladores
 $(document).ready(function() {
-    data
+
     $("#simulador1").click(function() {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
@@ -93,10 +88,15 @@ function calcular() {
         "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
         */
 
+    // Array do Valor Eixo X
     var eixoY = new Array();
+    //Array dos Valores da tabela
     ArrayDados = new Array();
-    ArrayDados[0] = { 'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0, };
-    IncrementoAcumul = 0;
+    for(var i = 0; i < tempo; i++){
+        ArrayDados[i] = {'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0};
+    }
+    
+        IncrementoAcumul = 0;
 
     // Cálculos e tabela
     //Se for escolhido anos
@@ -106,7 +106,7 @@ function calcular() {
 
         //Calculo Primeiro ano (i == 0), e o resto dos anos no else
         for (var i = 0; i < tempo; i++) {
-            ArrayDados[i].Tempo = i + 1;
+           ArrayDados[i].Tempo = i + 1;
             if (i == 0) {
                 Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
                 ArrayDados[i].JuroMes = Valor1 - ValInicial;
@@ -150,7 +150,6 @@ function calcular() {
     } else {
 
         //Cálculo para os Meses
-        ArrayDados[0] = { 'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0, };
 
         for (var i = 0; i < anoMes(); i++) {
             ArrayDados[i].tempo = i + 1;
@@ -159,7 +158,20 @@ function calcular() {
                 ArrayDados[i].ValFinal = Valor1 + ValIncremento;
                 ArrayDados[i].JuroMes = Valor1 - ValInicial;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].juroMes;
-                //Aqui nao precisa de ter o calculo do incremento acumulado ?
+                //Duvido
+                if ($("#TempoInc").val() == "Anual") {
+                    ArrayDados[i].ValFinal += Anual();
+                    ArrayDados[i].IncrementoAcumul += Anual();
+                } else if ($("#TempoInc").val() == "Mensal") {
+                    ArrayDados[i].ValFinal += Mensal();
+                    ArrayDados[i].IncrementoAcumul += Mensal();
+                } else if ($("#TempoInc").val() == "Semanal") {
+                    ArrayDados[i].ValFinal += Semanal();
+                    ArrayDados[i].IncrementoAcumul += Semanal();
+                } else if ($("#TempoInc").val() == "Diário") {
+                    ArrayDados[i].ValFinal += Diario(i + 1);
+                    ArrayDados[i].IncrementoAcumul += Diario();
+                }
             } else {
                 ValIntermedio = ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
                 ArrayDados[i].JuroMes = ValIntermedio - ValFinal;
@@ -182,13 +194,24 @@ function calcular() {
         }
         Retorno = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
     }
+    
+    console.log("\n\n\n");
+    console.log(ArrayDados);
+    console.log("\n\n\n");
 
-    EixoY[0] = ValInicial.toFixed(2); 
+    eixoY[0] = ValInicial 
     for(var i = 0; i < ArrayDados.length + 1 ; i++){
-        EixoY[i+1] = ArrayDados[i].ValFinal.toFixed(2); 
+        EixoY[i+1] = ArrayDados[i].ValFinal; 
     }
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
     $("#Retorno").val(Retorno.toFixed(2));
+    escrever();
+}
+
+function escrever(){
+
+    var $tabela = $("#resetTabela")
+    $tabela.bootstrapTable({ArrayDados: ArrayDados})
 }
 
 //Incremento anual
