@@ -16,7 +16,8 @@ var eixoY = new Array(); //Array com o ValFinal incrementado para o eixo do Y do
 
 //Array dos dados tods e atribuiçao de um valor base
 var ArrayDados = new Array();
-ArrayDados[0] = { 'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0, };
+ArrayDados[0] = { 'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 5.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0, };
+
 
 //botao de limpar dados
 function limpar() {
@@ -33,7 +34,6 @@ function limpar() {
 
 //Escolha de simuladores
 $(document).ready(function() {
-    data
     $("#simulador1").click(function() {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
@@ -95,7 +95,7 @@ function calcular() {
 
     var eixoY = new Array();
     ArrayDados = new Array();
-    ArrayDados[0] = { 'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0, };
+    ArrayDados[0] = { "Tempo": 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0, };
     IncrementoAcumul = 0;
 
     // Cálculos e tabela
@@ -150,7 +150,9 @@ function calcular() {
     } else {
 
         //Cálculo para os Meses
-        ArrayDados[0] = { 'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0, };
+        for (var i = 0; i < anoMes(); i++) {
+            ArrayDados[i] = { 'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0, };
+        }
 
         for (var i = 0; i < anoMes(); i++) {
             ArrayDados[i].tempo = i + 1;
@@ -181,8 +183,6 @@ function calcular() {
         }
         Retorno = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
     }
-    $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
-    $("#Retorno").val(Retorno.toFixed(2));
 }
 
 /*
@@ -378,14 +378,14 @@ window.linhaInvest = new Chart(ctx, {
 });
 
 //preenchimento da primeira fila da tabela
-if ($("#incremento").val() > 0) {
+/*if ($("#incremento").val() > 0) {
     document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
         "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td><td>" +
         IncrementoAcumul + " €" + "</td></tr>";
 } else {
     document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
         "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";
-}
+}*/
 
 
 $("#tabGraf").removeClass("d-none");
