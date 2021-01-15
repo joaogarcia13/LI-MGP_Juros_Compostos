@@ -2,7 +2,7 @@
 //ele nao obedece a regra do toFixed(2) da função semanal()
 //Para mudar de simulador temos que carregar no inicio duas vezessss
 
-var ValFinal = new Array();
+var ValFinal = 0;
 var ValInicial = 0;
 var Retorno = 0;
 var tempo = 0;
@@ -12,11 +12,14 @@ var ValIncremento = 0; //Incremento opcional//
 var ValPerIncremento = 0; //periodicidade do incremento//
 var Valor1 = 0; // Valor intermedio no calculo do juro do primeiro ano
 var ValIntermedio = 0; // valor intermedio no loop
-var JuroMes = new Array(); // valor tabela do Juro ganho por ano/mes
-var JuroAcumulado = new Array(); // valor tabela juros acumulados 
-var IncrementoAcumul = new Array(); // valor total investido em incrementos
+var JuroMes = 0; // valor tabela do Juro ganho por ano/mes
+var JuroAcumulado = 0; // valor tabela juros acumulados 
+var IncrementoAcumul = 0; // valor total investido em incrementos
 var IncremIntermed = 0; //variavel intermedia usada nas funçoes anual(); mensal(); semanal() e Diario()
 var eixoY = new Array(); //Array com o ValFinal incrementado para o eixo do Y do grafico
+//Array dos dados tods e atribuiçao de um valor base
+var ArrayDados = new Array ();
+ArrayDados[0] = {'Tempo' : 0, 'ValFinal' : 0.0, 'JuroMes' : 0.0, 'IncrementoAcumul' : 0.0, 'JuroAcumulado' : 0.0,};
 
 //botao de limpar dados
 function limpar() {
@@ -82,19 +85,18 @@ function validate() {
 function calcular() {
 
     //reset da tabela, grafico, valores Finais e Retorno
-    if ($("#incremento").val() > 0) {
+    /*if ($("#incremento").val() > 0) {
         document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' id='PerTabela'>Anos</th>" +
             "<th scope='col' id='PerTabela2'>Juros por Mês</th><th scope='col'>Juros Acumulados</th>" +
             "<th scope='col'>Montante Acumulado</th><th>Total Incremento</tr></thead><tbody id='tabela'></tbody>";
     } else document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' id='PerTabela'>Anos</th>" +
         "<th scope='col' id='PerTabela2'>Juros por Mês</th><th scope='col'>Juros Acumulados</th>" +
         "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
+        */
 
     var eixoY = new Array();
-    var ValFinal = new Array();
-    var JuroMes = new Array();
-    var JuroAcumulado = new Array();
-    var IncrementoAcumul = new Array();
+    ArrayDados = new Array ();
+    ArrayDados[0] = {'Tempo' : 0, 'ValFinal' : 0.0, 'JuroMes' : 0.0, 'IncrementoAcumul' : 0.0, 'JuroAcumulado' : 0.0,};
     IncrementoAcumul = 0;
 
     // Cálculos e tabela
@@ -104,30 +106,33 @@ function calcular() {
         $("#PerTabela2").text("Juro por Ano");
 
         //Calculo Primeiro ano
+        
+
         Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
         JuroMes[0] = Valor1 - ValInicial;
-        ValFinal = Valor1;
-        JuroAcumulado = JuroMes;
+        ValFinal[0] = Valor1;
+        JuroAcumulado[0] = JuroMes;
         if ($("#TempoInc").val() == "Anual") {
-            ValFinal += Anual();
-            IncrementoAcumul += Anual();
+            ValFinal[0] += Anual();
+            IncrementoAcumul[0] += Anual();
         } else if ($("#TempoInc").val() == "Mensal") {
-            ValFinal += Mensal();
-            IncrementoAcumul += Mensal();
+            ValFinal[0] += Mensal();
+            IncrementoAcumul[0] += Mensal();
         } else if ($("#TempoInc").val() == "Semanal") {
-            ValFinal += Semanal();
-            IncrementoAcumul += Semanal();
+            ValFinal[0] += Semanal();
+            IncrementoAcumul[0] += Semanal();
         } else if ($("#TempoInc").val() == "Diário") {
-            ValFinal += Diario(i + 1);
-            IncrementoAcumul += Diario();
+            ValFinal[0] += Diario(i + 1);
+            IncrementoAcumul[0] += Diario();
         }
 
 
         //Loop para os anos seguintes
         for (var i = 0; i < tempo - 1; i++) {
+
             var t = i + 2;
-            ValIntermedio = parseFloat(ValFinal) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1)));
-            JuroMes = ValIntermedio - ValFinal;
+            ValIntermedio = ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
+            JuroMes[0] = ValIntermedio - ValFinal;
             JuroAcumulado += JuroMes;
             ValFinal = ValIntermedio;
             if ($("#TempoInc").val() == "Anual") {
@@ -142,21 +147,12 @@ function calcular() {
             } else if ($("#TempoInc").val() == "Diário") {
                 ValFinal += Diario(i + 1);
                 IncrementoAcumul += Diario();
-            }
-
-            //Preenchimento da tabela
-            if ($("#incremento").val() > 0) {
-                document.getElementById("tabela").innerHTML += "<tr><td>" + t + "</td><td>" + JuroMes.toFixed(2) + " €" +
-                    "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td><td>" +
-                    IncrementoAcumul + " €" + "</td></tr>";
-            } else document.getElementById("tabela").innerHTML += "<tr><td>" + t + "</td><td>" + JuroMes.toFixed(2) + " €" +
-                "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";
-        }
+            }   
         Retorno = ValFinal - ValInicial;
-    } else {
+    } else
         $("#PerTabela").text("Meses");
         $("#PerTabela2").text("Juro por Mês");
-
+    
         //Calculo Primeiro Mês
         Valor1 = parseFloat(ValInicial) * parseFloat(Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12))));
         JuroMes = Valor1 - ValInicial;
@@ -433,5 +429,5 @@ window.linhaInvest = new Chart(ctx, {
     document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
         "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td><td>" +
         IncrementoAcumul + " €" + "</td></tr>";
-} else document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
-    "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";
+} else {document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
+    "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";}
