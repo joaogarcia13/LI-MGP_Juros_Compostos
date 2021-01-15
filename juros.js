@@ -27,13 +27,13 @@ function limpar() {
 }
 
 //Escolha de simuladores
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $("#simulador1").click(function() {
+    $("#simulador1").click(function () {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
     })
-    $("#simulador2").click(function() {
+    $("#simulador2").click(function () {
         $("#calculadora1").addClass("d-none");
         $("#calculadora2").removeClass("d-none");
     })
@@ -44,13 +44,8 @@ function validate() {
     ValInicial = $("#valorInitial").val();
 
     //converter meses anos, com casa decimal
-    if ($("#TempoJuros").val() == "Anos") {
-        tempo = $("#tempo").val();
-    } else {
-        tempo = $("#tempo").val() / 12;
-    }
+    tempo = $("#tempo").val();
     console.log(tempo);
-
     ValJuro = $("#juro").val() / 100;
     console.log(ValJuro);
     ValPerJuro = $("#periodo").val();
@@ -63,15 +58,15 @@ function validate() {
         ValPerJuro <= 0 && ValIncremento <= 0) {
         alert("Verifique se todos os valores são positivos.");
     } else
-    //verifica se são numeros
-    if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
-        $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-        $.isNumeric(ValIncremento)) {
-        console.log("Os inputs são numeros.");
-        //Falta aqui a função para quando for o simulador 2
-        calcular();
+        //verifica se são numeros
+        if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
+            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+            $.isNumeric(ValIncremento)) {
+            console.log("Os inputs são numeros.");
+            //Falta aqui a função para quando for o simulador 2
+            calcular();
 
-    } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
 }
 
 
@@ -88,10 +83,18 @@ function calcular() {
         "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
         */
 
-    // Array do Valor Eixo X
+    // Array do Valor Eixo Y
+    if (eixoY != null) { eixoY.length = 0; }
+
     var eixoY = new Array();
-    for (var i = 0; i < anoMes(); i++) {
-        eixoY[i + 1] = 0.0;
+    if ($("#TempoJuros").val() == "Anos") {
+        for (var i = 0; i < anoMes(); i++) {
+            eixoY[i] = 0.0;
+        }
+    } else {
+        for (var i = 0; i < tempo; i++) {
+            eixoY[i] = 0.0;
+        }
     }
 
     //Array dos Valores da tabela
@@ -99,6 +102,8 @@ function calcular() {
     for (var i = 0; i < tempo; i++) {
         ArrayDados[i] = { 'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0 };
     }
+
+
 
     // Cálculos e tabela
     //Se for escolhido anos
@@ -157,7 +162,7 @@ function calcular() {
                 Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
                 ArrayDados[i].ValFinal = Valor1 + ValIncremento;
                 ArrayDados[i].JuroMes = Valor1 - ValInicial;
-                ArrayDados[i].JuroAcumulado = ArrayDados[0].JuroMes;
+                ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
                 //Duvido
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[i].ValFinal += Anual();
@@ -215,7 +220,7 @@ function escrever() {
 
     //tabela
     var $tabela = $("#resetTabela")
-    $(function() {
+    $(function () {
         $tabela.bootstrapTable({ ArrayDados: ArrayDados })
     })
 
@@ -232,17 +237,17 @@ function escrever() {
         data: {
             labels: eixoX(),
             datasets: [{
-                    label: 'Val. Investido',
-                    borderColor: 'blue',
-                    data: valorInicial(),
-                    fill: false,
-                },
-                {
-                    label: 'Val. Acumulado',
-                    borderColor: 'red',
-                    data: eixoY,
-                    fill: false,
-                }
+                label: 'Val. Investido',
+                borderColor: 'blue',
+                data: valorInicial(),
+                fill: false,
+            },
+            {
+                label: 'Val. Acumulado',
+                borderColor: 'red',
+                data: eixoY,
+                fill: false,
+            }
             ]
         },
 
@@ -256,14 +261,14 @@ function escrever() {
                         labelString: 'Meses',
                     },
 
-                }, ],
+                },],
                 yAxes: [{
                     display: true,
                     scaleLabel: {
                         display: true,
                         labelString: 'Dinheiro (€)',
                     },
-                }, ],
+                },],
             },
         },
     });
@@ -296,7 +301,7 @@ function Semanal() {
         return parseFloat(IncremIntermed);
     } else if ($("#TempoJuros").val() == "Meses") {
         IncremIntermed = ValIncremento * 4;
-        return parse(IncremIntermed);
+        return parseFloat(IncremIntermed);
     }
 }
 //incremento Diário
