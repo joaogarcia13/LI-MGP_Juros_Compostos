@@ -132,7 +132,7 @@ function calcular() {
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[i].ValFinal += Anual();
-                    ArrayDados[i].IncrementoAcumul += Anual();
+                    ArrayDados[i].IncrementoAcumul += Anual() / 12;
                 } else if ($("#TempoInc").val() == "Mensal") {
                     ArrayDados[i].ValFinal += Mensal();
                     ArrayDados[i].IncrementoAcumul += Mensal();
@@ -244,13 +244,13 @@ function escrever() {
             "<th scope='col' data-field='ValFinal' >Montante Acumulado</th><th scope='col' data-field='IncrementoAcumul' >Total Incremento</tr></thead><tbody id='tabela'></tbody>";
     } else {
         document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Anos</th>" +
-        "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
-        "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
+            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
+            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
     }
-    if($("#TempoJuros").val() == "Meses"){
+    if ($("#TempoJuros").val() == "Meses") {
         $("#PerTabela").text("Mês");
     }
-    
+
     //Gráfico de linha 
     var ctx = document.getElementById('myChart').getContext('2d');
     if (window.linhaInvest && window.linhaInvest !== null) {
