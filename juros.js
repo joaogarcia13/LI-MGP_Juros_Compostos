@@ -56,15 +56,20 @@ function validate() {
         $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
         $.isNumeric(ValIncremento)) {
         console.log("Os inputs são numeros.");
-        //Falta aqui a função para quando for o simulador 2
-        calcular();
+        //Escolhe a função de cálculo para cada um dos simuladores
+        if ($("#calculadora1").hasClass("d-none")) {
+            simulador2();
+        } else {
+            simulador1();
+        }
+
 
     } else alert("Os campos têm de ser preenchidos com valores numéricos.");
 }
 
 
 //Cálculos e aparece os gráficos (esta função é chamada dentro da função validate())
-function calcular() {
+function simulador1() {
 
     //Array dos Valores da tabela
     ArrayDados = new Array();
@@ -132,7 +137,7 @@ function calcular() {
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[i].ValFinal += Anual();
-                    ArrayDados[i].IncrementoAcumul += Anual() / 12;
+                    ArrayDados[i].IncrementoAcumul += Anual();
                 } else if ($("#TempoInc").val() == "Mensal") {
                     ArrayDados[i].ValFinal += Mensal();
                     ArrayDados[i].IncrementoAcumul += Mensal();
@@ -174,6 +179,10 @@ function calcular() {
 
     console.log(ArrayDados);
     escrever();
+}
+
+function simulador2() {
+    alert("O Linux é fixe!");
 }
 
 function escrever() {
@@ -430,36 +439,35 @@ if ($("#incremento").val() > 0) {
 */
 
 //Exportação excell
-function ExportarExcel(){
-    var tab_text="<table border='2px'>";
-    var j=0;
+function ExportarExcel() {
+    var tab_text = "<table border='2px'>";
+    var j = 0;
     tab = document.getElementById('tabGraf').cloneNode(true);
-    
-    
-    for(j = 0 ; j < tab.rows.length ; j++) 
-    {
-      tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+
+
+    for (j = 0; j < tab.rows.length; j++) {
+        tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
     }
-  
-    tab_text=tab_text+"</resetTabela>";
+
+    tab_text = tab_text + "</resetTabela>";
 
     var ua = window.navigator.userAgent;
-    var msie = ua.indexOf("MSIE "); 
-  
-    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+    var msie = ua.indexOf("MSIE ");
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
     {
-      txtArea1.document.open("txt/html","replace");
-      txtArea1.document.write(tab_text);
-      txtArea1.document.close();
-      txtArea1.focus(); 
-      sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xlsx");
-    }  
-    else                 //other browser not tested on IE 11
-      sa = window.open('data:application/vnd.ms-excel;' + encodeURIComponent(tab_text).replace("â‚¬","x")+ "€"); //substituir  â‚¬ por codigo de € no excel
-  
+        txtArea1.document.open("txt/html", "replace");
+        txtArea1.document.write(tab_text);
+        txtArea1.document.close();
+        txtArea1.focus();
+        sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xlsx");
+    } else //other browser not tested on IE 11
+        sa = window.open('data:application/vnd.ms-excel;' + encodeURIComponent(tab_text).replace("â‚¬", "x") + "€"); //substituir  â‚¬ por codigo de € no excel
+
     return (sa);
 }
 //exportação PDF
+<<<<<<< HEAD
 function ExportarPDF()
 {
   var doc = new jsPDF()
@@ -467,3 +475,13 @@ function ExportarPDF()
   doc.save("JurosCompostos.PDF")
   
 }
+=======
+function ExportarPDF() {
+    var doc = new jsPDF("p", "mm", "a4")
+    var h1 = document.querySelector('#resetTabela')
+
+    doc.fromHTML(h1, 50, 15)
+    doc.setFontSize(160);
+    doc.save("JurosCompostos.PDF")
+}
+>>>>>>> b06e70308d6d5fbb4a9dc377748454fe7f9a2826
