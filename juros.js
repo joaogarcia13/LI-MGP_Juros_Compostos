@@ -258,11 +258,12 @@ function escrever() {
     if ($("#TempoJuros").val() == "Meses") {
         $("#PerTabela").text("Mês");
     }
-    
+
 //reset EixoX Nao funciona como deve de ser
     for(i = 0; i < ArrayEixoX.length; i++){
         ArrayEixoX[i],length = 0 ;
     }
+
 
     var options = {
         series: [{
@@ -387,8 +388,11 @@ function anoMes() {
 }
 
 //Valor inicial
+
+var valor = new Array();
+
 function valorInicial() {
-    var cont, valor = new Array();
+    var cont;
 
     valor[0] = ValInicial;
     for (cont = 0; cont < anoMes(); cont++) {
@@ -415,17 +419,6 @@ function valorInicial() {
     return valor;
 }
 
-/*
-//preenchimento da primeira fila da tabela
-if ($("#incremento").val() > 0) {
-    document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
-        "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td><td>" +
-        IncrementoAcumul + " €" + "</td></tr>";
-} else {
-    document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
-        "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";
-}
-*/
 
 //Exportação excell
 function ExportarExcel() {
