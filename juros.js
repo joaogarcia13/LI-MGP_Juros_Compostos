@@ -423,3 +423,44 @@ if ($("#incremento").val() > 0) {
         "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";
 }
 */
+
+//Exportação excell
+function ExportarExcel(){
+    var tab_text="<table border='2px'>";
+    var j=0;
+    tab = document.getElementById('tabGraf').cloneNode(true);
+    
+    
+    for(j = 0 ; j < tab.rows.length ; j++) 
+    {
+      tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+    }
+  
+    tab_text=tab_text+"</resetTabela>";
+
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE "); 
+  
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+    {
+      txtArea1.document.open("txt/html","replace");
+      txtArea1.document.write(tab_text);
+      txtArea1.document.close();
+      txtArea1.focus(); 
+      sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xlsx");
+    }  
+    else                 //other browser not tested on IE 11
+      sa = window.open('data:application/vnd.ms-excel;' + encodeURIComponent(tab_text).replace("â‚¬","x")+ "€"); //substituir  â‚¬ por codigo de € no excel
+  
+    return (sa);
+}
+//exportação PDF
+function ExportarPDF()
+{
+  var doc = new jsPDF("p", "mm", "a4")
+  var h1 = document.querySelector('#resetTabela')
+
+  doc.fromHTML(h1,50,15)
+  doc.setFontSize(160);
+  doc.save("JurosCompostos.PDF")
+}
