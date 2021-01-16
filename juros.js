@@ -56,15 +56,20 @@ function validate() {
         $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
         $.isNumeric(ValIncremento)) {
         console.log("Os inputs são numeros.");
-        //Falta aqui a função para quando for o simulador 2
-        calcular();
+        //Escolhe a função de cálculo para cada um dos simuladores
+        if ($("#calculadora1").hasClass("d-none")) {
+            simulador2();
+        } else {
+            simulador1();
+        }
+
 
     } else alert("Os campos têm de ser preenchidos com valores numéricos.");
 }
 
 
 //Cálculos e aparece os gráficos (esta função é chamada dentro da função validate())
-function calcular() {
+function simulador1() {
 
     //Array dos Valores da tabela
     ArrayDados = new Array();
@@ -177,6 +182,10 @@ function calcular() {
     escrever();
 }
 
+function simulador2() {
+    alert("O Linux é fixe!");
+}
+
 function escrever() {
 
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
@@ -242,14 +251,15 @@ function escrever() {
             "<th scope='col' data-field='ValFinal' >Montante Acumulado</th><th scope='col' data-field='IncrementoAcumul' >Total Incremento</tr></thead><tbody id='tabela'></tbody>";
     } else {
         document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Anos</th>" +
-        "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
-        "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
+            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
+            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
     }
-    if($("#TempoJuros").val() == "Meses"){
+    if ($("#TempoJuros").val() == "Meses") {
         $("#PerTabela").text("Mês");
     }
-    
-    //Gráfico de linha 
+
+    //Gráfico de linha
+    /*
     var ctx = document.getElementById('myChart').getContext('2d');
     if (window.linhaInvest && window.linhaInvest !== null) {
         window.linhaInvest.destroy();
@@ -296,7 +306,47 @@ function escrever() {
                 }, ],
             },
         },
-    });
+    });*/
+
+    var options = {
+        series: [{
+                name: "Valor Inicial",
+                data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+            },
+            {
+                name: "Valor"
+            }
+        ],
+        chart: {
+            height: 350,
+            type: 'line',
+            zoom: {
+                enabled: false
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'straight'
+        },
+        title: {
+            text: 'Product Trends by Month',
+            align: 'left'
+        },
+        grid: {
+            row: {
+                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                opacity: 0.5
+            },
+        },
+        xaxis: {
+            categories: eixoX(),
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
 
     //Ultima linha desta função, aparece o grafico e a tabela
     $("#tabGraf").removeClass("d-none");
@@ -413,4 +463,54 @@ function valorInicial() {
         }
     }
     return valor;
+}
+
+/*
+//preenchimento da primeira fila da tabela
+if ($("#incremento").val() > 0) {
+    document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
+        "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td><td>" +
+        IncrementoAcumul + " €" + "</td></tr>";
+} else {
+    document.getElementById("tabela").innerHTML += "<tr><td>" + 1 + "</td><td>" + JuroMes.toFixed(2) + " €" +
+        "</td><td>" + JuroAcumulado.toFixed(2) + " €" + "</td><td>" + ValFinal.toFixed(2) + " €" + "</td></tr>";
+}
+*/
+
+//Exportação excell
+function ExportarExcel() {
+    var tab_text = "<table border='2px'>";
+    var j = 0;
+    tab = document.getElementById('tabGraf').cloneNode(true);
+
+
+    for (j = 0; j < tab.rows.length; j++) {
+        tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+    }
+
+    tab_text = tab_text + "</resetTabela>";
+
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
+    {
+        txtArea1.document.open("txt/html", "replace");
+        txtArea1.document.write(tab_text);
+        txtArea1.document.close();
+        txtArea1.focus();
+        sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xlsx");
+    } else //other browser not tested on IE 11
+        sa = window.open('data:application/vnd.ms-excel;' + encodeURIComponent(tab_text).replace("â‚¬", "x") + "€"); //substituir  â‚¬ por codigo de € no excel
+
+    return (sa);
+}
+//exportação PDF
+function ExportarPDF() {
+    var doc = new jsPDF("p", "mm", "a4")
+    var h1 = document.querySelector('#resetTabela')
+
+    doc.fromHTML(h1, 50, 15)
+    doc.setFontSize(160);
+    doc.save("JurosCompostos.PDF")
 }
