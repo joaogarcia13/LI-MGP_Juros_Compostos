@@ -203,11 +203,7 @@ function calcular() {
 }
 
 function escrever() {
-    if ($("#incremento").val() == 0) {
-        $("#in").addClass("d-none");
-    } else {
-        $("#in").removeClass("d-none");
-    }
+
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
     $("#Retorno").val(Retorno);
 
@@ -245,6 +241,11 @@ function escrever() {
     $(function() {
         $tabela.bootstrapTable({ data: ArrayDados });
     });
+    if ($("#incremento").val() == 0) {
+        $("#in").addClass("d-none");
+    } else {
+        $("#in").removeClass("d-none");
+    }
 
 
     //Gráfico de linha 
