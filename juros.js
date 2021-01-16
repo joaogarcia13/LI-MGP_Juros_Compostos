@@ -310,13 +310,15 @@ function escrever() {
         },
     });*/
 
+
     var options = {
         series: [{
-                name: "Valor Inicial",
-                data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+                name: "Valor Investido",
+                data: [1, 2, 3, 4, 5]
             },
             {
-                name: "Valor"
+                name: "Valor acumulado",
+                data: eixoY
             }
         ],
         chart: {
@@ -343,7 +345,7 @@ function escrever() {
             },
         },
         xaxis: {
-            categories: eixoX(),
+            categories: AM,
         }
     };
 
@@ -439,8 +441,11 @@ function eixoX() {
 
 }
 //Valor inicial
+
+var valor = new Array();
+
 function valorInicial() {
-    var cont, valor = new Array();
+    var cont;
 
     valor[0] = ValInicial;
     for (cont = 0; cont <= anoMes(); cont++) {
@@ -466,6 +471,8 @@ function valorInicial() {
     }
     return valor;
 }
+
+
 
 /*
 //preenchimento da primeira fila da tabela
