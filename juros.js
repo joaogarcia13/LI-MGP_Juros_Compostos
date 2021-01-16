@@ -98,7 +98,7 @@ function calcular() {
     // Cálculos e tabela
     //Se for escolhido anos
     if ($("#TempoJuros").val() == "Anos") {
-        $("#PerTabela").text("Ano");
+        $("#PerTabela").text("Anos");
         $("#PerTabela2").text("Juro por Ano");
 
         //Calculo Primeiro ano (i == 0), e o resto dos anos no else
@@ -146,6 +146,7 @@ function calcular() {
         Retorno = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
 
     } else {
+        $("#PerTabela").text("Meses");
         //Cálculo para os Meses
         for (var i = 0; i < tempo; i++) {
             ArrayDados[i].Tempo = i + 1;
@@ -173,9 +174,9 @@ function calcular() {
                 ArrayDados[i].JuroAcumulado += ArrayDados[i].JuroMes;
                 ArrayDados[i].ValFinal = ValIntermedio;
                 if ($("#TempoInc").val() == "Anual") {
-                    if( i % 12 == 0){
-                    ArrayDados[i].ValFinal += Anual();
-                    ArrayDados[i].IncrementoAcumul += Anual();
+                    if (i % 12 == 0) {
+                        ArrayDados[i].ValFinal += Anual();
+                        ArrayDados[i].IncrementoAcumul += Anual();
                     }
                 } else if ($("#TempoInc").val() == "Mensal") {
                     ArrayDados[i].ValFinal += Mensal();
@@ -202,7 +203,11 @@ function calcular() {
 }
 
 function escrever() {
-
+    if ($("#incremento").val() == 0) {
+        $("#in").addClass("d-none");
+    } else {
+        $("#in").removeClass("d-none");
+    }
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
     $("#Retorno").val(Retorno);
 
@@ -227,8 +232,8 @@ function escrever() {
         }
     } else if ($("#TempoJuros").val() == "Anos") {
         for (var i = 0; i < tempo; i++) {
-            for(var j = 1; j < 13; j++){
-            eixoY[(i*12) + j] = parseFloat(eixoY[i]) + (parseFloat(ValInicial) + (ArrayDados[i].ValFinal)/12);
+            for (var j = 1; j < 13; j++) {
+                eixoY[(i * 12) + j] = parseFloat(eixoY[i]) + (parseFloat(ValInicial) + (ArrayDados[i].ValFinal) / 12);
 
             }
         }
@@ -236,19 +241,11 @@ function escrever() {
     console.log(eixoY);
 
     //tabela
-    var $tabela = $("#resetTabela")
-    $(function () {
+    var $tabela = $("#resetTabela");
+    $(function() {
+        $tabela.bootstrapTable({ data: ArrayDados });
+    });
 
-        for( var i = 0; i < ArrayDados.lenght; i++){
-            
-            ArrayDados[i].ValFinal.toFixed(2);
-            ArrayDados[i].JuroMes.toFixed(2);
-            ArrayDados[i].IncrementoAcumul.toFixed(2);
-            ArrayDados[i].JuroAcumulado.toFixed(2);
-        }
-
-        $tabela.bootstrapTable({ data : ArrayDados })
-    })
 
     //Gráfico de linha 
     var ctx = document.getElementById('myChart').getContext('2d');
