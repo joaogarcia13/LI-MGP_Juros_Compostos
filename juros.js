@@ -260,7 +260,8 @@ function escrever() {
         $("#PerTabela").text("Mês");
     }
 
-    //Gráfico de linha 
+    //Gráfico de linha
+    /*
     var ctx = document.getElementById('myChart').getContext('2d');
     if (window.linhaInvest && window.linhaInvest !== null) {
         window.linhaInvest.destroy();
@@ -307,7 +308,47 @@ function escrever() {
                 }, ],
             },
         },
-    });
+    });*/
+
+    var options = {
+        series: [{
+                name: "Valor Inicial",
+                data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+            },
+            {
+                name: "Valor"
+            }
+        ],
+        chart: {
+            height: 350,
+            type: 'line',
+            zoom: {
+                enabled: false
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'straight'
+        },
+        title: {
+            text: 'Product Trends by Month',
+            align: 'left'
+        },
+        grid: {
+            row: {
+                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                opacity: 0.5
+            },
+        },
+        xaxis: {
+            categories: eixoX(),
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
 
     //Ultima linha desta função, aparece o grafico e a tabela
     $("#tabGraf").removeClass("d-none");
