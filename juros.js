@@ -25,13 +25,13 @@ function limpar() {
 }
 
 //Escolha de simuladores
-$(document).ready(function () {
+$(document).ready(function() {
 
-    $("#simulador1").click(function () {
+    $("#simulador1").click(function() {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
     })
-    $("#simulador2").click(function () {
+    $("#simulador2").click(function() {
         $("#calculadora1").addClass("d-none");
         $("#calculadora2").removeClass("d-none");
     })
@@ -51,15 +51,15 @@ function validate() {
         ValPerJuro <= 0 || ValIncremento < 0) {
         alert("Verifique se todos os valores são positivos.");
     } else
-        //verifica se são numeros
-        if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-            $.isNumeric(ValIncremento)) {
-            console.log("Os inputs são numeros.");
-            //Falta aqui a função para quando for o simulador 2
-            calcular();
+    //verifica se são numeros
+    if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
+        $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+        $.isNumeric(ValIncremento)) {
+        console.log("Os inputs são numeros.");
+        //Falta aqui a função para quando for o simulador 2
+        calcular();
 
-        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+    } else alert("Os campos têm de ser preenchidos com valores numéricos.");
 }
 
 
@@ -216,7 +216,7 @@ function escrever() {
         }
     }
     console.log(eixoY);
-    
+
     //-----------------------------------NAO SEI PORQUE NAO FUNCIONA !!!!------------------------------------------------------------------//
     /*
     //Arredondar os valores de ArrayDados a decimal para inserir na tabela
@@ -226,14 +226,14 @@ function escrever() {
     });
     console.log(ArrayDados);
     */
-   //---------------------------------------------------------------------------------------------------------------------------------//
+    //---------------------------------------------------------------------------------------------------------------------------------//
 
     //tabela
     var $tabela = $("#resetTabela");
     //Reset da tabela
     $($tabela).bootstrapTable("destroy");
     //Preenchimento da tabela
-    $(function () {
+    $(function() {
         $tabela.bootstrapTable({ data: ArrayDados })
     })
 
@@ -245,7 +245,7 @@ function escrever() {
     } else document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Anos</th>" +
         "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
         "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
-        
+
     //Gráfico de linha 
     var ctx = document.getElementById('myChart').getContext('2d');
     if (window.linhaInvest && window.linhaInvest !== null) {
@@ -259,17 +259,17 @@ function escrever() {
         data: {
             labels: eixoX(),
             datasets: [{
-                label: 'Val. Investido',
-                borderColor: 'blue',
-                data: valorInicial(),
-                fill: false,
-            },
-            {
-                label: 'Val. Acumulado',
-                borderColor: 'red',
-                data: eixoY,
-                fill: false,
-            }
+                    label: 'Val. Investido',
+                    borderColor: 'blue',
+                    data: valorInicial(),
+                    fill: false,
+                },
+                {
+                    label: 'Val. Acumulado',
+                    borderColor: 'red',
+                    data: eixoY,
+                    fill: false,
+                }
             ]
         },
 
@@ -283,14 +283,14 @@ function escrever() {
                         labelString: 'Meses',
                     },
 
-                },],
+                }, ],
                 yAxes: [{
                     display: true,
                     scaleLabel: {
                         display: true,
                         labelString: 'Dinheiro (€)',
                     },
-                },],
+                }, ],
             },
         },
     });
@@ -390,7 +390,11 @@ function valorInicial() {
     valor[0] = ValInicial;
     for (cont = 0; cont <= anoMes(); cont++) {
         if ($("#TempoInc").val() == "Anual") {
-            IncrementoAcumul = Anual() / 12;
+            if ($("#TempoJuros").val() == "Meses") {
+                IncrementoAcumul = Anual() / 12;
+            } else {
+                IncrementoAcumul = Anual();
+            }
         } else if ($("#TempoInc").val() == "Mensal") {
             IncrementoAcumul = Mensal();
         } else if ($("#TempoInc").val() == "Semanal") {
