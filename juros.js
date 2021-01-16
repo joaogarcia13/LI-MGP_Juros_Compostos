@@ -78,17 +78,6 @@ function validate() {
 //Cálculos e aparece os gráficos (esta função é chamada dentro da função validate())
 function calcular() {
 
-    /*
-    //reset da tabela, grafico, valores Finais e Retorno
-    if ($("#incremento").val() > 0) {
-        document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' id='PerTabela'>Anos</th>" +
-            "<th scope='col' id='PerTabela2'>Juros por Mês</th><th scope='col'>Juros Acumulados</th>" +
-            "<th scope='col'>Montante Acumulado</th><th>Total Incremento</tr></thead><tbody id='tabela'></tbody>";
-    } else document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' id='PerTabela'>Anos</th>" +
-        "<th scope='col' id='PerTabela2'>Juros por Mês</th><th scope='col'>Juros Acumulados</th>" +
-        "<th scope='col'>Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
-    */
-
     //Array dos Valores da tabela
     ArrayDados = new Array();
     for (var i = 0; i < tempo; i++) {
@@ -235,6 +224,17 @@ function escrever() {
         }
     }
     console.log(eixoY);
+
+    //-----------------------------------NAO SEI PORQUE NAO FUNCIONA !!!!------------------------------------------------------------------//
+    /*
+    //Arredondar os valores de ArrayDados a decimal para inserir na tabela
+    ArrayDados = $.map( ArrayDados, function(value, index){
+
+        return (value.toFixed(2));
+    });
+    console.log(ArrayDados);
+    */
+    //---------------------------------------------------------------------------------------------------------------------------------//
 
     //tabela
     var $tabela = $("#resetTabela");
