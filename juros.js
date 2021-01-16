@@ -415,7 +415,6 @@ function valorInicial() {
         }
     }
     return valor;
-<<<<<<< HEAD
 }
 
 /*
@@ -470,6 +469,3 @@ function ExportarPDF()
   doc.setFontSize(160);
   doc.save("JurosCompostos.PDF")
 }
-=======
-}
->>>>>>> 4f8f56dd5562eb1b4ca334037907989f7e1e0bf6
