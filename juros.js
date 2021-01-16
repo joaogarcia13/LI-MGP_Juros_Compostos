@@ -508,6 +508,15 @@ function ExportarExcel() {
     return (sa);
 }
 //exportação PDF
+<<<<<<< HEAD
+function ExportarPDF()
+{
+  var doc = new jsPDF()
+  doc.autoTable({ html: '#resetTabela'})
+  doc.save("JurosCompostos.PDF")
+  
+}
+=======
 function ExportarPDF() {
     var doc = new jsPDF("p", "mm", "a4")
     var h1 = document.querySelector('#resetTabela')
@@ -516,3 +525,4 @@ function ExportarPDF() {
     doc.setFontSize(160);
     doc.save("JurosCompostos.PDF")
 }
+>>>>>>> b06e70308d6d5fbb4a9dc377748454fe7f9a2826
