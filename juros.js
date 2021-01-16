@@ -217,7 +217,7 @@ function escrever() {
     }
     console.log(eixoY);
     
-    //-----------------------------------NAO SEI PORQUE NAO FUNCIONA------------------------------------------------------------------//
+    //-----------------------------------NAO SEI PORQUE NAO FUNCIONA !!!------------------------------------------------------------------//
     /*
     //Arredondar os valores de ArrayDados a decimal para inserir na tabela
     ArrayDados = $.map( ArrayDados, function(value, index){
