@@ -149,11 +149,12 @@ function calcular() {
                 ArrayDados[i].JuroAcumulado += ArrayDados[i].JuroMes;
                 ArrayDados[i].ValFinal = ValIntermedio;
                 if ($("#TempoInc").val() == "Anual") {
-                    if (i % 12 == 0) {
+                    ArrayDados[0].IncrementoAcumul = 0.0;
+                    if (i % 12 == 0 && i >= 12) {
                         ArrayDados[i].ValFinal += Anual();
                         ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Anual();
-                    } else {
-                        ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul;
+                    }else{
+                        ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul
                     }
                 } else if ($("#TempoInc").val() == "Mensal") {
                     ArrayDados[i].ValFinal += Mensal();
@@ -216,17 +217,14 @@ function escrever() {
         }
     }
     console.log(eixoY);
-
-    //-----------------------------------NAO SEI PORQUE NAO FUNCIONA !!!!------------------------------------------------------------------//
-    /*
+    
     //Arredondar os valores de ArrayDados a decimal para inserir na tabela
-    ArrayDados = $.map( ArrayDados, function(value, index){
-
-        return (value.toFixed(2));
-    });
-    console.log(ArrayDados);
-    */
-    //---------------------------------------------------------------------------------------------------------------------------------//
+    for(i = 0; i < ArrayDados.length; i++){
+        ArrayDados[i].ValFinal = ArrayDados[i].ValFinal.toFixed(2);
+        ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroAcumulado.toFixed(2);
+        ArrayDados[i].JuroMes = ArrayDados[i].JuroMes.toFixed(2);
+        ArrayDados[i].IncrementoAcumul = ArrayDados[i].IncrementoAcumul.toFixed(2);
+    }
 
     //tabela
     var $tabela = $("#resetTabela");
