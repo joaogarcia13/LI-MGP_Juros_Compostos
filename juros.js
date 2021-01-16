@@ -10,6 +10,7 @@ var ValPerIncremento = 0.0; //periodicidade do incremento//
 var Valor1 = 0.0; // Valor intermedio no calculo do juro do primeiro ano
 var ValIntermedio = 0.0; // valor intermedio no loop
 var IncremIntermed = 0.0; //variavel intermedia usada nas funçoes anual(); mensal(); semanal() e Diario()
+var ArrayEixoX = new Array();
 
 //botao de limpar dados
 function limpar() {
@@ -257,71 +258,27 @@ function escrever() {
     if ($("#TempoJuros").val() == "Meses") {
         $("#PerTabela").text("Mês");
     }
-
-    //Gráfico de linha
-    /*
-    var ctx = document.getElementById('myChart').getContext('2d');
-    if (window.linhaInvest && window.linhaInvest !== null) {
-        window.linhaInvest.destroy();
+    
+//reset EixoX Nao funciona como deve de ser
+    for(i = 0; i < ArrayEixoX.length; i++){
+        ArrayEixoX[i],length = 0 ;
     }
-    window.linhaInvest = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-
-        // The data for our dataset
-        data: {
-            labels: eixoX(),
-            datasets: [{
-                    label: 'Val. Investido',
-                    borderColor: 'blue',
-                    data: valorInicial(),
-                    fill: false,
-                },
-                {
-                    label: 'Val. Acumulado',
-                    borderColor: 'red',
-                    data: eixoY,
-                    fill: false,
-                }
-            ]
-        },
-
-        // Configuration options go herealorInicial
-        options: {
-            scales: {
-                xAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Meses',
-                    },
-
-                }, ],
-                yAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Dinheiro (€)',
-                    },
-                }, ],
-            },
-        },
-    });*/
 
     var options = {
         series: [{
-                name: "Valor Inicial",
-                data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+                name: "Valor Investido",
+                data: valorInicial()
             },
             {
-                name: "Valor"
+                name: "Valor",
+                data: eixoY
             }
         ],
         chart: {
             height: 350,
             type: 'line',
             zoom: {
-                enabled: false
+                enabled: true
             }
         },
         dataLabels: {
@@ -331,7 +288,7 @@ function escrever() {
             curve: 'straight'
         },
         title: {
-            text: 'Product Trends by Month',
+            text: 'Gráfico Investimento',
             align: 'left'
         },
         grid: {
@@ -341,12 +298,17 @@ function escrever() {
             },
         },
         xaxis: {
-            categories: eixoX(),
+            categories: ArrayEixoX,
         }
     };
 
+    if(chart != null){
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.destroy();
+    }
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
+
 
     //Ultima linha desta função, aparece o grafico e a tabela
     $("#tabGraf").removeClass("d-none");
@@ -416,32 +378,20 @@ function Diario(i) {
 function anoMes() {
     tempo2 = tempo * 12;
     console.log(tempo2);
+    ArrayEixoX[0] = 0;
+    
+    for (var i = 1; i < tempo2 + 1; i++){
+        ArrayEixoX[i] = i;
+    }
     return tempo2;
 }
 
-//EixoX
-function eixoX() {
-    var cont, duracao = new Array();
-
-    if ($("#TempoJuros").val() == "Anos") {
-        for (cont = 0; cont <= anoMes(); cont++) {
-            duracao[cont] = cont;
-        }
-        return duracao;
-    } else {
-        for (cont = 0; cont <= tempo; cont++) {
-            duracao[cont] = cont;
-        }
-        return duracao;
-    }
-
-}
 //Valor inicial
 function valorInicial() {
     var cont, valor = new Array();
 
     valor[0] = ValInicial;
-    for (cont = 0; cont <= anoMes(); cont++) {
+    for (cont = 0; cont < anoMes(); cont++) {
         if ($("#TempoInc").val() == "Anual") {
             if ($("#TempoJuros").val() == "Meses") {
                 IncrementoAcumul = Anual() / 12;
