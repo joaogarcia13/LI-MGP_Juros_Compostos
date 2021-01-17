@@ -509,10 +509,10 @@ function ExportarExcel() {
 }
 //exportação PDF
 function ExportarPDF() {
-    var doc = new jsPDF("p", "mm", "a4")
-    var h1 = document.querySelector('#resetTabela')
-
-    doc.fromHTML(h1, 50, 15)
-    doc.setFontSize(160);
+    var doc = new jsPDF()
+    doc.autoTable({html:'#resetTabela'})
     doc.save("JurosCompostos.PDF")
+
+    var canvas = document.querySelector('#chart');
+    doc.addImage(canvas, 'JPEG', 10, 10, 280, 150 );
 }
