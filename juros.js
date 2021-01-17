@@ -40,32 +40,48 @@ $(document).ready(function() {
 
 //validação de dados para a função calcular() e botão calcular
 function validate() {
-    ValInicial = $("#valorInitial").val();
-    tempo = $("#tempo").val();
-    ValJuro = $("#juro").val() / 100;
-    ValPerJuro = $("#periodo").val();
-    ValIncremento = $("#incremento").val();
-    ValPerIncremento = $("#perincremento").val();
+    if ($("#calculadora1").hasClass("d-none")) {
+        ValInicial = $("#valorInitial2").val();
+        ValJuro = $("#juro2").val() / 100;
+        ValPerJuro = $("#periodo2").val();
+        ValIncremento = $("#incremento2").val();
+        ValPerIncremento = $("#perincremento2").val();
 
-    //verifica se os valores sao positivos
-    if (ValInicial <= 0 || tempo <= 0 || ValJuro <= 0 ||
-        ValPerJuro <= 0 || ValIncremento < 0) {
-        alert("Verifique se todos os valores são positivos.");
-    } else
-    //verifica se são numeros
-    if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
-        $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-        $.isNumeric(ValIncremento)) {
-        console.log("Os inputs são numeros.");
-        //Escolhe a função de cálculo para cada um dos simuladores
-        if ($("#calculadora1").hasClass("d-none")) {
+        //verifica se os valores sao positivos
+        if (ValInicial <= 0 || tempo <= 0 || ValJuro <= 0 ||
+            ValPerJuro <= 0 || ValIncremento < 0) {
+            alert("Verifique se todos os valores são positivos.");
+        } else
+        //verifica se são numeros
+        if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
+            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+            $.isNumeric(ValIncremento)) {
+            console.log("Os inputs são numeros.");
+            //Escolhe a função de cálculo para cada um dos simuladores
             simulador2();
-        } else {
+        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+    } else {
+        ValInicial = $("#valorInitial").val();
+        tempo = $("#tempo").val();
+        ValJuro = $("#juro").val() / 100;
+        ValPerJuro = $("#periodo").val();
+        ValIncremento = $("#incremento").val();
+        ValPerIncremento = $("#perincremento").val();
+
+        //verifica se os valores sao positivos
+        if (ValInicial <= 0 || tempo <= 0 || ValJuro <= 0 ||
+            ValPerJuro <= 0 || ValIncremento < 0) {
+            alert("Verifique se todos os valores são positivos.");
+        } else
+        //verifica se são numeros
+        if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
+            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+            $.isNumeric(ValIncremento)) {
+            console.log("Os inputs são numeros.");
+            //Escolhe a função de cálculo para cada um dos simuladores
             simulador1();
-        }
-
-
-    } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+    }
 }
 
 
@@ -159,7 +175,7 @@ function simulador1() {
                     if (i % 12 == 0 && i >= 12) {
                         ArrayDados[i].ValFinal += Anual();
                         ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Anual();
-                    }else{
+                    } else {
                         ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul
                     }
                 } else if ($("#TempoInc").val() == "Mensal") {
@@ -184,7 +200,7 @@ function simulador1() {
 }
 
 function simulador2() {
-    alert("O Linux é fixe!");
+
 }
 
 function escrever() {
@@ -227,9 +243,9 @@ function escrever() {
         }
     }
     console.log(eixoY);
-    
+
     //Arredondar os valores de ArrayDados a decimal para inserir na tabela
-    for(i = 0; i < ArrayDados.length; i++){
+    for (i = 0; i < ArrayDados.length; i++) {
         ArrayDados[i].ValFinal = ArrayDados[i].ValFinal.toFixed(2);
         ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroAcumulado.toFixed(2);
         ArrayDados[i].JuroMes = ArrayDados[i].JuroMes.toFixed(2);
@@ -259,20 +275,21 @@ function escrever() {
         $("#PerTabela").text("Mês");
     }
 
-//reset EixoX Nao funciona como deve de ser
-    for(i = 0; i < ArrayEixoX.length; i++){
-        ArrayEixoX[i],length = 0 ;
+    //reset EixoX Nao funciona como deve de ser
+    for (i = 0; i < ArrayEixoX.length; i++) {
+        //Tens aqui isto assim???????????????????????????
+        ArrayEixoX[i], length = 0;
     }
 
 
     var options = {
         series: [{
-                name: "Valor Investido",
-                data: valorInicial()
+                name: "Valor Acumulado",
+                data: eixoY
             },
             {
-                name: "Valor",
-                data: eixoY
+                name: "Valor Investido",
+                data: valorInicial()
             }
         ],
         chart: {
@@ -298,12 +315,38 @@ function escrever() {
                 opacity: 0.5
             },
         },
-        xaxis: {
+        /*xaxis: {
             categories: ArrayEixoX,
+        },*/
+        legend: {
+            position: 'top'
+        },
+        xaxis: {
+            title: {
+                text: 'Meses',
+            }
+        },
+        yaxis: {
+            title: {
+                text: 'Valor (€)'
+            }
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function(y) {
+                    if (typeof y !== "undefined") {
+                        return y + " €";
+                    }
+                    return y;
+
+                }
+            }
         }
     };
 
-    if(chart != null){
+    if (chart != null) {
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.destroy();
     }
@@ -380,15 +423,13 @@ function anoMes() {
     tempo2 = tempo * 12;
     console.log(tempo2);
     ArrayEixoX[0] = 0;
-    
-    for (var i = 1; i < tempo2 + 1; i++){
+
+    for (var i = 1; i < tempo2 + 1; i++) {
         ArrayEixoX[i] = i;
     }
     return tempo2;
 }
-
 //Valor inicial
-
 var valor = new Array();
 
 function valorInicial() {
