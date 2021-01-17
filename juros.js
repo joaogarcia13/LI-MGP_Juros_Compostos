@@ -169,7 +169,7 @@ function simulador1() {
         ValIncreme = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
 
     } else {
-        //Cálculo para os Meses
+        //Cálculo para os Mesess
         for (var i = 0; i < tempo; i++) {
             ArrayDados[i].Tempo = i + 1;
             if (i == 0) {
