@@ -1,6 +1,7 @@
 //Pus a coluna do incremento escondida se o valor for nulo. Continua assim ou Mostramos sempre com valor 0 ?
 
 var ValInicial = 0.0;
+var ValAtingir = 0.0;
 var Retorno = 0.0;
 var tempo = 0.0;
 var ValJuro = 0.0; // valor do juro
@@ -53,6 +54,7 @@ $(document).ready(function() {
 function validate() {
     //Escolhe o simulador 2
     if ($("#calculadora1").hasClass("d-none")) {
+        ValAtingir = $("#ValFinal2").val();
         ValInicial = $("#valorInitial2").val();
         ValJuro = $("#juro2").val() / 100;
         ValPerJuro = $("#periodo2").val();
@@ -60,12 +62,12 @@ function validate() {
         ValPerIncremento = $("#perincremento2").val();
 
         //verifica se os valores sao positivos
-        if (ValInicial <= 0 || ValJuro <= 0 ||
+        if (ValAtingir <= 0 || ValInicial <= 0 || ValJuro <= 0 ||
             ValPerJuro <= 0 || ValIncremento < 0) {
             alert("Verifique se todos os valores são positivos.");
         } else
         //verifica se são numeros
-        if ($.isNumeric(ValInicial) &&
+        if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
             $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
             $.isNumeric(ValIncremento)) {
             console.log("Os inputs são numeros.");
@@ -154,7 +156,8 @@ function simulador1() {
                 }
             }
         }
-        Retorno = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
+        Retorno
+        ValIncreme = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
 
     } else {
         //Cálculo para os Meses
@@ -213,7 +216,15 @@ function simulador1() {
 }
 
 function simulador2() {
+    do {
+        //Array dos Valores da tabela
+        ArrayDados = new Array();
+        for (var i = 0; i < tempo; i++) {
+            ArrayDados[i] = { 'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0 };
+        }
 
+
+    } while (ValAtingir != ValInicial);
 }
 
 function escrever() {
