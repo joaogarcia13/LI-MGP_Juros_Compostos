@@ -11,6 +11,7 @@ var ValPerIncremento = 0.0; //periodicidade do incremento//
 var Valor1 = 0.0; // Valor intermedio no calculo do juro do primeiro ano
 var ValIntermedio = 0.0; // valor intermedio no loop
 var IncremIntermed = 0.0; //variavel intermedia usada nas funçoes anual(); mensal(); semanal() e Diario()
+var eixoY = new Array();
 var ArrayEixoX = new Array();
 
 //botao de limpar dados
@@ -73,6 +74,9 @@ function validate() {
             $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
             $.isNumeric(ValIncremento)) {
             console.log("Os inputs são numeros.");
+            if (ValAtingir <= ValInicial) {
+                alert("O valor a atingir não pode ser menor que o valor inicial.")
+            }
             simulador2();
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
@@ -105,6 +109,7 @@ function validate() {
 //Cálculos e aparece os gráficos (esta função é chamada dentro da função validate()) do simulador 1
 function simulador1() {
 
+    eixoY.length = 0;
     //Array dos Valores da tabela
     ArrayDados = new Array();
     for (var i = 0; i < tempo; i++) {
@@ -222,7 +227,7 @@ function simulador2() {
     var tempoAtingir = 0.0;
     var MesConvert = 0.0;
     var AnoInt = 0;
-
+    var eixoY = new Array();
     tempoAtingir = (Math.log(ValAtingir / ValInicial) / Math.log(2.71828)) / (ValPerJuro * (Math.log(1 + (ValJuro / ValPerJuro) / Math.log(2.71828))));
     MesConvert = tempoAtingir - parseInt(tempoAtingir);
     AnoInt = parseInt(tempoAtingir);
@@ -230,34 +235,32 @@ function simulador2() {
     console.log(MesConvert);
 
     //conversão deciam para mês
-    /*
-    if(MesConvert < 0,08333){
-        
-    }else if(MesConvert <= 0,166666){
+    if (MesConvert <= 1 / 12) {
+        MesConvert = 1;
+    } else if (MesConvert <= 2 / 12) {
         MesConvert = 2;
-    }else if(MesConvert <= 0,25){
+    } else if (MesConvert <= 3 / 12) {
         MesConvert = 3;
-    }else if(MesConvert <= 0,33333){
+    } else if (MesConvert <= 4 / 12) {
         MesConvert = 4;
-    }else if(MesConvert <= 0,125){
+    } else if (MesConvert <= 5 / 12) {
         MesConvert = 5;
-    }else if(MesConvert <= 0,41666666){
+    } else if (MesConvert <= 6 / 12) {
         MesConvert = 6;
-    }else if(MesConvert <= 0,5){
+    } else if (MesConvert <= 7 / 12) {
         MesConvert = 7;
-    }else if(MesConvert <= 0,58333){
+    } else if (MesConvert <= 8 / 12) {
         MesConvert = 8;
-    }else if(MesConvert <= 0,6666667){
+    } else if (MesConvert <= 9 / 12) {
         MesConvert = 9;
-    }else if(MesConvert <= 0,8333333){
+    } else if (MesConvert <= 10 / 12) {
         MesConvert = 10;
-    }else if(MesConvert <= 0,91666667){
+    } else if (MesConvert <= 11 / 12) {
         MesConvert = 11;
-    }else{
-        AnoInt += 1; MesConvert = 0;
-    }*/
-
-    console.log(MesConvert);
+    } else {
+        AnoInt += 1;
+        MesConvert = 0;
+    }
 
     if (MesConvert == 0) {
         $("#duracao2").val(AnoInt + " anos");
@@ -273,18 +276,7 @@ function escrever() {
 
     // Array do Valor Eixo Y
     //Reset/Declaração do Array
-    if (eixoY != null) { eixoY.length = 0; }
-    var eixoY = new Array();
-
-    if ($("#TempoJuros").val() == "Anos") {
-        for (var i = 0; i < anoMes(); i++) {
-            eixoY[i] = 0.0;
-        }
-    } else {
-        for (var i = 0; i < tempo; i++) {
-            eixoY[i] = 0.0;
-        }
-    }
+    if (eixoY.length != 0) { eixoY.length = 0; }
 
     // atribuição de Valores ao eixoY. No caso de ser Anos faz a Conversão para meses
     eixoY[0] = parseFloat(ValInicial);
@@ -317,8 +309,6 @@ function escrever() {
 
     //tabela
     var $tabela = $("#resetTabela");
-    //Reset da tabela
-    $($tabela).bootstrapTable("destroy");
     //Preenchimento da tabela
     $(function() {
         $tabela.bootstrapTable({ data: ArrayDados })
@@ -338,11 +328,8 @@ function escrever() {
         $("#PerTabela").text("Mês");
     }
 
-    //reset EixoX Nao funciona como deve de ser
-    for (i = 0; i < ArrayEixoX.length; i++) {
-        ArrayEixoX[i].length = 0;
-    }
-
+    //Reset EixoX
+    ArrayEixoX.length = 0;
 
     var options = {
         series: [{
@@ -378,7 +365,6 @@ function escrever() {
             },
         },
         xaxis: {
-            categories: ArrayEixoX,
             title: {
                 text: 'Meses',
             },
@@ -407,13 +393,9 @@ function escrever() {
         }
     };
 
-    if (chart != null) {
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.destroy();
-    }
+
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
-
 
     //Ultima linha desta função, aparece o grafico e a tabela
     $("#tabGraf").removeClass("d-none");
@@ -496,7 +478,7 @@ var valor = new Array();
 
 function valorInicial() {
     var cont;
-
+    valor.length = 0;
     valor[0] = ValInicial;
     if ($("#TempoJuros").val() == "Anos") {
         for (cont = 0; cont < anoMes(); cont++) {
