@@ -339,16 +339,14 @@ function escrever() {
                 opacity: 0.5
             },
         },
-        /*xaxis: {
-            categories: ArrayEixoX,
-        },*/
-        legend: {
-            position: 'top'
-        },
         xaxis: {
+            categories: ArrayEixoX,
             title: {
                 text: 'Meses',
             }
+        },
+        legend: {
+            position: 'top'
         },
         yaxis: {
             title: {
