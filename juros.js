@@ -66,7 +66,7 @@ function validate() {
         ValIncremento = $("#incremento2").val();
         ValPerIncremento = $("#perincremento2").val();
         
-        if( ValAtingir <= ValInicial ){
+        if( ValAtingir != ValInicial ){
             console.log(ValAtingir);
             console.log(ValInicial);
             alert("O valor a atingir não pode ser menor que o valor inicial");
@@ -112,7 +112,6 @@ function validate() {
 
 //Cálculos e aparece os gráficos (esta função é chamada dentro da função validate()) do simulador 1
 function simulador1() {
-
     //Array dos Valores da tabela
     ArrayDados = new Array();
     for (var i = 0; i < tempo; i++) {
