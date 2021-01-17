@@ -230,33 +230,36 @@ function simulador2() {
     console.log(MesConvert);
  
     //conversão deciam para mês
-    if(MesConvert < 0,08333){
+    if(MesConvert <= 1/12){
         MesConvert = 1;
-    }else if(MesConvert <= 0,166666){
+    }else if(MesConvert <= 2/12){
         MesConvert = 2;
-    }else if(MesConvert <= 0,25){
+    }else if(MesConvert <= 3/12){
         MesConvert = 3;
-    }else if(MesConvert <= 0,33333){
+    }else if(MesConvert <= 4/12){
         MesConvert = 4;
-    }else if(MesConvert <= 0,125){
+    }else if(MesConvert <= 5/12){
         MesConvert = 5;
-    }else if(MesConvert <= 0,41666666){
+    }else if(MesConvert <= 6/12){
         MesConvert = 6;
-    }else if(MesConvert <= 0,5){
+    }else if(MesConvert <= 7/12){
         MesConvert = 7;
-    }else if(MesConvert <= 0,58333){
+    }else if(MesConvert <= 8/12){
         MesConvert = 8;
-    }else if(MesConvert <= 0,6666667){
+    }else if(MesConvert <= 9/12){
         MesConvert = 9;
-    }else if(MesConvert <= 0,8333333){
+    }else if(MesConvert <= 10/12){
         MesConvert = 10;
-    }else if(MesConvert <= 0,91666667){
+    }else if(MesConvert <= 11/12){
         MesConvert = 11;
     }else{
         AnoInt += 1; MesConvert = 0;
     }
     
-    console.log(MesConvert);
+    if(ValAtingir <= ValInicial){
+        alert("O valor a atingir não pode ser menor que o valor inicial.")
+    }
+
 
     if(MesConvert == 0){
     $("#duracao2").val(AnoInt + " anos");
