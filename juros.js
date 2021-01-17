@@ -14,15 +14,26 @@ var ArrayEixoX = new Array();
 
 //botao de limpar dados
 function limpar() {
-    $("#valorInitial").val('');
-    $("#tempo").val('');
-    $("#juro").val('');
-    $("#periodo").val('');
-    $("#ValFinal").val('');
-    $("#Retorno").val('');
-    $("#incremento").val('');
-    $("#perincremento").val('');
+    if ($("#calculadora1").hasClass("d-none")) {
+        $("#ValFinal2").val('0');
+        $("#valorInitial2").val('0');
+        $("#juro2").val('00.00');
+        $("#periodo2").val('0');
+        $("#incremento2").val('0');
+        $("#perincremento2").val('0');
+        $("#duracao2").val('');
+    } else {
+        $("#valorInitial").val('0');
+        $("#tempo").val('0');
+        $("#juro").val('00.00');
+        $("#periodo").val('0');
+        $("#ValFinal").val('');
+        $("#Retorno").val('');
+        $("#incremento").val('0');
+        $("#perincremento").val('');
+    }
     $("#tabGraf").addClass('d-none');
+
 }
 
 //Escolha de simuladores
@@ -40,6 +51,7 @@ $(document).ready(function() {
 
 //validação de dados para a função calcular() e botão calcular
 function validate() {
+    //Escolhe o simulador 2
     if ($("#calculadora1").hasClass("d-none")) {
         ValInicial = $("#valorInitial2").val();
         ValJuro = $("#juro2").val() / 100;
@@ -48,19 +60,20 @@ function validate() {
         ValPerIncremento = $("#perincremento2").val();
 
         //verifica se os valores sao positivos
-        if (ValInicial <= 0 || tempo <= 0 || ValJuro <= 0 ||
+        if (ValInicial <= 0 || ValJuro <= 0 ||
             ValPerJuro <= 0 || ValIncremento < 0) {
             alert("Verifique se todos os valores são positivos.");
         } else
         //verifica se são numeros
-        if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
+        if ($.isNumeric(ValInicial) &&
             $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
             $.isNumeric(ValIncremento)) {
             console.log("Os inputs são numeros.");
-            //Escolhe a função de cálculo para cada um dos simuladores
             simulador2();
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
-    } else {
+    }
+    //Escolhe o simulador 1
+    else {
         ValInicial = $("#valorInitial").val();
         tempo = $("#tempo").val();
         ValJuro = $("#juro").val() / 100;
