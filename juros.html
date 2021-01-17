@@ -82,14 +82,15 @@
 
         <!--Simulador 2-->
         <div id="calculadora2" class="col-5 d-none">
+            <div class="input-group mb-3 col-2">
+                <input type="text" class="form-control" id="ValFinal2" value="0">
+                <span class="input-group-text">Valor Atingir</span>
+            </div>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" id="valorInitial2" value="0">
                 <span class="input-group-text">Valor Inicial</span>
             </div>
-            <div class="input-group mb-3 col-2">
-                <input type="text" class="form-control" id="ValFinal2" value="0">
-                <span class="input-group-text">Montante Final</span>
-            </div>
+
             <div class="input-group mb-3">
                 <input type="text" class="form-control" id="juro2" value="00.00">
                 <span class="input-group-text">Juro</span>
@@ -107,7 +108,7 @@
                 <span class="input-group-text">Periocidade do Incremento</span>
             </div>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" id="duracao2" value="00.00">
+                <input type="text" class="form-control" id="duracao2" value="">
                 <span class="input-group-text">Anos atingir o montante Final</span>
             </div>
             <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
@@ -145,11 +146,11 @@
                 <input type="email" name="Remetente" id="email-address" placeholder="email@domain.com" required="">
                 <label for="department">Motivo</label>
                 <select name="Motivo" id="department" required="">
-                <option value="Select" selected="" disabled="">Escolher</option>
-                <option value="Informação">Informação</option>
-                <option value="Dúvida">Dúvida</option>
-                <option value="Report">Report</option>
-              </select>
+                    <option value="Select" selected="" disabled="">Escolher</option>
+                    <option value="Informação">Informação</option>
+                    <option value="Dúvida">Dúvida</option>
+                    <option value="Report">Report</option>
+                </select>
                 <label for="Mensagem">Mensagem</label>
                 <textarea rows="5" name="message" id="message" placeholder="Escrever aqui..." required=""></textarea>
                 <input type="hidden" name="_subject" id="email-subject" value="Department Contact Form Submission">
@@ -173,7 +174,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.js"></script>"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.js"></script>
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.11/jspdf.plugin.autotable.min.js"></script>
     <script src="juros.js"></script>
