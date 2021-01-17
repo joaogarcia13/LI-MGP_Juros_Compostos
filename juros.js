@@ -40,32 +40,51 @@ $(document).ready(function() {
 
 //validação de dados para a função calcular() e botão calcular
 function validate() {
-    ValInicial = $("#valorInitial").val();
-    tempo = $("#tempo").val();
-    ValJuro = $("#juro").val() / 100;
-    ValPerJuro = $("#periodo").val();
-    ValIncremento = $("#incremento").val();
-    ValPerIncremento = $("#perincremento").val();
+    //Escolhe o simulador 2
+    if ($("#calculadora1").hasClass("d-none")) {
+        ValAtingir = $("#ValFinal2").val();
+        ValInicial = $("#valorInitial2").val();
+        ValJuro = $("#juro2").val() / 100;
+        ValPerJuro = $("#periodo2").val();
+        ValIncremento = $("#incremento2").val();
+        ValPerIncremento = $("#perincremento2").val();
 
-    //verifica se os valores sao positivos
-    if (ValInicial <= 0 || tempo <= 0 || ValJuro <= 0 ||
-        ValPerJuro <= 0 || ValIncremento < 0) {
-        alert("Verifique se todos os valores são positivos.");
-    } else
-    //verifica se são numeros
-    if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
-        $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-        $.isNumeric(ValIncremento)) {
-        console.log("Os inputs são numeros.");
-        //Escolhe a função de cálculo para cada um dos simuladores
-        if ($("#calculadora1").hasClass("d-none")) {
+        //verifica se os valores sao positivos
+        if (ValAtingir <= 0 || ValInicial <= 0 || ValJuro <= 0 ||
+            ValPerJuro <= 0 || ValIncremento < 0) {
+            alert("Verifique se todos os valores são positivos.");
+        } else
+        //verifica se são numeros
+        if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
+            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+            $.isNumeric(ValIncremento)) {
+            console.log("Os inputs são numeros.");
             simulador2();
-        } else {
+        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+    }
+    //Escolhe o simulador 1
+    else {
+        ValInicial = $("#valorInitial").val();
+        tempo = $("#tempo").val();
+        ValJuro = $("#juro").val() / 100;
+        ValPerJuro = $("#periodo").val();
+        ValIncremento = $("#incremento").val();
+        ValPerIncremento = $("#perincremento").val();
+
+        //verifica se os valores sao positivos
+        if (ValInicial <= 0 || tempo <= 0 || ValJuro <= 0 ||
+            ValPerJuro <= 0 || ValIncremento < 0) {
+            alert("Verifique se todos os valores são positivos.");
+        } else
+        //verifica se são numeros
+        if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
+            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+            $.isNumeric(ValIncremento)) {
+            console.log("Os inputs são numeros.");
+            //Escolhe a função de cálculo para cada um dos simuladores
             simulador1();
-        }
-
-
-    } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+    }
 }
 
 
@@ -267,12 +286,12 @@ function escrever() {
 
     var options = {
         series: [{
-                name: "Valor Investido",
-                data: valorInicial()
+                name: "Valor Acumulado",
+                data: eixoY
             },
             {
-                name: "Valor",
-                data: eixoY
+                name: "Valor Investido",
+                data: valorInicial()
             }
         ],
         chart: {
@@ -299,20 +318,18 @@ function escrever() {
             },
         },
         xaxis: {
-            categories: ArrayEixoX,
-        }
-    };
-
-    if(chart != null){
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.destroy();
+            title: {
     }
+}
+
+    chart.destroy();
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 
 
     //Ultima linha desta função, aparece o grafico e a tabela
     $("#tabGraf").removeClass("d-none");
+
 }
 
 //Incremento anual
@@ -379,10 +396,10 @@ function Diario(i) {
 function anoMes() {
     tempo2 = tempo * 12;
     console.log(tempo2);
-    
     ArrayEixoX[0] = 0;
-    for (var i = 1; i < tempo2 + 1; i++){
+    for (var i = 1; i < tempo2 + 1; i++) {
         ArrayEixoX[i] = i;
+
     }
     return tempo2;
 }
@@ -395,30 +412,35 @@ function valorInicial() {
     var cont;
 
     valor[0] = ValInicial;
-    for (cont = 0; cont < anoMes(); cont++) {
-        if ($("#TempoInc").val() == "Anual") {
-            if ($("#TempoJuros").val() == "Meses") {
+    if ($("#TempoJuros").val() == "Anual") {
+        for (cont = 0; cont < anoMes(); cont++) {
+            if ($("#TempoInc").val() == "Anual") {
+                IncrementoAcumul = Anual();
+            } else if ($("#TempoInc").val() == "Mensal") {
+                IncrementoAcumul = Mensal();
+            } else if ($("#TempoInc").val() == "Semanal") {
+                IncrementoAcumul = Semanal();
+            } else if ($("#TempoInc").val() == "Diário") {
+                IncrementoAcumul = Diario();
+            }
+            valor[cont + 1] = (parseFloat(ValInicial) + ((cont + 1) * (IncrementoAcumul / 12))).toFixed(2);
+        }
+    } else {
+        ArrayEixoX[0] = 0
+        for (cont = 0; cont < tempo; cont++) {
+            for (var i = 1; i < tempo + 1; i++) {
+                ArrayEixoX[i] = i;
+            }
+            if ($("#TempoInc").val() == "Anual") {
                 IncrementoAcumul = Anual() / 12;
             } else {
                 IncrementoAcumul = Anual();
             }
-        } else if ($("#TempoInc").val() == "Mensal") {
-            IncrementoAcumul = Mensal();
-        } else if ($("#TempoInc").val() == "Semanal") {
-            IncrementoAcumul = Semanal();
-        } else if ($("#TempoInc").val() == "Diário") {
-            IncrementoAcumul = Diario();
-        }
-
-        if ($("#TempoJuros").val() == "Meses") {
             valor[cont + 1] = (parseFloat(ValInicial) + ((cont + 1) * IncrementoAcumul)).toFixed(2);
-        } else {
-            valor[cont + 1] = (parseFloat(ValInicial) + ((cont + 1) * (IncrementoAcumul / 12))).toFixed(2);
         }
     }
     return valor;
 }
-
 
 //Exportação excell
 function ExportarExcel() {
