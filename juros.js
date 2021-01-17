@@ -457,7 +457,7 @@ function anoMes() {
     return tempo2;
 }
 
-//Valor inicial
+//Valor iniciall
 var valor = new Array();
 
 function valorInicial() {
