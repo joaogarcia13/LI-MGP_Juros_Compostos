@@ -218,11 +218,52 @@ function simulador1() {
 }
 
 function simulador2() {
-    /*do {
-    } while (ValAtingir > ValInicial);*/
-    var TempoAtingir = 0.0;
+    //do{} while (ValAtingir > ValInicial);
+    var tempoAtingir = 0.0;
+    var MesConvert = 0.0;
+    var AnoInt = 0;
 
-    TempoAtingir =
+    tempoAtingir = (Math.log(ValAtingir / ValInicial) / Math.log(2.71828)) / (ValPerJuro * (Math.log(1 + (ValJuro / ValPerJuro) / Math.log(2.71828))));
+    MesConvert = tempoAtingir - parseInt(tempoAtingir);
+    AnoInt = parseInt(tempoAtingir);
+    console.log(AnoInt);
+    console.log(MesConvert);
+
+    //conversão deciam para mês
+    /*
+    if(MesConvert < 0,08333){
+        
+    }else if(MesConvert <= 0,166666){
+        MesConvert = 2;
+    }else if(MesConvert <= 0,25){
+        MesConvert = 3;
+    }else if(MesConvert <= 0,33333){
+        MesConvert = 4;
+    }else if(MesConvert <= 0,125){
+        MesConvert = 5;
+    }else if(MesConvert <= 0,41666666){
+        MesConvert = 6;
+    }else if(MesConvert <= 0,5){
+        MesConvert = 7;
+    }else if(MesConvert <= 0,58333){
+        MesConvert = 8;
+    }else if(MesConvert <= 0,6666667){
+        MesConvert = 9;
+    }else if(MesConvert <= 0,8333333){
+        MesConvert = 10;
+    }else if(MesConvert <= 0,91666667){
+        MesConvert = 11;
+    }else{
+        AnoInt += 1; MesConvert = 0;
+    }*/
+
+    console.log(MesConvert);
+
+    if (MesConvert == 0) {
+        $("#duracao2").val(AnoInt + " anos");
+    } else {
+        $("#duracao2").val(AnoInt + " anos e " + MesConvert + " meses");
+    }
 }
 
 function escrever() {
