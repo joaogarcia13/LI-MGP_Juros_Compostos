@@ -66,11 +66,6 @@ function validate() {
         ValIncremento = $("#incremento2").val();
         ValPerIncremento = $("#perincremento2").val();
         
-        if( ValAtingir != ValInicial ){
-            console.log(ValAtingir);
-            console.log(ValInicial);
-            alert("O valor a atingir não pode ser menor que o valor inicial");
-        }else
         //verifica se os valores sao positivos
         if (ValAtingir <= 0 || ValInicial <= 0 || ValJuro <= 0 ||
             ValPerJuro <= 0 || ValIncremento < 0) {
@@ -81,7 +76,13 @@ function validate() {
             $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
             $.isNumeric(ValIncremento)) {
             console.log("Os inputs são numeros.");
-            simulador2();
+            if( ValAtingir >= ValInicial ){
+                simulador2();
+            }else{
+                console.log(ValAtingir);
+                console.log(ValInicial);
+                alert("O valor a atingir não pode ser menor que o valor inicial");
+            }
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
     //Escolhe o simulador 1
