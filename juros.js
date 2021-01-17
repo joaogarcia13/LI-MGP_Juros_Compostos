@@ -15,6 +15,7 @@ var ArrayEixoX = new Array();
 
 //botao de limpar dados
 function limpar() {
+    //calculadora 2
     if ($("#calculadora1").hasClass("d-none")) {
         $("#ValFinal2").val('0');
         $("#valorInitial2").val('0');
@@ -24,6 +25,7 @@ function limpar() {
         $("#perincremento2").val('0');
         $("#duracao2").val('');
     } else {
+        //calculadora 1
         $("#valorInitial").val('0');
         $("#tempo").val('0');
         $("#juro").val('00.00');
@@ -100,7 +102,7 @@ function validate() {
 }
 
 
-//Cálculos e aparece os gráficos (esta função é chamada dentro da função validate())
+//Cálculos e aparece os gráficos (esta função é chamada dentro da função validate()) do simulador 1
 function simulador1() {
 
     //Array dos Valores da tabela
@@ -224,7 +226,7 @@ function simulador2() {
         }
 
 
-    } while (ValAtingir != ValInicial);
+    } while (ValAtingir > ValInicial);
 }
 
 function escrever() {
@@ -301,8 +303,7 @@ function escrever() {
 
     //reset EixoX Nao funciona como deve de ser
     for (i = 0; i < ArrayEixoX.length; i++) {
-        //Tens aqui isto assim???????????????????????????
-        ArrayEixoX[i], length = 0;
+        ArrayEixoX[i].length = 0;
     }
 
 
@@ -339,11 +340,15 @@ function escrever() {
                 opacity: 0.5
             },
         },
+        legend: {
+            position: 'top'
+        },
         xaxis: {
             categories: ArrayEixoX,
             title: {
                 text: 'Meses',
-            }
+            },
+            categories: ArrayEixoX,
         },
         legend: {
             position: 'top'
@@ -445,12 +450,13 @@ function anoMes() {
     tempo2 = tempo * 12;
     console.log(tempo2);
     ArrayEixoX[0] = 0;
-
     for (var i = 1; i < tempo2 + 1; i++) {
         ArrayEixoX[i] = i;
+
     }
     return tempo2;
 }
+
 //Valor inicial
 var valor = new Array();
 
@@ -458,30 +464,39 @@ function valorInicial() {
     var cont;
 
     valor[0] = ValInicial;
-    for (cont = 0; cont < anoMes(); cont++) {
-        if ($("#TempoInc").val() == "Anual") {
-            if ($("#TempoJuros").val() == "Meses") {
-                IncrementoAcumul = Anual() / 12;
-            } else {
+    if ($("#TempoJuros").val() == "Anual") {
+        for (cont = 0; cont < anoMes(); cont++) {
+            if ($("#TempoInc").val() == "Anual") {
                 IncrementoAcumul = Anual();
+            } else if ($("#TempoInc").val() == "Mensal") {
+                IncrementoAcumul = Mensal();
+            } else if ($("#TempoInc").val() == "Semanal") {
+                IncrementoAcumul = Semanal();
+            } else if ($("#TempoInc").val() == "Diário") {
+                IncrementoAcumul = Diario();
             }
-        } else if ($("#TempoInc").val() == "Mensal") {
-            IncrementoAcumul = Mensal();
-        } else if ($("#TempoInc").val() == "Semanal") {
-            IncrementoAcumul = Semanal();
-        } else if ($("#TempoInc").val() == "Diário") {
-            IncrementoAcumul = Diario();
-        }
-
-        if ($("#TempoJuros").val() == "Meses") {
-            valor[cont + 1] = (parseFloat(ValInicial) + ((cont + 1) * IncrementoAcumul)).toFixed(2);
-        } else {
             valor[cont + 1] = (parseFloat(ValInicial) + ((cont + 1) * (IncrementoAcumul / 12))).toFixed(2);
+        }
+    } else {
+        ArrayEixoX[0] = 0
+        for (cont = 0; cont < tempo; cont++) {
+            for (var i = 1; i < tempo + 1; i++) {
+                ArrayEixoX[i] = i;
+            }
+            if ($("#TempoInc").val() == "Anual") {
+                IncrementoAcumul = Anual() / 12;
+            } else if ($("#TempoInc").val() == "Mensal") {
+                IncrementoAcumul = Mensal();
+            } else if ($("#TempoInc").val() == "Semanal") {
+                IncrementoAcumul = Semanal();
+            } else if ($("#TempoInc").val() == "Diário") {
+                IncrementoAcumul = Diario();
+            }
+            valor[cont + 1] = (parseFloat(ValInicial) + ((cont + 1) * IncrementoAcumul)).toFixed(2);
         }
     }
     return valor;
 }
-
 
 //Exportação excell
 function ExportarExcel() {
