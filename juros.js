@@ -15,6 +15,7 @@ var ArrayEixoX = new Array();
 
 //botao de limpar dados
 function limpar() {
+    //calculadora 2
     if ($("#calculadora1").hasClass("d-none")) {
         $("#ValFinal2").val('0');
         $("#valorInitial2").val('0');
@@ -24,6 +25,7 @@ function limpar() {
         $("#perincremento2").val('0');
         $("#duracao2").val('');
     } else {
+        //calculadora 1
         $("#valorInitial").val('0');
         $("#tempo").val('0');
         $("#juro").val('00.00');
@@ -38,13 +40,13 @@ function limpar() {
 }
 
 //Escolha de simuladores
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $("#simulador1").click(function() {
+    $("#simulador1").click(function () {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
     })
-    $("#simulador2").click(function() {
+    $("#simulador2").click(function () {
         $("#calculadora1").addClass("d-none");
         $("#calculadora2").removeClass("d-none");
     })
@@ -66,13 +68,13 @@ function validate() {
             ValPerJuro <= 0 || ValIncremento < 0) {
             alert("Verifique se todos os valores são positivos.");
         } else
-        //verifica se são numeros
-        if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-            $.isNumeric(ValIncremento)) {
-            console.log("Os inputs são numeros.");
-            simulador2();
-        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+            //verifica se são numeros
+            if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
+                $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+                $.isNumeric(ValIncremento)) {
+                console.log("Os inputs são numeros.");
+                simulador2();
+            } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
     //Escolhe o simulador 1
     else {
@@ -88,19 +90,19 @@ function validate() {
             ValPerJuro <= 0 || ValIncremento < 0) {
             alert("Verifique se todos os valores são positivos.");
         } else
-        //verifica se são numeros
-        if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-            $.isNumeric(ValIncremento)) {
-            console.log("Os inputs são numeros.");
-            //Escolhe a função de cálculo para cada um dos simuladores
-            simulador1();
-        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+            //verifica se são numeros
+            if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
+                $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+                $.isNumeric(ValIncremento)) {
+                console.log("Os inputs são numeros.");
+                //Escolhe a função de cálculo para cada um dos simuladores
+                simulador1();
+            } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
 }
 
 
-//Cálculos e aparece os gráficos (esta função é chamada dentro da função validate())
+//Cálculos e aparece os gráficos (esta função é chamada dentro da função validate()) do simulador 1
 function simulador1() {
 
     //Array dos Valores da tabela
@@ -224,7 +226,7 @@ function simulador2() {
         }
 
 
-    } while (ValAtingir != ValInicial);
+    } while (ValAtingir > ValInicial);
 }
 
 function escrever() {
@@ -281,7 +283,7 @@ function escrever() {
     //Reset da tabela
     $($tabela).bootstrapTable("destroy");
     //Preenchimento da tabela
-    $(function() {
+    $(function () {
         $tabela.bootstrapTable({ data: ArrayDados })
     })
 
@@ -301,20 +303,19 @@ function escrever() {
 
     //reset EixoX Nao funciona como deve de ser
     for (i = 0; i < ArrayEixoX.length; i++) {
-        //Tens aqui isto assim???????????????????????????
-        ArrayEixoX[i], length = 0;
+        ArrayEixoX[i].length = 0;
     }
 
 
     var options = {
         series: [{
-                name: "Valor Acumulado",
-                data: eixoY
-            },
-            {
-                name: "Valor Investido",
-                data: valorInicial()
-            }
+            name: "Valor Acumulado",
+            data: eixoY
+        },
+        {
+            name: "Valor Investido",
+            data: valorInicial()
+        }
         ],
         chart: {
             height: 350,
@@ -339,16 +340,14 @@ function escrever() {
                 opacity: 0.5
             },
         },
-        /*xaxis: {
-            categories: ArrayEixoX,
-        },*/
         legend: {
             position: 'top'
         },
         xaxis: {
             title: {
                 text: 'Meses',
-            }
+            },
+            categories: ArrayEixoX,
         },
         yaxis: {
             title: {
@@ -359,7 +358,7 @@ function escrever() {
             shared: true,
             intersect: false,
             y: {
-                formatter: function(y) {
+                formatter: function (y) {
                     if (typeof y !== "undefined") {
                         return y + " €";
                     }
@@ -442,17 +441,14 @@ function Diario(i) {
     }
 }
 
+/*
 //funcao que converte anos em meses
 function anoMes() {
     tempo2 = tempo * 12;
     console.log(tempo2);
-    ArrayEixoX[0] = 0;
-
-    for (var i = 1; i < tempo2 + 1; i++) {
-        ArrayEixoX[i] = i;
-    }
     return tempo2;
 }
+*/
 //Valor inicial
 var valor = new Array();
 
@@ -460,28 +456,61 @@ function valorInicial() {
     var cont;
 
     valor[0] = ValInicial;
-    for (cont = 0; cont < anoMes(); cont++) {
-        if ($("#TempoInc").val() == "Anual") {
-            if ($("#TempoJuros").val() == "Meses") {
-                IncrementoAcumul = Anual() / 12;
-            } else {
+    if ($("#TempoJuros").val() == "Anual") {
+        for (cont = 0; cont < anoMes(); cont++) {
+            if ($("#TempoInc").val() == "Anual") {
                 IncrementoAcumul = Anual();
+            } else if ($("#TempoInc").val() == "Mensal") {
+                IncrementoAcumul = Mensal();
+            } else if ($("#TempoInc").val() == "Semanal") {
+                IncrementoAcumul = Semanal();
+            } else if ($("#TempoInc").val() == "Diário") {
+                IncrementoAcumul = Diario();
             }
-        } else if ($("#TempoInc").val() == "Mensal") {
-            IncrementoAcumul = Mensal();
-        } else if ($("#TempoInc").val() == "Semanal") {
-            IncrementoAcumul = Semanal();
-        } else if ($("#TempoInc").val() == "Diário") {
-            IncrementoAcumul = Diario();
-        }
-
-        if ($("#TempoJuros").val() == "Meses") {
-            valor[cont + 1] = (parseFloat(ValInicial) + ((cont + 1) * IncrementoAcumul)).toFixed(2);
-        } else {
             valor[cont + 1] = (parseFloat(ValInicial) + ((cont + 1) * (IncrementoAcumul / 12))).toFixed(2);
         }
+        ArrayEixoX[0] = 0;
+        for (var i = 1; i < anoMes(); i++) {
+            ArrayEixoX[i] = i;
+        }
+    } else {
+        for (cont = 0; cont < tempo; cont++) {
+            if ($("#TempoInc").val() == "Anual") {
+                IncrementoAcumul = Anual() / 12;
+            } else if ($("#TempoInc").val() == "Mensal") {
+                IncrementoAcumul = Mensal();
+            } else if ($("#TempoInc").val() == "Semanal") {
+                IncrementoAcumul = Semanal();
+            } else if ($("#TempoInc").val() == "Diário") {
+                IncrementoAcumul = Diario();
+            }
+            valor[cont + 1] = (parseFloat(ValInicial) + ((cont + 1) * IncrementoAcumul)).toFixed(2);
+        }
+        ArrayEixoX[0] = 0;
+        for (var i = 1; i < tempo + 1; i++) {
+            ArrayEixoX[i] = i;
+        }
     }
-    return valor;
+
+        return valor;
+    }
+
+
+//funcao que converte anos em meses
+function anoMes() {
+    tempo2 = tempo * 12;
+    console.log(tempo2);
+    ArrayEixoX[0] = 0;
+    if($("#TempoJuros").val() == " Anual"){
+        for (var i = 1; i < tempo2 + 1; i++){
+            ArrayEixoX[i] = i;
+        }
+    }else {
+        for (var i = 1; i < tempo + 1; i++){
+            ArrayEixoX[i] = i;
+        }
+    }
+    return tempo2;
 }
 
 
