@@ -218,15 +218,11 @@ function simulador1() {
 }
 
 function simulador2() {
-    do {
-        //Array dos Valores da tabela
-        ArrayDados = new Array();
-        for (var i = 0; i < tempo; i++) {
-            ArrayDados[i] = { 'Tempo': 0, 'ValFinal': 0.0, 'JuroMes': 0.0, 'IncrementoAcumul': 0.0, 'JuroAcumulado': 0.0 };
-        }
+    /*do {
+    } while (ValAtingir > ValInicial);*/
+    var TempoAtingir = 0.0;
 
-
-    } while (ValAtingir > ValInicial);
+    TempoAtingir =
 }
 
 function escrever() {
@@ -339,9 +335,6 @@ function escrever() {
                 colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
                 opacity: 0.5
             },
-        },
-        legend: {
-            position: 'top'
         },
         xaxis: {
             categories: ArrayEixoX,
@@ -464,7 +457,7 @@ function valorInicial() {
     var cont;
 
     valor[0] = ValInicial;
-    if ($("#TempoJuros").val() == "Anual") {
+    if ($("#TempoJuros").val() == "Anos") {
         for (cont = 0; cont < anoMes(); cont++) {
             if ($("#TempoInc").val() == "Anual") {
                 IncrementoAcumul = Anual();
