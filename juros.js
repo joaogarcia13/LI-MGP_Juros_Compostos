@@ -45,16 +45,19 @@ $(document).ready(function() {
     $("#simulador1").click(function() {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
+        $("#tabGraf").addClass("d-none");
     })
     $("#simulador2").click(function() {
         $("#calculadora1").addClass("d-none");
         $("#calculadora2").removeClass("d-none");
+        $("#tabGraf").addClass("d-none");
     })
 })
 
 //validação de dados para a função calcular() e botão calcular
 function validate() {
     //Escolhe o simulador 2
+
     if ($("#calculadora1").hasClass("d-none")) {
         ValAtingir = $("#ValFinal2").val();
         ValInicial = $("#valorInitial2").val();
@@ -62,7 +65,12 @@ function validate() {
         ValPerJuro = $("#periodo2").val();
         ValIncremento = $("#incremento2").val();
         ValPerIncremento = $("#perincremento2").val();
-
+        
+        if( ValAtingir <= ValInicial ){
+            console.log(ValAtingir);
+            console.log(ValInicial);
+            alert("O valor a atingir não pode ser menor que o valor inicial");
+        }else
         //verifica se os valores sao positivos
         if (ValAtingir <= 0 || ValInicial <= 0 || ValJuro <= 0 ||
             ValPerJuro <= 0 || ValIncremento < 0) {
@@ -113,7 +121,7 @@ function simulador1() {
 
     // Cálculos e tabela
     //Se for escolhido anos
-    if ($("#TempoJuros").val() == "Anos") {
+    if ($("#TempoJuros").val() == "Anos" || $("#calculadora2").hasClass("d-none") == false) {
         $("#PerTabela").text("Ano");
         $("#PerTabela2").text("Juro por Ano");
 
@@ -218,18 +226,18 @@ function simulador1() {
 }
 
 function simulador2() {
-    //do{} while (ValAtingir > ValInicial);
+
     var tempoAtingir = 0.0;
     var MesConvert = 0.0;
     var AnoInt = 0;
+    var taux = 0;
 
     tempoAtingir =(Math.log(ValAtingir/ValInicial)/Math.log(2.71828))/(ValPerJuro*(Math.log( 1 + (ValJuro/ValPerJuro)/Math.log(2.71828))));
+    taux = tempoAtingir - parseInt(tempoAtingir);
     MesConvert = tempoAtingir - parseInt(tempoAtingir);
     AnoInt = parseInt(tempoAtingir);
-    console.log(AnoInt);
-    console.log(MesConvert);
  
-    //conversão deciam para mês
+    //conversão decimal para mês
     if(MesConvert <= 1/12){
         MesConvert = 1;
     }else if(MesConvert <= 2/12){
@@ -255,17 +263,16 @@ function simulador2() {
     }else{
         AnoInt += 1; MesConvert = 0;
     }
-    
-    if(ValAtingir <= ValInicial){
-        alert("O valor a atingir não pode ser menor que o valor inicial.")
-    }
-
 
     if(MesConvert == 0){
     $("#duracao2").val(AnoInt + " anos");
     }else{
         $("#duracao2").val(AnoInt + " anos e " + MesConvert + " meses");
     }
+
+    tempo = tempoAtingir - taux;
+    console.log(tempo);
+    simulador1();
 }
 
 function escrever() {
@@ -278,7 +285,7 @@ function escrever() {
     if (eixoY != null) { eixoY.length = 0; }
     var eixoY = new Array();
 
-    if ($("#TempoJuros").val() == "Anos") {
+    if ($("#TempoJuros").val() == "Anos" || $("#calculadora2").hasClass("d-none") == false) {
         for (var i = 0; i < anoMes(); i++) {
             eixoY[i] = 0.0;
         }
@@ -294,7 +301,7 @@ function escrever() {
         for (var i = 0; i < ArrayDados.length; i++) {
             eixoY[i + 1] = ArrayDados[i].ValFinal.toFixed(2);
         }
-    } else if ($("#TempoJuros").val() == "Anos") {
+    } else if ($("#TempoJuros").val() == "Anos" || $("#calculadora2").hasClass("d-none") == false) {
         var aux = 0.0;
         for (var i = 0; i < tempo; i++) {
             aux = parseFloat((ArrayDados[i].JuroMes + ArrayDados[0].IncrementoAcumul) / 12);
@@ -340,10 +347,8 @@ function escrever() {
         $("#PerTabela").text("Mês");
     }
 
-    //reset EixoX Nao funciona como deve de ser
-    for (i = 0; i < ArrayEixoX.length; i++) {
-        ArrayEixoX[i].length = 0;
-    }
+    //reset EixoX Nao funciona como deve
+    ArrayEixoX.length = 0;
 
 
     var options = {
@@ -417,6 +422,7 @@ function escrever() {
         chart.destroy();
     }
     var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
     chart.render();
 
 
@@ -498,10 +504,9 @@ function anoMes() {
 
 //Valor inicial
 var valor = new Array();
-
 function valorInicial() {
     var cont;
-
+    valor.length = 0;
     valor[0] = ValInicial;
     if ($("#TempoJuros").val() == "Anos") {
         for (cont = 0; cont < anoMes(); cont++) {
