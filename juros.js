@@ -1,4 +1,4 @@
-//Pus a coluna do incremento escondida se o valor for nulo. Continua assim ou Mostramos sempre com valor 0 ?
+//Notas Grafico buggado
 
 var ValInicial = 0.0;
 var ValAtingir = 0.0;
