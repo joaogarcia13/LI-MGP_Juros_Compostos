@@ -9,7 +9,7 @@ section {
     display: none;
     position: fixed;
     bottom: 0;
-    right: 15px;
+    right: 5px;
     border: 3px solid #fc0303;
     background-color: white;
     z-index: 9;
