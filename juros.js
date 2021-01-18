@@ -13,6 +13,8 @@ var ValIntermedio = 0.0; // valor intermedio no loop
 var IncremIntermed = 0.0; //variavel intermedia usada nas funçoes anual(); mensal(); semanal() e Diario()
 var ArrayEixoX = new Array();
 var eixoY = new Array();
+let chart;
+var eixoY = new Array();
 
 //botao de limpar dados
 function limpar() {
@@ -34,25 +36,30 @@ function limpar() {
         $("#ValFinal").val('');
         $("#Retorno").val('');
         $("#incremento").val('0');
-        $("#perincremento").val('');
     }
     $("#tabGraf").addClass('d-none');
 
 }
 
-//Escolha de simuladores
+//Botão de Informações e escolha de simuladores
 $(document).ready(function() {
+    $("#Informacoes").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#Inform").offset().top
+        }, 2000);
+    });
 
     $("#simulador1").click(function() {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
         $("#tabGraf").addClass("d-none");
-    })
+    });
+
     $("#simulador2").click(function() {
         $("#calculadora1").addClass("d-none");
         $("#calculadora2").removeClass("d-none");
         $("#tabGraf").addClass("d-none");
-    })
+    });
 })
 
 //validação de dados para a função calcular() e botão calcular
@@ -66,7 +73,7 @@ function validate() {
         ValPerJuro = $("#periodo2").val();
         ValIncremento = $("#incremento2").val();
         ValPerIncremento = $("#perincremento2").val();
-        
+
         //verifica se os valores sao positivos
         if (ValAtingir <= 0 || ValInicial <= 0 || ValJuro <= 0 ||
             ValPerJuro <= 0 || ValIncremento < 0) {
@@ -77,9 +84,9 @@ function validate() {
             $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
             $.isNumeric(ValIncremento)) {
             console.log("Os inputs são numeros.");
-            if( ValAtingir > ValInicial ){
+            if (ValAtingir > ValInicial) {
                 simulador2();
-            }else{
+            } else {
                 alert("O valor a atingir não pode ser menor que o valor inicial");
             }
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
@@ -272,9 +279,9 @@ function simulador2() {
 
     tempo = (tempoAtingir - taux) + 1;
     console.log(tempo);
-    if(tempo >= 1){
-    simulador1();
-    }else {
+    if (tempo >= 1) {
+        simulador1();
+    } else {
 
     }
 }
@@ -354,6 +361,7 @@ function escrever() {
         ],
         chart: {
             height: 350,
+            width: "100%",
             type: 'line',
             zoom: {
                 enabled: true
@@ -407,7 +415,7 @@ function escrever() {
         }
     };
 
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 
     //Ultima linha desta função, aparece o grafico e a tabela
@@ -529,38 +537,39 @@ function valorInicial() {
 
 //Exportação excell
 function ExportarExcel() {
-    var tab_text = "<table border='2px'>";
-    var j = 0;
-    tab = document.getElementById('tabGraf').cloneNode(true);
-
-
-    for (j = 0; j < tab.rows.length; j++) {
-        tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
-    }
-
-    tab_text = tab_text + "</resetTabela>";
-
-    var ua = window.navigator.userAgent;
-    var msie = ua.indexOf("MSIE ");
-
-    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
-    {
-        txtArea1.document.open("txt/html", "replace");
-        txtArea1.document.write(tab_text);
-        txtArea1.document.close();
-        txtArea1.focus();
-        sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xlsx");
-    } else //other browser not tested on IE 11
-        sa = window.open('data:application/vnd.ms-excel;' + encodeURIComponent(tab_text).replace("â‚¬", "x") + "€"); //substituir  â‚¬ por codigo de € no excel
-
-    return (sa);
+    var table = document.getElementById('resetTabela');
+    //var URImagem = chart.dataURI().then((uri) => { console.log(uri);});
+    var html1 = table.outerHTML;
+    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html1)); //+ encodeURIComponent(URImagem));
 }
 //exportação PDF
 function ExportarPDF() {
-    var doc = new jsPDF("p", "mm", "a4")
-    var h1 = document.querySelector('#resetTabela')
+    var doc = new jsPDF()
+    doc.autoTable({ html: '#resetTabela' })
 
-    doc.fromHTML(h1, 50, 15)
-    doc.setFontSize(160);
-    doc.save("JurosCompostos.PDF")
+    alturaPagina = doc.internal.pageSize.height;
+    y = 500
+    if (y >= alturaPagina) {
+        doc.addPage();
+        y = 0
+    }
+
+    chart.dataURI().then(({ imgURI, }) => {
+        doc.addImage(imgURI, 'PNG', 15, 15, 180, 90);
+        doc.save("JurosCompostos.PDF")
+    })
+
+
 }
+
+//botão suporte
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+    
+  }
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+
+   
+  }
