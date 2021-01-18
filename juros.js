@@ -12,11 +12,7 @@ var Valor1 = 0.0; // Valor intermedio no calculo do juro do primeiro ano
 var ValIntermedio = 0.0; // valor intermedio no loop
 var IncremIntermed = 0.0; //variavel intermedia usada nas funçoes anual(); mensal(); semanal() e Diario()
 var ArrayEixoX = new Array();
-<<<<<<< HEAD
-let chart;
-=======
 var eixoY = new Array();
->>>>>>> d962dafb1fb3917118fcaccc044d06665eb41c38
 
 //botao de limpar dados
 function limpar() {
@@ -38,7 +34,6 @@ function limpar() {
         $("#ValFinal").val('');
         $("#Retorno").val('');
         $("#incremento").val('0');
-        $("#perincremento").val('');
     }
     $("#tabGraf").addClass('d-none');
 
@@ -70,7 +65,7 @@ function validate() {
         ValPerJuro = $("#periodo2").val();
         ValIncremento = $("#incremento2").val();
         ValPerIncremento = $("#perincremento2").val();
-        
+
         //verifica se os valores sao positivos
         if (ValAtingir <= 0 || ValInicial <= 0 || ValJuro <= 0 ||
             ValPerJuro <= 0 || ValIncremento < 0) {
@@ -81,9 +76,9 @@ function validate() {
             $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
             $.isNumeric(ValIncremento)) {
             console.log("Os inputs são numeros.");
-            if( ValAtingir > ValInicial ){
+            if (ValAtingir > ValInicial) {
                 simulador2();
-            }else{
+            } else {
                 alert("O valor a atingir não pode ser menor que o valor inicial");
             }
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
@@ -276,9 +271,9 @@ function simulador2() {
 
     tempo = (tempoAtingir - taux) + 1;
     console.log(tempo);
-    if(tempo >= 1){
-    simulador1();
-    }else {
+    if (tempo >= 1) {
+        simulador1();
+    } else {
 
     }
 }
@@ -412,15 +407,7 @@ function escrever() {
         }
     };
 
-<<<<<<< HEAD
-    if (chart != null) {
-        chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.destroy();
-    }
-    chart = new ApexCharts(document.querySelector("#chart"), options);
-=======
     var chart = new ApexCharts(document.querySelector("#chart"), options);
->>>>>>> d962dafb1fb3917118fcaccc044d06665eb41c38
     chart.render();
 
     //Ultima linha desta função, aparece o grafico e a tabela
@@ -542,8 +529,8 @@ function valorInicial() {
 
 //Exportação excell
 function ExportarExcel() {
-    var table= document.getElementById('resetTabela');
-    var URImagem = chart.dataURI().then((uri) => { console.log(uri);});
+    var table = document.getElementById('resetTabela');
+    var URImagem = chart.dataURI().then((uri) => { console.log(uri); });
     var html1 = table.outerHTML;
     //var html2 = URImagem.outerHTML;
     window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html1) + encodeURIComponent(URImagem));
@@ -551,21 +538,19 @@ function ExportarExcel() {
 //exportação PDF
 function ExportarPDF() {
     var doc = new jsPDF()
-    doc.autoTable({html:'#resetTabela'})
+    doc.autoTable({ html: '#resetTabela' })
 
-    alturaPagina= doc.internal.pageSize.height;
-    y = 500 
-    if (y >= alturaPagina)
-    {
-    doc.addPage();
-    y = 0 
+    alturaPagina = doc.internal.pageSize.height;
+    y = 500
+    if (y >= alturaPagina) {
+        doc.addPage();
+        y = 0
     }
 
-    chart.dataURI().then(({imgURI,}) => 
-    {
+    chart.dataURI().then(({ imgURI, }) => {
         doc.addImage(imgURI, 'PNG', 15, 15, 180, 90);
         doc.save("JurosCompostos.PDF")
     })
 
-    
+
 }
