@@ -65,7 +65,6 @@ $(document).ready(function() {
 //validação de dados para a função calcular() e botão calcular
 function validate() {
     //Escolhe o simulador 2
-
     if ($("#calculadora1").hasClass("d-none")) {
         ValAtingir = $("#ValFinal2").val();
         ValInicial = $("#valorInitial2").val();
@@ -84,12 +83,14 @@ function validate() {
             $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
             $.isNumeric(ValIncremento)) {
             console.log("Os inputs são numeros.");
+            debugger;
             if (ValAtingir > ValInicial) {
                 simulador2();
             } else {
                 alert("O valor a atingir não pode ser menor que o valor inicial");
             }
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+
     }
     //Escolhe o simulador 1
     else {
