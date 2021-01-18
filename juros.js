@@ -12,11 +12,8 @@ var Valor1 = 0.0; // Valor intermedio no calculo do juro do primeiro ano
 var ValIntermedio = 0.0; // valor intermedio no loop
 var IncremIntermed = 0.0; //variavel intermedia usada nas funçoes anual(); mensal(); semanal() e Diario()
 var ArrayEixoX = new Array();
-<<<<<<< HEAD
 let chart;
-=======
-var eixoY = new Array();
->>>>>>> d962dafb1fb3917118fcaccc044d06665eb41c38
+var eixoY =new Array();
 
 //botao de limpar dados
 function limpar() {
@@ -412,15 +409,11 @@ function escrever() {
         }
     };
 
-<<<<<<< HEAD
     if (chart != null) {
         chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.destroy();
     }
     chart = new ApexCharts(document.querySelector("#chart"), options);
-=======
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
->>>>>>> d962dafb1fb3917118fcaccc044d06665eb41c38
     chart.render();
 
     //Ultima linha desta função, aparece o grafico e a tabela
@@ -543,10 +536,9 @@ function valorInicial() {
 //Exportação excell
 function ExportarExcel() {
     var table= document.getElementById('resetTabela');
-    var URImagem = chart.dataURI().then((uri) => { console.log(uri);});
+    //var URImagem = chart.dataURI().then((uri) => { console.log(uri);});
     var html1 = table.outerHTML;
-    //var html2 = URImagem.outerHTML;
-    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html1) + encodeURIComponent(URImagem));
+    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html1)); //+ encodeURIComponent(URImagem));
 }
 //exportação PDF
 function ExportarPDF() {
