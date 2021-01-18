@@ -1,4 +1,6 @@
-//Notas Grafico buggado
+//Notas Tabela desaparece segunda vez que se clicka calcular
+//alert ta buggado quando o simulador 2 da menos de 1 ano
+//falta por exceção do simulador 2 para menos de um ano
 
 var ValInicial = 0.0;
 var ValAtingir = 0.0;
@@ -282,7 +284,8 @@ function simulador2() {
     if (tempo >= 1) {
         simulador1();
     } else {
-
+        tempo = 1;
+        simulador1();
     }
 }
 
@@ -329,6 +332,7 @@ function escrever() {
     //Preenchimento da tabela
     $(function() {
         $tabela.bootstrapTable({ data: ArrayDados })
+        $tabela.bootstrapTable('load', ArrayDados);
     })
 
     //Esconder Coluna do Incremento se o Incremento for Nulo
@@ -414,7 +418,9 @@ function escrever() {
             }
         }
     };
-
+    if(chart != null){
+        chart.destroy();
+    }
     chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 
