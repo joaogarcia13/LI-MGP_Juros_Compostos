@@ -1,11 +1,36 @@
-section {
-    margin: 50px 30px 30px;
+body {
+    font-family: 'Roboto', sans-serif;
 }
-.table td {
-    text-align: center;   
- }
 
- .form-popup {
+header {
+    margin: 0;
+    padding: 35px;
+    text-align: center;
+    background-color: beige;
+}
+
+section {
+    margin: 50px 80px 25px 80px;
+}
+
+.table td {
+    text-align: center;
+}
+
+#Informacoes {
+    margin-bottom: 5%;
+}
+
+#simulador1 {
+    margin-bottom: 5%;
+}
+
+.btnEscolhe {
+    background-color: beige;
+    size: 150px;
+}
+
+.form-popup {
     display: none;
     position: fixed;
     bottom: 0;
@@ -13,31 +38,30 @@ section {
     border: 3px solid #fc0303;
     background-color: white;
     z-index: 9;
-  }
- #Suporte{
+}
+
+#Suporte {
     position: fixed;
     bottom: 0;
-
     right: 15px;
-}  
+}
 
-#abrir{
+#abrir {
     background-color: transparent;
     border-color: transparent;
     border-radius: 50%;
 }
-#imgSuporte
-{
-    height: 75px;
-    height: 75px;
-}
-#close
-{
-    height: 25px;
-    height: 25px;
 
+#imgSuporte {
+    height: 75px;
+    height: 75px;
 }
-#btnclose
-{
+
+#close {
+    height: 25px;
+    height: 25px;
+}
+
+#btnclose {
     right: 1px;
 }

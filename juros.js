@@ -41,19 +41,25 @@ function limpar() {
 
 }
 
-//Escolha de simuladores
+//Botão de Informações e escolha de simuladores
 $(document).ready(function() {
+    $("#Informacoes").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#Inform").offset().top
+        }, 2000);
+    });
 
     $("#simulador1").click(function() {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
         $("#tabGraf").addClass("d-none");
-    })
+    });
+
     $("#simulador2").click(function() {
         $("#calculadora1").addClass("d-none");
         $("#calculadora2").removeClass("d-none");
         $("#tabGraf").addClass("d-none");
-    })
+    });
 })
 
 //validação de dados para a função calcular() e botão calcular
