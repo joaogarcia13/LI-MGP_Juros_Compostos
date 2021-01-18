@@ -13,6 +13,8 @@ var ValIntermedio = 0.0; // valor intermedio no loop
 var IncremIntermed = 0.0; //variavel intermedia usada nas funçoes anual(); mensal(); semanal() e Diario()
 var ArrayEixoX = new Array();
 var eixoY = new Array();
+let chart;
+var eixoY = new Array();
 
 //botao de limpar dados
 function limpar() {
@@ -407,7 +409,7 @@ function escrever() {
         }
     };
 
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 
     //Ultima linha desta função, aparece o grafico e a tabela
@@ -530,10 +532,9 @@ function valorInicial() {
 //Exportação excell
 function ExportarExcel() {
     var table = document.getElementById('resetTabela');
-    var URImagem = chart.dataURI().then((uri) => { console.log(uri); });
+    //var URImagem = chart.dataURI().then((uri) => { console.log(uri);});
     var html1 = table.outerHTML;
-    //var html2 = URImagem.outerHTML;
-    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html1) + encodeURIComponent(URImagem));
+    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html1)); //+ encodeURIComponent(URImagem));
 }
 //exportação PDF
 function ExportarPDF() {
