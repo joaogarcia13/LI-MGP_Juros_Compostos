@@ -29,3 +29,39 @@ section {
     background-color: beige;
     size: 150px;
 }
+
+.form-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #fc0303;
+    background-color: white;
+    z-index: 9;
+}
+
+#Suporte {
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+}
+
+#abrir {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+}
+
+#imgSuporte {
+    height: 75px;
+    height: 75px;
+}
+
+#close {
+    height: 25px;
+    height: 25px;
+}
+
+#btnclose {
+    right: 1px;
+}
