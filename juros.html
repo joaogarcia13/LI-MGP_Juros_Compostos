@@ -36,77 +36,25 @@
                     <div class="mb-3 col-4">
                         <input type="text" class="form-control" id="valorInitial" value="0">
                     </div>
-
-
-                    <div class="input-group mb-3 col-2">
+                    <div class=" mb-3 col-2">
                         <input type="text" class="form-control" id="tempo" value="0">
-                        <span class="input-group-append">
-                    <select class="form-select" aria-label="Default select example" id="TempoJuros">
-                        <option selected id="anos">Anos</option>
-                        <option id="meses">Meses</option>
-                    </select>
-                
+                        <select class="form-select" aria-label="Default select example" id="TempoJuros">
+                            <option selected id="anos">Anos</option>
+                            <option id="meses">Meses</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" id="juro" value="00.00">
                     <span class="input-group-text">Juro</span>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="periodo" value="0">
-                        <span class="input-group-text">Periocidade</span>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="incremento" value="0">
-                        <span class="input-group-text">Incremento</span>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="perincremento" value="Perido de Incremento" disabled>
-                        <div class="input-group-append">
-                            <select class="form-select" aria-label="Default select example" id="TempoInc">
-                        <option selected id="anos">Anual</option>
-                        <option id="meses">Mensal</option>
-                        <option id="meses">Semanal</option>
-                        <option id="meses">Diário</option>
-                    </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-group mb-3 col-2">
-                            <input type="text" class="form-control" id="ValFinal">
-                            <span class="input-group-text">Montante Final</span>
-
-                            <input type="text" class="form-control" id="Retorno">
-                            <span class="input-group-text">Retorno</span>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
-                    <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
-                </div>
-            </div>
-
-            <!--Simulador 2-->
-            <div id="calculadora2" class="col-5 d-none">
-                <div class="input-group mb-3 col-2">
-                    <input type="text" class="form-control" id="ValFinal2" value="0">
-                    <span class="input-group-text">Valor Atingir</span>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="valorInitial2" value="0">
-                    <span class="input-group-text">Valor Inicial</span>
-                </div>
-
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="juro2" value="00.00">
-                    <span class="input-group-text">Juro</span>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="periodo2" value="0">
+                    <input type="text" class="form-control" id="periodo" value="0">
                     <span class="input-group-text">Periocidade</span>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="incremento2" value="0">
+                    <input type="text" class="form-control" id="incremento" value="0">
                     <span class="input-group-text">Incremento</span>
                 </div>
                 <div class="input-group mb-3">
@@ -120,20 +68,68 @@
                     </select>
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="duracao2" value="0">
-                    <span class="input-group-text">Anos atingir o montante Final</span>
+                <div class="row">
+                    <div class="input-group mb-3 col-2">
+                        <input type="text" class="form-control" id="ValFinal">
+                        <span class="input-group-text">Montante Final</span>
+
+                        <input type="text" class="form-control" id="Retorno">
+                        <span class="input-group-text">Retorno</span>
+                    </div>
                 </div>
                 <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
                 <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
+            </div>
+        </div>
 
+        <!--Simulador 2-->
+        <div id="calculadora2" class="col-5 d-none">
+            <div class="input-group mb-3 col-2">
+                <input type="text" class="form-control" id="ValFinal2" value="0">
+                <span class="input-group-text">Valor Atingir</span>
             </div>
-            <div class="col-5"></div>
-            <div id="escolhe">
-                <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="Informacoes">Informações</button></div>
-                <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador1">Simulador 1</button></div>
-                <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador2">Simulador 2</button></div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="valorInitial2" value="0">
+                <span class="input-group-text">Valor Inicial</span>
             </div>
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="juro2" value="00.00">
+                <span class="input-group-text">Juro</span>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="periodo2" value="0">
+                <span class="input-group-text">Periocidade</span>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="incremento2" value="0">
+                <span class="input-group-text">Incremento</span>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="perincremento" value="Perido de Incremento" disabled>
+                <div class="input-group-append">
+                    <select class="form-select" aria-label="Default select example" id="TempoInc">
+                        <option selected id="anos">Anual</option>
+                        <option id="meses">Mensal</option>
+                        <option id="meses">Semanal</option>
+                        <option id="meses">Diário</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="duracao2" value="0">
+                <span class="input-group-text">Anos atingir o montante Final</span>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
+            <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
+
+        </div>
+
+        <div id="escolhe">
+            <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="Informacoes">Informações</button></div>
+            <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador1">Simulador 1</button></div>
+            <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador2">Simulador 2</button></div>
+        </div>
         </div>
 
 
