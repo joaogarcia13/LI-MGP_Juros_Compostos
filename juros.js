@@ -1,6 +1,4 @@
-//Notas Tabela desaparece segunda vez que se clicka calcular
-//alert ta buggado quando o simulador 2 da menos de 1 ano
-//falta por exceção do simulador 2 para menos de um ano
+//erro simulador 1 no incremento
 
 var ValInicial = 0.0;
 var ValAtingir = 0.0;
