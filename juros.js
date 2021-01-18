@@ -1,6 +1,4 @@
-//Notas Tabela desaparece segunda vez que se clicka calcular
-//alert ta buggado quando o simulador 2 da menos de 1 ano
-//falta por exceção do simulador 2 para menos de um ano
+//erro simulador 1 no incremento
 
 var ValInicial = 0.0;
 var ValAtingir = 0.0;
@@ -83,7 +81,6 @@ function validate() {
         if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
             $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro)) {
             console.log("Os inputs são numeros.");
-            debugger;
             if (parseFloat(ValAtingir) > ValInicial) {
                 simulador2();
             } else {
@@ -334,10 +331,14 @@ function escrever() {
     })
 
     //Esconder Coluna do Incremento se o Incremento for Nulo
-    if (ValIncremento == 0) {
-        $("#Inc").addClass("d-none");
-    }else if( $("#Inc").hasClass("d-none") && ValIncremento > 0) {
-        $("#Inc").removeClass("d-none");
+    if ($("#incremento").val() > 0) {
+        document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Ano</th>" +
+            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
+            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th><th scope='col' data-field='IncrementoAcumul' >Total Incremento</tr></thead><tbody id='tabela'></tbody>";
+    } else {
+        document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Anos</th>" +
+            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
+            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
     }
 
     if ($("#TempoJuros").val() == "Meses") {
