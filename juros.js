@@ -73,20 +73,18 @@ function validate() {
         ValInicial = $("#valorInitial2").val();
         ValJuro = $("#juro2").val() / 100;
         ValPerJuro = $("#periodo2").val();
-        ValIncremento = $("#incremento2").val();
-        ValPerIncremento = $("#perincremento2").val();
 
         //verifica se os valores sao positivos
         if (ValAtingir <= 0 || ValInicial <= 0 || ValJuro <= 0 ||
-            ValPerJuro <= 0 || ValIncremento < 0) {
+            ValPerJuro <= 0) {
             alert("Verifique se todos os valores são positivos.");
         } else
         //verifica se são numeros
         if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-            $.isNumeric(ValIncremento)) {
+            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro)) {
             console.log("Os inputs são numeros.");
-            if (ValAtingir > ValInicial) {
+            debugger;
+            if (parseFloat(ValAtingir) > ValInicial) {
                 simulador2();
             } else {
                 alert("O valor a atingir não pode ser menor que o valor inicial");
@@ -418,7 +416,7 @@ function escrever() {
             }
         }
     };
-    if(chart != null){
+    if (chart != null) {
         chart.destroy();
     }
     chart = new ApexCharts(document.querySelector("#chart"), options);
@@ -571,11 +569,11 @@ function ExportarPDF() {
 //botão suporte
 function openForm() {
     document.getElementById("myForm").style.display = "block";
-    
-  }
+
+}
 
 function closeForm() {
     document.getElementById("myForm").style.display = "none";
 
-   
-  }
+
+}
