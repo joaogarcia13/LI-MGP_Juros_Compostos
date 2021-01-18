@@ -15,7 +15,7 @@
     <link href="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.css" rel="stylesheet">
 </head>
 
-<body class="container-fluid">
+<body>
 
     <!--Escolher o simulador-->
     <section>
@@ -125,7 +125,7 @@
 
     <!--Secção que mostra a tabela e o gráfico-->
     <section id="tabGraf" class="row d-none">
-        <div class="col-6" id="teste">
+        <div>
             <table class="table table-bordered" id="resetTabela">
                 <thead id="titulos">
                     <tr>
@@ -139,29 +139,50 @@
                 <tbody id="corpo"></tbody>
             </table>
         </div>
+        <div id="chart"></div>
     </section>
 
     <!--Secção do form-->
     <section>
-        <form id="fs-frm" name="department-contact-form" accept-charset="utf-8" action="https://formspree.io/f/moqpynoe" method="POST">
-            <fieldset id="fs-frm-inputs">
-                <label for="full-name">Nome</label>
-                <input type="text" name="Nome" id="full-name" placeholder="Nome" required="">
-                <label for="email-address">Email</label>
-                <input type="email" name="Remetente" id="email-address" placeholder="email@domain.com" required="">
-                <label for="department">Motivo</label>
-                <select name="Motivo" id="department" required="">
-                    <option value="Select" selected="" disabled="">Escolher</option>
-                    <option value="Informação">Informação</option>
-                    <option value="Dúvida">Dúvida</option>
-                    <option value="Report">Report</option>
-                </select>
-                <label for="Mensagem">Mensagem</label>
-                <textarea rows="5" name="message" id="message" placeholder="Escrever aqui..." required=""></textarea>
-                <input type="hidden" name="_subject" id="email-subject" value="Department Contact Form Submission">
-            </fieldset>
-            <input type="submit" value="Send Message">
-        </form>
+        <div class="form-popup" id="myForm">
+            <form id="fs-frm" name="department-contact-form" accept-charset="utf-8" action="https://formspree.io/f/moqpynoe" method="POST">
+                <fieldset id="fs-frm-inputs">
+                    <div>
+                        <button id="btnclose" type="button" class="btn cancel" onclick="closeForm()"> <img id="close" src="./Imagens/close-button.png"></button>
+                    </div>
+                    <div>
+                        <label for="full-name">Nome</label>
+                        <input type="text" name="Nome" id="full-name" placeholder="Nome" required="">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="email-address">Email</label>
+                        <input type="email" name="Remetente" id="email-address" placeholder="email@domain.com" required="">
+                    </div>
+                    <br>
+                   <div>
+                        <label for="department">Motivo</label>
+                        <select name="Motivo" id="department" required="">
+                            <option value="Select" selected="" disabled="">Escolher</option>
+                            <option value="Informação">Informação</option>
+                            <option value="Dúvida">Dúvida</option>
+                            <option value="Report">Report</option>
+                        </select>
+                   </div>
+                   <br>
+                    <div>
+                        <p>Mensagem</p> 
+                        <textarea rows="5" cols="27" name="message" id="message" placeholder="Escrever aqui..." required=""></textarea>
+                        <input type="hidden" name="_subject" id="email-subject" value="Department Contact Form Submission">                     
+                    </div>
+                    <br>
+                    <div>
+                        <input type="submit" value="Send Message">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        
     </section>
 
     <!--Secção Exportação-->
@@ -172,8 +193,12 @@
 
         <!--Secção PDF-->
         <button type="button" onclick="ExportarPDF()">PDF</button>
-        
 
+    </section>
+
+    <!--Secção Suporte-->
+    <section id="Suporte">
+        <button id="abrir" type="open-button" onclick="openForm()"><img id="imgSuporte" src="./Imagens/apoio-suporte.png" ></button>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
