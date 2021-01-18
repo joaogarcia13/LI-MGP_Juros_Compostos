@@ -1,6 +1,108 @@
-section {
-    margin: 50px 30px 30px;
+body {
+    font-family: 'Roboto', sans-serif;
 }
+
+header {
+    margin: 0;
+    padding: 35px;
+    text-align: center;
+    background-color: beige;
+}
+
+section {
+    margin: 50px 80px 25px 80px;
+}
+
 .table td {
-    text-align: center;   
- }
+    text-align: center;
+}
+
+#Informacoes {
+    margin-bottom: 5%;
+}
+
+#simulador1 {
+    margin-bottom: 5%;
+}
+
+.btnEscolhe {
+    background-color: beige;
+    size: 150px;
+}
+
+.form-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f5b402;
+    background-color: white;
+    z-index: 9;
+}
+
+#Suporte {
+    position: fixed;
+    bottom: 0;
+    right: 3px;
+}
+
+#abrir {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+}
+
+#imgSuporte {
+    height: 75px;
+    height: 75px;
+}
+
+#close {
+    height: 25px;
+    height: 25px;
+}
+
+#btnclose {
+    margin-left: 250px;
+    padding-bottom: 25px;
+}
+
+#img-excel
+{
+    height: 40px;
+    height: 40px; 
+}
+
+#img-PDF
+{
+    height: 40px;
+    height: 40px; 
+    
+}
+.btn-excel
+{
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+}
+.btn-pdf
+{
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+}
+#tabGraf
+{
+    margin-left: 80px;
+    margin-right: 80px;
+}
+#fs-frm-inputs
+{
+    padding: 5px 5px 20px 20px;
+}
+#chart{
+    position: relative;
+}
+#resetTabela{
+    text-align: center;
+}
