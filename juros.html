@@ -104,11 +104,18 @@
                 <span class="input-group-text">Incremento</span>
             </div>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" id="perincremento2" value="0">
-                <span class="input-group-text">Periocidade do Incremento</span>
+                <input type="text" class="form-control" id="perincremento" value="Perido de Incremento" disabled>
+                <div class="input-group-append">
+                    <select class="form-select" aria-label="Default select example" id="TempoInc">
+                        <option selected id="anos">Anual</option>
+                        <option id="meses">Mensal</option>
+                        <option id="meses">Semanal</option>
+                        <option id="meses">Diário</option>
+                    </select>
+                </div>
             </div>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" id="duracao2" value="">
+                <input type="text" class="form-control" id="duracao2" value="0">
                 <span class="input-group-text">Anos atingir o montante Final</span>
             </div>
             <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
@@ -118,7 +125,12 @@
 
     <!--Secção que mostra a tabela e o gráfico-->
     <section id="tabGraf" class="row d-none">
+<<<<<<< HEAD
         <div class="col-6" id="teste">
+=======
+        <div id="chart"></div>
+        <div>
+>>>>>>> d962dafb1fb3917118fcaccc044d06665eb41c38
             <table class="table table-bordered" id="resetTabela">
                 <thead id="titulos">
                     <tr>
@@ -132,8 +144,6 @@
                 <tbody id="corpo"></tbody>
             </table>
         </div>
-
-        <div id="chart"></div>
     </section>
 
     <!--Secção do form-->
