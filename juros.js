@@ -48,7 +48,7 @@ $(document).ready(function() {
     $("#Informacoes").click(function() {
         $('html, body').animate({
             scrollTop: $("#Inform").offset().top
-        }, 800);
+        }, 2000);
     });
 
     $("#simulador1").click(function() {
@@ -67,6 +67,7 @@ $(document).ready(function() {
 //validação de dados para a função calcular() e botão calcular
 function validate() {
     //Escolhe o simulador 2
+
     if ($("#calculadora1").hasClass("d-none")) {
         ValAtingir = $("#ValFinal2").val();
         ValInicial = $("#valorInitial2").val();
@@ -85,14 +86,12 @@ function validate() {
             $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
             $.isNumeric(ValIncremento)) {
             console.log("Os inputs são numeros.");
-            debugger;
             if (ValAtingir > ValInicial) {
                 simulador2();
             } else {
                 alert("O valor a atingir não pode ser menor que o valor inicial");
             }
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
-
     }
     //Escolhe o simulador 1
     else {
@@ -572,11 +571,11 @@ function ExportarPDF() {
 //botão suporte
 function openForm() {
     document.getElementById("myForm").style.display = "block";
-
-}
+    
+  }
 
 function closeForm() {
     document.getElementById("myForm").style.display = "none";
 
-
-}
+   
+  }

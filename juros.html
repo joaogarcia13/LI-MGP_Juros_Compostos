@@ -31,51 +31,58 @@
         <div class="d-flex justify-content-start">
             <!--Simulador1-->
             <div id="calculadora1" class="col-5">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="valorInitial" value="0">
-                    <span class="input-group-text">Valor Inicial</span>
-                </div>
-
-                <div class="input-group mb-3 col-2">
-                    <input type="text" class="form-control" id="tempo" value="0">
-                    <div class="input-group-append">
-                        <select class="form-select" aria-label="Default select example" id="TempoJuros">
-                        <option selected id="anos">Anos</option>
-                        <option id="meses">Meses</option>
-                    </select>
+                <div class="row">
+                    <div class="mb-3 col-3">
+                        <label for="valor inicial" class="form-label">Valor Inicial</label>
+                        <input type="text" class="form-control" id="valorInitial" value="0">
                     </div>
-                </div>
-
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="juro" value="00.00">
-                    <span class="input-group-text">Juro</span>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="periodo" value="0">
-                    <span class="input-group-text">Periocidade</span>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="incremento" value="0">
-                    <span class="input-group-text">Incremento</span>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="perincremento" value="Perido de Incremento" disabled>
-                    <div class="input-group-append">
-                        <select class="form-select" aria-label="Default select example" id="TempoInc">
-                        <option selected id="anos">Anual</option>
-                        <option id="meses">Mensal</option>
-                        <option id="meses">Semanal</option>
-                        <option id="meses">Diário</option>
-                    </select>
+                    <div class="mb-3 col-4">
+                        <label for="tempo" class="form-label">Tempo</label>
+                        <input type="text" class="form-control" id="tempo" value="0">
+                    </div>
+                    <div class="mb-3 col-3">
+                        <label for="tempo de juro" class="form-label" style="visibility: hidden;">Tempo de Juro</label>
+                        <select class="form-select" aria-label="Default select example" id="TempoJuros">
+                            <option selected id="anos">Anos</option>
+                            <option id="meses">Meses</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-group mb-3 col-2">
+                    <div class="mb-3 col-3">
+                        <label for="juro" class="form-label">Juro</label>
+                        <input type="text" class="form-control" id="juro" value="00.00">
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="periocidade" class="form-label">Periocidade (Numero de vezes que o juro é aplicado por ano)</label>
+                        <input type="text" class="form-control" id="periodo" value="0">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-3">
+                        <label for="incremento" class="form-label">Incremento</label>
+                        <input type="text" class="form-control" id="incremento" value="0">
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="periodo de incremento" class="form-label" id="perincremento">Periodo de Incremento</label>
+                        <div class="input-group-append">
+                            <select class="form-select" aria-label="Default select example" id="TempoInc">
+                            <option selected id="anos">Anual</option>
+                            <option id="meses">Mensal</option>
+                            <option id="meses">Semanal</option>
+                            <option id="meses">Diário</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-3">
+                        <label for="montante" class="form-label">Montante Final</label>
                         <input type="text" class="form-control" id="ValFinal">
-                        <span class="input-group-text">Montante Final</span>
-
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="retorno" class="form-label">Retorno</label>
                         <input type="text" class="form-control" id="Retorno">
-                        <span class="input-group-text">Retorno</span>
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
@@ -158,11 +165,11 @@
         <div id="chart"></div>
 
         <div>
-             <!--Secção Excel-->
-        <button class="btn-excel" type="button" onclick="ExportarExcel()"><img id="img-excel" src="./Imagens/excel.png" ></button>
+            <!--Secção Excel-->
+            <button class="btn-excel" type="button" onclick="ExportarExcel()"><img id="img-excel" src="./Imagens/excel.png" ></button>
 
-        <!--Secção PDF-->
-        <button class="btn-pdf" type="button" onclick="ExportarPDF()"><img id="img-PDF" src="./Imagens/pdf.png" ></button>
+            <!--Secção PDF-->
+            <button class="btn-pdf" type="button" onclick="ExportarPDF()"><img id="img-PDF" src="./Imagens/pdf.png" ></button>
 
         </div>
     </section>
