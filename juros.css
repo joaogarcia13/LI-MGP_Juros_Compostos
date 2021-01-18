@@ -100,3 +100,9 @@ section {
 {
     padding: 5px 5px 20px 20px;
 }
+#chart{
+    position: relative;
+}
+#resetTabela{
+    text-align: center;
+}
