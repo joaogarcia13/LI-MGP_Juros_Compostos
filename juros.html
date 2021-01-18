@@ -88,68 +88,59 @@
                 <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
                 <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
             </div>
-        </div>
 
-        <!--Simulador 2-->
-        <div id="calculadora2" class="col-5 d-none">
-            <div class="row">
-                <div class="mb-3 col-3">
-                    <label for="valor atingir" class="form-label">Valor Atingir</label>
-                    <input type="text" class="form-control" id="ValFinal2" value="0">
+            <!--Simulador 2-->
+            <div id="calculadora2" class="col-5 d-none">
+                <div class="row">
+                    <div class="mb-3 col-3">
+                        <label for="valor atingir" class="form-label">Valor Atingir</label>
+                        <input type="text" class="form-control" id="ValFinal2" value="0">
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="valor inicial" class="form-label">Valor Inicial</label>
+                        <input type="text" class="form-control" id="valorInitial2" value="0">
+                    </div>
                 </div>
-                <div class="mb-3 col-4">
-                    <label for="valor inicial" class="form-label">Valor Inicial</label>
-                    <input type="text" class="form-control" id="valorInitial2" value="0">
+                <div class="row">
+                    <div class="mb-3 col-3">
+                        <label for="juro" class="form-label">Juro</label>
+                        <input type="text" class="form-control" id="juro2" value="00.00">
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="periocidade" class="form-label">Periocidade</label>
+                        <input type="text" class="form-control" id="periodo2" value="0">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="mb-3 col-3">
-                    <label for="juro" class="form-label">Juro</label>
-                    <input type="text" class="form-control" id="juro2" value="00.00">
-                </div>
-                <div class="mb-3 col-4">
-                    <label for="periocidade" class="form-label">Periocidade</label>
-                    <input type="text" class="form-control" id="periodo2" value="0">
-                </div>
-            </div>
-            <div class="row">
-                <div class="mb-3 col-3">
-                    <label for="incremento" class="form-label">Incremento</label>
-                    <input type="text" class="form-control" id="incremento2" value="0">
-                </div>
-                <div class="mb-3 col-4">
-                    <label for="periodo de incremento" class="form-label" id="perincremento">Periodo de Incremento</label>
-                    <div class="input-group-append">
-                        <select class="form-select" aria-label="Default select example" id="TempoInc">
+                <div class="row">
+                    <div class="mb-3 col-3">
+                        <label for="incremento" class="form-label">Incremento</label>
+                        <input type="text" class="form-control" id="incremento2" value="0">
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="periodo de incremento" class="form-label" id="perincremento">Periodo de Incremento</label>
+                        <div class="input-group-append">
+                            <select class="form-select" aria-label="Default select example" id="TempoInc">
                             <option selected id="anos">Anual</option>
                             <option id="meses">Mensal</option>
                             <option id="meses">Semanal</option>
                             <option id="meses">Diário</option>
                         </select>
+                        </div>
                     </div>
                 </div>
+                <div class="mb-3 col-5">
+                    <label for="anos a atingir" class="form-label">Anos Atingir o Montante Final</label>
+                    <input type="text" class="form-control" id="duracao2" value="0">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
             </div>
-            <div class="mb-3 col-5">
-                <label for="anos a atingir" class="form-label">Anos Atingir o Montante Final</label>
-                <input type="text" class="form-control" id="duracao2" value="0">
+            <div class="col-5"></div>
+            <div id="escolhe">
+                <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="Informacoes">Informações</button></div>
+                <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador1">Simulador 1</button></div>
+                <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador2">Simulador 2</button></div>
             </div>
-            <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
-            <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
-        </div>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" id="duracao2" value="0">
-            <span class="input-group-text">Anos atingir o montante Final</span>
-        </div>
-        <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
-        <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
-
-        </div>
-
-        <div id="escolhe">
-            <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="Informacoes">Informações</button></div>
-            <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador1">Simulador 1</button></div>
-            <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador2">Simulador 2</button></div>
-        </div>
         </div>
 
 
@@ -160,6 +151,13 @@
         <div>
             <table class="table table-bordered" id="resetTabela">
                 <thead id="titulos">
+                    <tr>
+                        <th scope="col" data-field="Tempo" id="PerTabela">Ano</th>
+                        <th scope="col" data-field="JuroMes" id="PerTabela2">Juros por Mês</th>
+                        <th scope="col" data-field="JuroAcumulado">Juros Acumulados</th>
+                        <th scope="col" data-field="ValFinal">Montante Acumulado</th>
+                        <th scope="col" data-field="IncrementoAcumul">Total Incremento</th>
+                    </tr>
                 </thead>
                 <tbody id="corpo"></tbody>
             </table>
@@ -242,5 +240,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.11/jspdf.plugin.autotable.min.js"></script>
     <script src="juros.js"></script>
 </body>
+
 
 </html>
