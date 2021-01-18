@@ -12,6 +12,7 @@ var Valor1 = 0.0; // Valor intermedio no calculo do juro do primeiro ano
 var ValIntermedio = 0.0; // valor intermedio no loop
 var IncremIntermed = 0.0; //variavel intermedia usada nas funçoes anual(); mensal(); semanal() e Diario()
 var ArrayEixoX = new Array();
+let chart;
 
 //botao de limpar dados
 function limpar() {
@@ -319,6 +320,7 @@ function escrever() {
         ],
         chart: {
             height: 350,
+            width: "100%",
             type: 'line',
             zoom: {
                 enabled: true
@@ -374,10 +376,10 @@ function escrever() {
     };
 
     if (chart != null) {
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.destroy();
     }
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 
 
@@ -500,38 +502,30 @@ function valorInicial() {
 
 //Exportação excell
 function ExportarExcel() {
-    var tab_text = "<table border='2px'>";
-    var j = 0;
-    tab = document.getElementById('tabGraf').cloneNode(true);
-
-
-    for (j = 0; j < tab.rows.length; j++) {
-        tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
-    }
-
-    tab_text = tab_text + "</resetTabela>";
-
-    var ua = window.navigator.userAgent;
-    var msie = ua.indexOf("MSIE ");
-
-    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
-    {
-        txtArea1.document.open("txt/html", "replace");
-        txtArea1.document.write(tab_text);
-        txtArea1.document.close();
-        txtArea1.focus();
-        sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xlsx");
-    } else //other browser not tested on IE 11
-        sa = window.open('data:application/vnd.ms-excel;' + encodeURIComponent(tab_text).replace("â‚¬", "x") + "€"); //substituir  â‚¬ por codigo de € no excel
-
-    return (sa);
+    var table= document.getElementById('resetTabela');
+    var URImagem = chart.dataURI().then((uri) => { console.log(uri);});
+    var html1 = table.outerHTML;
+    //var html2 = URImagem.outerHTML;
+    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html1) + encodeURIComponent(URImagem));
 }
 //exportação PDF
 function ExportarPDF() {
     var doc = new jsPDF()
     doc.autoTable({html:'#resetTabela'})
-    doc.save("JurosCompostos.PDF")
 
-    var canvas = document.querySelector('#chart');
-    doc.addImage(canvas, 'JPEG', 10, 10, 280, 150 );
+    alturaPagina= doc.internal.pageSize.height;
+    y = 500 
+    if (y >= alturaPagina)
+    {
+    doc.addPage();
+    y = 0 
+    }
+
+    chart.dataURI().then(({imgURI,}) => 
+    {
+        doc.addImage(imgURI, 'PNG', 15, 15, 180, 90);
+        doc.save("JurosCompostos.PDF")
+    })
+
+    
 }
