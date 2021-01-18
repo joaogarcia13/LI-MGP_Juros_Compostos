@@ -65,6 +65,7 @@ $(document).ready(function() {
 //validação de dados para a função calcular() e botão calcular
 function validate() {
     //Escolhe o simulador 2
+
     if ($("#calculadora1").hasClass("d-none")) {
         ValAtingir = $("#ValFinal2").val();
         ValInicial = $("#valorInitial2").val();
@@ -339,10 +340,10 @@ function escrever() {
             "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
             "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
     }
+
     if ($("#TempoJuros").val() == "Meses") {
         $("#PerTabela").text("Mês");
     }
-
 
     //reset EixoX Nao funciona como deve
     ArrayEixoX.length = 0;
