@@ -46,7 +46,7 @@ $(document).ready(function() {
     $("#Informacoes").click(function() {
         $('html, body').animate({
             scrollTop: $("#Inform").offset().top
-        }, 2000);
+        }, 800);
     });
 
     $("#simulador1").click(function() {
@@ -565,11 +565,11 @@ function ExportarPDF() {
 //botão suporte
 function openForm() {
     document.getElementById("myForm").style.display = "block";
-    
-  }
+
+}
 
 function closeForm() {
     document.getElementById("myForm").style.display = "none";
 
-   
-  }
+
+}
