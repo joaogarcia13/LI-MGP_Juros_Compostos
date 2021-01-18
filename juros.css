@@ -35,7 +35,7 @@ section {
     position: fixed;
     bottom: 0;
     right: 15px;
-    border: 3px solid #fc0303;
+    border: 3px solid #f5b402;
     background-color: white;
     z-index: 9;
 }
@@ -43,7 +43,7 @@ section {
 #Suporte {
     position: fixed;
     bottom: 0;
-    right: 15px;
+    right: 3px;
 }
 
 #abrir {
@@ -64,4 +64,29 @@ section {
 
 #btnclose {
     right: 1px;
+}
+
+#img-excel
+{
+    height: 40px;
+    height: 40px; 
+}
+
+#img-PDF
+{
+    height: 40px;
+    height: 40px; 
+    
+}
+.btn-excel
+{
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+}
+.btn-pdf
+{
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 50%;
 }
