@@ -334,15 +334,12 @@ function escrever() {
     })
 
     //Esconder Coluna do Incremento se o Incremento for Nulo
-    if ($("#incremento").val() > 0) {
-        document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Ano</th>" +
-            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
-            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th><th scope='col' data-field='IncrementoAcumul' >Total Incremento</tr></thead><tbody id='tabela'></tbody>";
-    } else {
-        document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Anos</th>" +
-            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
-            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
+    if (ValIncremento == 0) {
+        $("#Inc").addClass("d-none");
+    }else if( $("#Inc").hasClass("d-none") && ValIncremento > 0) {
+        $("#Inc").removeClass("d-none");
     }
+
     if ($("#TempoJuros").val() == "Meses") {
         $("#PerTabela").text("Mês");
     }

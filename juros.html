@@ -111,23 +111,6 @@
                         <input type="text" class="form-control" id="periodo2" value="0">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="mb-3 col-3">
-                        <label for="incremento" class="form-label">Incremento</label>
-                        <input type="text" class="form-control" id="incremento2" value="0">
-                    </div>
-                    <div class="mb-3 col-4">
-                        <label for="periodo de incremento" class="form-label" id="perincremento">Periodo de Incremento</label>
-                        <div class="input-group-append">
-                            <select class="form-select" aria-label="Default select example" id="TempoInc">
-                            <option selected id="anos">Anual</option>
-                            <option id="meses">Mensal</option>
-                            <option id="meses">Semanal</option>
-                            <option id="meses">Diário</option>
-                        </select>
-                        </div>
-                    </div>
-                </div>
                 <div class="mb-3 col-5">
                     <label for="anos a atingir" class="form-label">Anos Atingir o Montante Final</label>
                     <input type="text" class="form-control" id="duracao2" value="0">
@@ -156,7 +139,7 @@
                         <th scope="col" data-field="JuroMes" id="PerTabela2">Juros por Mês</th>
                         <th scope="col" data-field="JuroAcumulado">Juros Acumulados</th>
                         <th scope="col" data-field="ValFinal">Montante Acumulado</th>
-                        <th scope="col" data-field="IncrementoAcumul">Total Incremento</th>
+                        <th scope="col" data-field="IncrementoAcumul" id="Inc" class="">Total Incremento</th>
                     </tr>
                 </thead>
                 <tbody id="corpo"></tbody>
