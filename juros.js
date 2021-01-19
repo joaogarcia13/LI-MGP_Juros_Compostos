@@ -1,5 +1,3 @@
-//erro simulador 1 no incremento
-
 var ValInicial = 0.0;
 var ValAtingir = 0.0;
 var Retorno = 0.0;
@@ -340,7 +338,6 @@ function escrever() {
             "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
             "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
     }
-
     if ($("#TempoJuros").val() == "Meses") {
         $("#PerTabela").text("Mês");
     }
