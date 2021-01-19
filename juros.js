@@ -130,7 +130,7 @@ function validate() {
         tempo = $("#tempo3").val();
         ValPerJuro = $("#periodo3").val();
         ValIncremento = $("#incremento3").val();
-        ValAtingir3 = $("#ValFinal3").val();
+        ValAtingir = $("#ValFinal3").val();
         ValPerIncremento = $("#perincremento3").val();
         ValJuro = $("#juro3").val() / 100;
 
@@ -168,12 +168,9 @@ function simulador1() {
         for (var i = 0; i < tempo; i++) {
             ArrayDados[i].Tempo = i + 1;
             if (i == 0) {
-                for (var i = 0; i < tempo; i++) {
-                    ValInicial = (Math.pow(ValPerJuro, (ValPerJuro * 1)) * (ValAtingir3 * ValJuro - ValPerJuro * (ValIncremento * Math.pow((1 + (ValJuro / ValPerJuro)), (ValPerJuro * 1)) - 1))) / (ValJuro * Math.pow((ValPerJuro + ValJuro), (ValPerJuro * 1)));
-                }
-                ValInicial = ValAtingir3 / Math.pow(1 + ValJuro / ValPerJuro, ValPerJuro * tempo);
+                ValInicial = ValAtingir / Math.pow(1 + ValJuro / ValPerJuro, ValPerJuro * tempo);
                 console.log(ValInicial);
-                inal = Valor1;
+                ValFinal = Valor1;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[i].ValFinal += Anual();
@@ -189,12 +186,8 @@ function simulador1() {
                     ArrayDados[i].IncrementoAcumul += Diario();
                 }
             } else {
-                for (var i = 0; i < tempo; i++) {
-                    ValInicial = (Math.pow(ValPerJuro, (ValPerJuro * 1)) * (ValAtingir3 * ValJuro - ValPerJuro * (ValIncremento * Math.pow((1 + (ValJuro / ValPerJuro)), (ValPerJuro * 1)) - 1))) / (ValJuro * Math.pow((ValPerJuro + ValJuro), (ValPerJuro * 1)));
-                }
-                ValInicial = ValAtingir3 / Math.pow(1 + ValJuro / ValPerJuro, ValPerJuro * tempo);
-                console.log(ValInicial);
-                cumulado += ArrayDados[i].JuroMes;
+                ValInicial = ValAtingir / Math.pow(1 + ValJuro / ValPerJuro, ValPerJuro * tempo);
+                console.log(ValInicial); += ArrayDados[i].JuroMes;
                 ArrayDados[i].ValFinal = ValIntermedio;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[i].ValFinal += Anual();
@@ -323,11 +316,6 @@ function simulador2() {
     } else if (MesConvert <= 7 / 12) {
         MesConvert = 7;
     } else if (MesConvert <= 8 / 12) {
-        for (var i = 0; i < tempo; i++) {
-            ValInicial = (Math.pow(ValPerJuro, (ValPerJuro * 1)) * (ValAtingir3 * ValJuro - ValPerJuro * (ValIncremento * Math.pow((1 + (ValJuro / ValPerJuro)), (ValPerJuro * 1)) - 1))) / (ValJuro * Math.pow((ValPerJuro + ValJuro), (ValPerJuro * 1)));
-        }
-        ValInicial = ValAtingir3 / Math.pow(1 + ValJuro / ValPerJuro, ValPerJuro * tempo);
-        console.log(ValInicial);
         MesConvert = 8;
     } else if (MesConvert <= 9 / 12) {
         MesConvert = 9;
@@ -345,11 +333,6 @@ function simulador2() {
     } else {
         $("#duracao2").val(AnoInt + " anos e " + MesConvert + " meses");
     }
-    for (var i = 0; i < tempo; i++) {
-        ValInicial = (Math.pow(ValPerJuro, (ValPerJuro * 1)) * (ValAtingir3 * ValJuro - ValPerJuro * (ValIncremento * Math.pow((1 + (ValJuro / ValPerJuro)), (ValPerJuro * 1)) - 1))) / (ValJuro * Math.pow((ValPerJuro + ValJuro), (ValPerJuro * 1)));
-    }
-    ValInicial = ValAtingir3 / Math.pow(1 + ValJuro / ValPerJuro, ValPerJuro * tempo);
-    console.log(ValInicial);
     if (tempo >= 1) {
         simulador1();
     } else {
@@ -359,9 +342,9 @@ function simulador2() {
 }
 
 function simulador3() {
-    valInicial = 0;
+    //valInicial = 0;
 
-    ValInicial = ValFinal / (1 + (ValJuro / ValPerJuro));
+    ValInicial = ValFinal / (1 + Math.pow((ValJuro / ValPerJuro)), (ValPerJuro * tempo));
 
     $("#ValInicial3").val(ValInicial);
 }
