@@ -2,17 +2,34 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+div, section{
+    background-color: #CCDBDC;
+}
+
 header {
     margin: 0;
-    padding: 35px;
+    padding: 20px;
     text-align: center;
-    background-color: beige;
+    background-color: #007EA7;
+    border-bottom: 1px solid #9AD1D4;
 }
 
-section {
-    margin: 50px 80px 25px 80px;
+.d-flex  {
+    margin: 0px 80px 0px 80px;
+    padding-top: 50px;
+    padding-bottom: 25px;
 }
 
+h1{
+    background-color: #003249;
+    color: #9AD1D4;
+    padding: 0px 0px 10px 10px;
+    border-radius: 15px;
+}
+
+#Inform{
+    padding: 50px 20px 25px 20px;
+}
 .table td {
     text-align: center;
 }
@@ -44,6 +61,7 @@ section {
     position: fixed;
     bottom: 0;
     right: 3px;
+    background-color: transparent;
 }
 
 #abrir {
@@ -65,6 +83,7 @@ section {
 #btnclose {
     margin-left: 250px;
     padding-bottom: 25px;
+    padding-top: 20px;
 }
 
 #img-excel
