@@ -21,6 +21,7 @@ header {
 }
 
 #Logo-simples {
+    width: 80px;
     width: 90px;
     height: 80px;
 }
@@ -131,18 +132,6 @@ h1 {
 
 #fs-frm-inputs {
     padding: 5px 5px 20px 20px;
-}
-
-#calculadora1 {
-    border: 3px solid #665D8C;
-    border-radius: 5px;
-    padding: 25px;
-}
-
-#calculadora2 {
-    border: 3px solid #665D8C;
-    border-radius: 5px;
-    padding: 25px;
 }
 
 #chart {
