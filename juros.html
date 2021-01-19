@@ -53,7 +53,7 @@
                         <label for="juro" class="form-label">Juro</label>
                         <input type="text" class="form-control" id="juro" value="00.00">
                     </div>
-                    <div class="mb-3 col-4">
+                    <div class="mb-3 col-7">
                         <label for="periocidade" class="form-label" id="Periodicidade">Periodicidade</label>
                         <img src="./Imagens/icone-de-informacao.png" id="Img-informacao">
                         <span id="spin">Numero de vezes que o juro é aplicado por ano</span>
@@ -129,8 +129,8 @@
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador2">Simulador 2</button></div>
             </div>
             <div class="col-1">
+                <label for="slider" id=lbl-slider><b>Investe aqui</b></label>
                 <div>
-                    <label for="slider" id=lbl-slider><b>Investe aqui</b></label>
                     <!-- Main slider block -->
                     <div class="slider">
                     <!-- The first slide -->
@@ -140,23 +140,20 @@
                     </div>
                     <!-- The second slide -->
                     <div class="item">
-                        <a href="https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE">
-                        <img src="./Imagens/og-image.c18b4adf.png"></a>
+                        <a href="https://www.revolut.com/pt-PT/">
+                        <img src="./Imagens/revolut-logo-min.jpg"></a>
                     <!-- The third slide -->
                     <div class="item">
-                        <a href="https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE">
-                        <img src="./Imagens/og-image.c18b4adf.png"></a>
-                    <!-- Arrow buttons -->
-                    <a class="previous" onclick="previousSlide()">&#10094;</a>
-                    <a class="next" onclick="nextSlide()">&#10095;</a>
+                        <a href="https://www.bondora.com/pt?gclid=CjwKCAiAo5qABhBdEiwAOtGmbmlTocdltlbE7rszkgSE6jVrfBOiqB3Q5HSS4-pliW8qKy_vb1FkshoCiOAQAvD_BwE">
+                        <img src="./Imagens/bondora-logo-400x400.png"></a>
                     </div>
-
             </div>
             </div>
-           
+            <div id="btn-slide">
+                <button id="btn-slider-esquerda" type="button" onclick="previousSlide()"> <img id="close" src="./Imagens/seta-esquerda.png"></button>
+                <button id="btn-slider-direita" type="button" onclick="nextSlide()"> <img id="close" src="./Imagens/seta-direita.png"></button>
+            </div>
         </div>
-
-
     </section>
 
     <!--Secção que mostra a tabela e o gráfico-->
