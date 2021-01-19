@@ -331,15 +331,15 @@ function escrever() {
     //Esconder Coluna do Incremento se o Incremento for Nulo
     if ($("#incremento").val() > 0) {
         document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Ano</th>" +
-            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
+            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mes</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
             "<th scope='col' data-field='ValFinal' >Montante Acumulado</th><th scope='col' data-field='IncrementoAcumul' >Total Incremento</tr></thead><tbody id='tabela'></tbody>";
     } else {
         document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Anos</th>" +
-            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
+            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mes</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
             "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
     }
     if ($("#TempoJuros").val() == "Meses") {
-        $("#PerTabela").text("Mês");
+        $("#PerTabela").text("Mes");
     }
 
     //reset EixoX Nao funciona como deve
@@ -537,15 +537,14 @@ function valorInicial() {
 //Exportação excell
 function ExportarExcel() {
     var table = document.getElementById('resetTabela');
-    //var URImagem = chart.dataURI().then((uri) => { console.log(uri);});
     var html1 = table.outerHTML;
-    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html1)); //+ encodeURIComponent(URImagem));
+    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html1));
 }
+
 //exportação PDF
 function ExportarPDF() {
     var doc = new jsPDF()
     doc.autoTable({ html: '#resetTabela' })
-
     alturaPagina = doc.internal.pageSize.height;
     y = 500
     if (y >= alturaPagina) {
@@ -557,8 +556,6 @@ function ExportarPDF() {
         doc.addImage(imgURI, 'PNG', 15, 15, 180, 90);
         doc.save("JurosCompostos.PDF")
     })
-
-
 }
 
 //botão suporte
@@ -572,3 +569,43 @@ function closeForm() {
 
 
 }
+
+//slider onde investir
+/* Setting the default slide start index: */
+let slideIndex = 1;
+/* We call the function that is implemented below: */
+showSlides(slideIndex);
+/* Increase the index by 1 - show the next slide: */
+function nextSlide() {
+    showSlides(slideIndex += 1);
+}
+/* Decrease the index by 1 - show the previous slide: */
+function previousSlide() {
+    showSlides(slideIndex -= 1);  
+}
+/* Set the current slide: */
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+/* Flip function: */
+function showSlides(n) {
+    let i;
+    /* We refer to the elements with the class name "item", that is, to the pictures: */
+    let slides = document.getElementsByClassName("item");
+    
+    /* Checking the number of slides: */
+    if (n > slides.length) {
+      slideIndex = 1
+    }
+    if (n < 1) {
+        slideIndex = slides.length
+    }
+  
+    /* Loop through each slide in a for loop: */
+    for (let slide of slides) {
+        slide.style.display = "none";
+    }
+    /* Making an element block: */
+    slides[slideIndex - 1].style.display = "block";    
+}
+
