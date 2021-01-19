@@ -1,11 +1,9 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
-
 div, section{
     background-color: #ffffff;
 }
-
 header {
     margin: 0px;
     padding: 20px;
@@ -20,6 +18,7 @@ header {
 }
 #Logo-simples
 {
+    width: 80px;
     width: 90px;
     height: 80px;
 }
@@ -29,29 +28,24 @@ header {
     padding-top: 50px;
     padding-bottom: 25px;
 }
-
 h1{
     background-color: #003249;
     color: #9AD1D4;
     padding: 0px 0px 10px 10px;
     border-radius: 15px;
 }
-
 #Inform{
     padding: 50px 20px 25px 20px;
 }
 .table td {
     text-align: center;
 }
-
 #Informacoes {
     margin-bottom: 5%;
 }
-
 #simulador1 {
     margin-bottom: 5%;
 }
-
 .btnEscolhe {
     background-color: beige;
     size: 150px;
@@ -59,9 +53,7 @@ h1{
 #escolhe
 {
     padding-right: 50px ;
-
 }
-
 .form-popup {
     display: none;
     position: fixed;
@@ -71,42 +63,35 @@ h1{
     background-color: white;
     z-index: 9;
 }
-
 #Suporte {
     position: fixed;
     bottom: 0;
     right: 3px;
     background-color: transparent;
 }
-
 #abrir {
     background-color: transparent;
     border-color: transparent;
     border-radius: 50%;
 }
-
 #imgSuporte {
     height: 75px;
     height: 75px;
 }
-
 #close {
     height: 25px;
     height: 25px;
 }
-
 #btnclose {
     margin-left: 250px;
     padding-bottom: 25px;
     padding-top: 20px;
 }
-
 #img-excel
 {
     height: 40px;
     height: 40px; 
 }
-
 #img-PDF
 {
     height: 40px;
@@ -134,25 +119,12 @@ h1{
 {
     padding: 5px 5px 20px 20px;
 }
-#calculadora1
-{
-    border: 3px solid #665D8C;
-    border-radius: 5px;
-    padding: 25px;
-}
-#calculadora2
-{
-    border: 3px solid #665D8C;
-    border-radius: 5px;
-    padding: 25px;
-}
 #chart{
     position: relative;
 }
 #resetTabela{
     text-align: center;
 }
-
 #Img-informacao
 {
     height: 10px;
@@ -173,25 +145,21 @@ span {
     top: -100px;
     left: 60%;
   }
-
 #titulo-form-popup
 {
     margin-left: 10px;
     font-size: 20px;
 }
-
 #Top-form-popup
 {
     margin: 0px;
     background-color: #f5b402;
 }
-
 #lbl-slider
 {
     text-align: center;
     font-size: 20px;
 }
-
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<SLIDER>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* The slider: */
 .slider{
@@ -250,10 +218,6 @@ span {
     to {
         opacity: 1
     }
-  }
-  #btn-slider-direita
-  {
-    margin-right: 0px;
   }
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<SLIDER>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/  
   
