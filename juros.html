@@ -23,7 +23,7 @@
 
     <!--Cabeçalho-->
     <header>
-        <h3>Simulador de Juros compostos</h3>
+        <h3 id="titulo"><img id="Logo-simples" src="./Imagens/Logo-simples.png"> <b>Simulador de Juros compostos</b> </h3>
     </header>
 
     <!--Escolher o simulador-->
@@ -137,37 +137,41 @@
                 <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
                 <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
             </div>
-            <div class="d-none">
-                <label for="slider" id=lbl-slider><b>Investe aqui</b></label>
-                <!-- Main slider block -->
-                <div class="slider">
-                    <!-- The first slide -->
-                    <div class="item">
-                        <img src="./Imagens/og-image.c18b4adf.png">
-                        <button onclick="window.location.href = 'https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE'">Ir para o site</button>
-                    </div>
-                    <!-- The second slide -->
-                    <div class="item">
-                        <img src="https://s3.tproger.ru/uploads/2020/07/rose.jpg">
-                        <button onclick="window.location.href = 'https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE'">Ir para o site</button>
-                    </div>
-                    <!-- The third slide -->
-                    <div class="item">
-                        <img src="https://s3.tproger.ru/uploads/2020/07/leaf.jpg">
-                        <button onclick="window.location.href = 'https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE'">Ir para o site</button>
-                    </div>
-                    <!-- Arrow buttons -->
-                    <a class="previous" onclick="previousSlide()">&#10094;</a>
-                    <a class="next" onclick="nextSlide()">&#10095;</a>
-                </div>
-            </div>
-            <div class="col-3"></div>
+
+
+            <div class="col-0"></div>
             <div id="escolhe">
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="Informacoes">Informações</button></div>
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador1">Simulador 1</button></div>
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador2">Simulador 2</button></div>
             </div>
-        </div>
+            <div class="col-1">
+                <div>
+                    <label for="slider" id=lbl-slider><b>Investe aqui</b></label>
+                    <!-- Main slider block -->
+                    <div class="slider">
+                        <!-- The first slide -->
+                        <div class="item">
+                            <a href="https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE">
+                                <img src="./Imagens/og-image.c18b4adf.png"></a>
+                        </div>
+                        <!-- The second slide -->
+                        <div class="item">
+                            <a href="https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE">
+                                <img src="./Imagens/og-image.c18b4adf.png"></a>
+                            <!-- The third slide -->
+                            <div class="item">
+                                <a href="https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE">
+                                    <img src="./Imagens/og-image.c18b4adf.png"></a>
+                                <!-- Arrow buttons -->
+                                <a class="previous" onclick="previousSlide()">&#10094;</a>
+                                <a class="next" onclick="nextSlide()">&#10095;</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
     </section>
 
     <!--Secção que mostra a tabela e o gráfico-->
