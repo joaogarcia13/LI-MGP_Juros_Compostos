@@ -54,9 +54,7 @@
                         <input type="text" class="form-control" id="juro" value="00.00">
                     </div>
                     <div class="mb-3 col-4">
-                        <label for="periocidade" class="form-label" id="Periodicidade">Periodicidade</label>
-                        <img src="./Imagens/icone-de-informacao.png" id="Img-informacao">
-                        <span>Numero de vezes que o juro é aplicado por ano</span>
+                        <label for="periocidade" class="form-label">Periocidade (Numero de vezes que o juro é aplicado por ano)</label>
                         <input type="text" class="form-control" id="periodo" value="0">
                     </div>
                 </div>
@@ -113,6 +111,23 @@
                         <input type="text" class="form-control" id="periodo2" value="0">
                     </div>
                 </div>
+                <div class="row">
+                    <div class="mb-3 col-3">
+                        <label for="incremento" class="form-label">Incremento</label>
+                        <input type="text" class="form-control" id="incremento2" value="0">
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="periodo de incremento" class="form-label" id="perincremento">Periodo de Incremento</label>
+                        <div class="input-group-append">
+                            <select class="form-select" aria-label="Default select example" id="TempoInc">
+                            <option selected id="anos">Anual</option>
+                            <option id="meses">Mensal</option>
+                            <option id="meses">Semanal</option>
+                            <option id="meses">Diário</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
                 <div class="mb-3 col-5">
                     <label for="anos a atingir" class="form-label">Anos Atingir o Montante Final</label>
                     <input type="text" class="form-control" id="duracao2" value="0">
@@ -138,10 +153,10 @@
                 <thead id="titulos">
                     <tr>
                         <th scope="col" data-field="Tempo" id="PerTabela">Ano</th>
-                        <th scope="col" data-field="JuroMes" id="PerTabela2">Juros por Mes</th>
+                        <th scope="col" data-field="JuroMes" id="PerTabela2">Juros por Mês</th>
                         <th scope="col" data-field="JuroAcumulado">Juros Acumulados</th>
                         <th scope="col" data-field="ValFinal">Montante Acumulado</th>
-                        <th scope="col" data-field="IncrementoAcumul" id="Inc" class="">Total Incremento</th>
+                        <th scope="col" data-field="IncrementoAcumul">Total Incremento</th>
                     </tr>
                 </thead>
                 <tbody id="corpo"></tbody>
@@ -171,14 +186,11 @@
     <!--Secção do form-->
     <section>
         <div class="form-popup" id="myForm">
-                <div id="Top-form-popup">
-                    <label id="titulo-form-popup" for="btnclose"><b>Support</b></label>
-                    <button id="btnclose" type="button" class="btn cancel" onclick="closeForm()"> <img id="close" src="./Imagens/close-button.png"></button>
-                </div>
             <form id="fs-frm" name="department-contact-form" accept-charset="utf-8" action="https://formspree.io/f/moqpynoe" method="POST">
                 <fieldset id="fs-frm-inputs">
-                    
-                    <br>
+                    <div>
+                        <button id="btnclose" type="button" class="btn cancel" onclick="closeForm()"> <img id="close" src="./Imagens/close-button.png"></button>
+                    </div>
                     <div>
                         <label for="full-name">Nome</label>
                         <input type="text" name="Nome" id="full-name" placeholder="Nome" required="">

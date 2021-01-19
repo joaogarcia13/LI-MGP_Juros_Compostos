@@ -1,4 +1,6 @@
-//Pus a coluna do incremento escondida se o valor for nulo. Continua assim ou Mostramos sempre com valor 0 ?
+//Notas Tabela desaparece segunda vez que se clicka calcular
+//alert ta buggado quando o simulador 2 da menos de 1 ano
+//falta por exceção do simulador 2 para menos de um ano
 
 var ValInicial = 0.0;
 var ValAtingir = 0.0;
@@ -12,6 +14,9 @@ var Valor1 = 0.0; // Valor intermedio no calculo do juro do primeiro ano
 var ValIntermedio = 0.0; // valor intermedio no loop
 var IncremIntermed = 0.0; //variavel intermedia usada nas funçoes anual(); mensal(); semanal() e Diario()
 var ArrayEixoX = new Array();
+var eixoY = new Array();
+let chart;
+var eixoY = new Array();
 
 //botao de limpar dados
 function limpar() {
@@ -33,47 +38,57 @@ function limpar() {
         $("#ValFinal").val('');
         $("#Retorno").val('');
         $("#incremento").val('0');
-        $("#perincremento").val('');
     }
     $("#tabGraf").addClass('d-none');
 
 }
 
-//Escolha de simuladores
+//Botão de Informações e escolha de simuladores
 $(document).ready(function() {
+    $("#Informacoes").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#Inform").offset().top
+        }, 2000);
+    });
 
     $("#simulador1").click(function() {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
-    })
+        $("#tabGraf").addClass("d-none");
+    });
+
     $("#simulador2").click(function() {
         $("#calculadora1").addClass("d-none");
         $("#calculadora2").removeClass("d-none");
-    })
+        $("#tabGraf").addClass("d-none");
+    });
 })
 
 //validação de dados para a função calcular() e botão calcular
 function validate() {
     //Escolhe o simulador 2
+
     if ($("#calculadora1").hasClass("d-none")) {
         ValAtingir = $("#ValFinal2").val();
         ValInicial = $("#valorInitial2").val();
         ValJuro = $("#juro2").val() / 100;
         ValPerJuro = $("#periodo2").val();
-        ValIncremento = $("#incremento2").val();
-        ValPerIncremento = $("#perincremento2").val();
 
         //verifica se os valores sao positivos
         if (ValAtingir <= 0 || ValInicial <= 0 || ValJuro <= 0 ||
-            ValPerJuro <= 0 || ValIncremento < 0) {
+            ValPerJuro <= 0) {
             alert("Verifique se todos os valores são positivos.");
         } else
         //verifica se são numeros
         if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-            $.isNumeric(ValIncremento)) {
+            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro)) {
             console.log("Os inputs são numeros.");
-            simulador2();
+            debugger;
+            if (parseFloat(ValAtingir) > ValInicial) {
+                simulador2();
+            } else {
+                alert("O valor a atingir não pode ser menor que o valor inicial");
+            }
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
     //Escolhe o simulador 1
@@ -104,7 +119,6 @@ function validate() {
 
 //Cálculos e aparece os gráficos (esta função é chamada dentro da função validate()) do simulador 1
 function simulador1() {
-
     //Array dos Valores da tabela
     ArrayDados = new Array();
     for (var i = 0; i < tempo; i++) {
@@ -113,7 +127,7 @@ function simulador1() {
 
     // Cálculos e tabela
     //Se for escolhido anos
-    if ($("#TempoJuros").val() == "Anos") {
+    if ($("#TempoJuros").val() == "Anos" || $("#calculadora2").hasClass("d-none") == false) {
         $("#PerTabela").text("Ano");
         $("#PerTabela2").text("Juro por Ano");
 
@@ -162,7 +176,7 @@ function simulador1() {
         ValIncreme = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
 
     } else {
-        //Cálculo para os Meses
+        //Cálculo para os Mesess
         for (var i = 0; i < tempo; i++) {
             ArrayDados[i].Tempo = i + 1;
             if (i == 0) {
@@ -218,53 +232,58 @@ function simulador1() {
 }
 
 function simulador2() {
-    //do{} while (ValAtingir > ValInicial);
+
     var tempoAtingir = 0.0;
     var MesConvert = 0.0;
     var AnoInt = 0;
+    var taux = 0;
 
-    tempoAtingir =(Math.log(ValAtingir/ValInicial)/Math.log(2.71828))/(ValPerJuro*(Math.log( 1 + (ValJuro/ValPerJuro)/Math.log(2.71828))));
+    tempoAtingir = (Math.log(ValAtingir / ValInicial) / Math.log(2.71828)) / (ValPerJuro * (Math.log(1 + (ValJuro / ValPerJuro) / Math.log(2.71828))));
+    taux = tempoAtingir - parseInt(tempoAtingir);
     MesConvert = tempoAtingir - parseInt(tempoAtingir);
     AnoInt = parseInt(tempoAtingir);
-    console.log(AnoInt);
-    console.log(MesConvert);
- 
-    //conversão deciam para mês
-    if(MesConvert <= 1/12){
+
+    //conversão decimal para mês
+    if (MesConvert <= 1 / 12) {
         MesConvert = 1;
-    }else if(MesConvert <= 2/12){
+    } else if (MesConvert <= 2 / 12) {
         MesConvert = 2;
-    }else if(MesConvert <= 3/12){
+    } else if (MesConvert <= 3 / 12) {
         MesConvert = 3;
-    }else if(MesConvert <= 4/12){
+    } else if (MesConvert <= 4 / 12) {
         MesConvert = 4;
-    }else if(MesConvert <= 5/12){
+    } else if (MesConvert <= 5 / 12) {
         MesConvert = 5;
-    }else if(MesConvert <= 6/12){
+    } else if (MesConvert <= 6 / 12) {
         MesConvert = 6;
-    }else if(MesConvert <= 7/12){
+    } else if (MesConvert <= 7 / 12) {
         MesConvert = 7;
-    }else if(MesConvert <= 8/12){
+    } else if (MesConvert <= 8 / 12) {
         MesConvert = 8;
-    }else if(MesConvert <= 9/12){
+    } else if (MesConvert <= 9 / 12) {
         MesConvert = 9;
-    }else if(MesConvert <= 10/12){
+    } else if (MesConvert <= 10 / 12) {
         MesConvert = 10;
-    }else if(MesConvert <= 11/12){
+    } else if (MesConvert <= 11 / 12) {
         MesConvert = 11;
-    }else{
-        AnoInt += 1; MesConvert = 0;
-    }
-    
-    if(ValAtingir <= ValInicial){
-        alert("O valor a atingir não pode ser menor que o valor inicial.")
+    } else {
+        AnoInt += 1;
+        MesConvert = 0;
     }
 
-
-    if(MesConvert == 0){
-    $("#duracao2").val(AnoInt + " anos");
-    }else{
+    if (MesConvert == 0) {
+        $("#duracao2").val(AnoInt + " anos");
+    } else {
         $("#duracao2").val(AnoInt + " anos e " + MesConvert + " meses");
+    }
+
+    tempo = (tempoAtingir - taux) + 1;
+    console.log(tempo);
+    if (tempo >= 1) {
+        simulador1();
+    } else {
+        tempo = 1;
+        simulador1();
     }
 }
 
@@ -275,18 +294,7 @@ function escrever() {
 
     // Array do Valor Eixo Y
     //Reset/Declaração do Array
-    if (eixoY != null) { eixoY.length = 0; }
-    var eixoY = new Array();
-
-    if ($("#TempoJuros").val() == "Anos") {
-        for (var i = 0; i < anoMes(); i++) {
-            eixoY[i] = 0.0;
-        }
-    } else {
-        for (var i = 0; i < tempo; i++) {
-            eixoY[i] = 0.0;
-        }
-    }
+    if (eixoY.length != 0) { eixoY.length = 0; }
 
     // atribuição de Valores ao eixoY. No caso de ser Anos faz a Conversão para meses
     eixoY[0] = parseFloat(ValInicial);
@@ -294,7 +302,7 @@ function escrever() {
         for (var i = 0; i < ArrayDados.length; i++) {
             eixoY[i + 1] = ArrayDados[i].ValFinal.toFixed(2);
         }
-    } else if ($("#TempoJuros").val() == "Anos") {
+    } else if ($("#TempoJuros").val() == "Anos" || $("#calculadora2").hasClass("d-none") == false) {
         var aux = 0.0;
         for (var i = 0; i < tempo; i++) {
             aux = parseFloat((ArrayDados[i].JuroMes + ArrayDados[0].IncrementoAcumul) / 12);
@@ -319,11 +327,10 @@ function escrever() {
 
     //tabela
     var $tabela = $("#resetTabela");
-    //Reset da tabela
-    $($tabela).bootstrapTable("destroy");
     //Preenchimento da tabela
     $(function() {
         $tabela.bootstrapTable({ data: ArrayDados })
+        $tabela.bootstrapTable('load', ArrayDados);
     })
 
     //Esconder Coluna do Incremento se o Incremento for Nulo
@@ -340,10 +347,8 @@ function escrever() {
         $("#PerTabela").text("Mês");
     }
 
-    //reset EixoX Nao funciona como deve de ser
-    for (i = 0; i < ArrayEixoX.length; i++) {
-        ArrayEixoX[i].length = 0;
-    }
+    //reset EixoX Nao funciona como deve
+    ArrayEixoX.length = 0;
 
 
     var options = {
@@ -358,6 +363,7 @@ function escrever() {
         ],
         chart: {
             height: 350,
+            width: "100%",
             type: 'line',
             zoom: {
                 enabled: true
@@ -387,7 +393,6 @@ function escrever() {
             title: {
                 text: 'Meses',
             },
-            categories: ArrayEixoX,
         },
         legend: {
             position: 'top'
@@ -411,14 +416,11 @@ function escrever() {
             }
         }
     };
-
     if (chart != null) {
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.destroy();
     }
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
-
 
     //Ultima linha desta função, aparece o grafico e a tabela
     $("#tabGraf").removeClass("d-none");
@@ -501,9 +503,9 @@ var valor = new Array();
 
 function valorInicial() {
     var cont;
-
+    valor.length = 0;
     valor[0] = ValInicial;
-    if ($("#TempoJuros").val() == "Anos") {
+    if ($("#TempoJuros").val() == "Anos" || $("#calculadora2").hasClass("d-none") == false) {
         for (cont = 0; cont < anoMes(); cont++) {
             if ($("#TempoInc").val() == "Anual") {
                 IncrementoAcumul = Anual();
@@ -539,38 +541,39 @@ function valorInicial() {
 
 //Exportação excell
 function ExportarExcel() {
-    var tab_text = "<table border='2px'>";
-    var j = 0;
-    tab = document.getElementById('tabGraf').cloneNode(true);
-
-
-    for (j = 0; j < tab.rows.length; j++) {
-        tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
-    }
-
-    tab_text = tab_text + "</resetTabela>";
-
-    var ua = window.navigator.userAgent;
-    var msie = ua.indexOf("MSIE ");
-
-    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
-    {
-        txtArea1.document.open("txt/html", "replace");
-        txtArea1.document.write(tab_text);
-        txtArea1.document.close();
-        txtArea1.focus();
-        sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xlsx");
-    } else //other browser not tested on IE 11
-        sa = window.open('data:application/vnd.ms-excel;' + encodeURIComponent(tab_text).replace("â‚¬", "x") + "€"); //substituir  â‚¬ por codigo de € no excel
-
-    return (sa);
+    var table = document.getElementById('resetTabela');
+    //var URImagem = chart.dataURI().then((uri) => { console.log(uri);});
+    var html1 = table.outerHTML;
+    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html1)); //+ encodeURIComponent(URImagem));
 }
 //exportação PDF
 function ExportarPDF() {
-    var doc = new jsPDF("p", "mm", "a4")
-    var h1 = document.querySelector('#resetTabela')
+    var doc = new jsPDF()
+    doc.autoTable({ html: '#resetTabela' })
 
-    doc.fromHTML(h1, 50, 15)
-    doc.setFontSize(160);
-    doc.save("JurosCompostos.PDF")
+    alturaPagina = doc.internal.pageSize.height;
+    y = 500
+    if (y >= alturaPagina) {
+        doc.addPage();
+        y = 0
+    }
+
+    chart.dataURI().then(({ imgURI, }) => {
+        doc.addImage(imgURI, 'PNG', 15, 15, 180, 90);
+        doc.save("JurosCompostos.PDF")
+    })
+
+
+}
+
+//botão suporte
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+
+
 }
