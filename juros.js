@@ -67,7 +67,6 @@ $(document).ready(function() {
 //validação de dados para a função calcular() e botão calcular
 function validate() {
     //Escolhe o simulador 2
-
     if ($("#calculadora1").hasClass("d-none")) {
         ValAtingir = $("#ValFinal2").val();
         ValInicial = $("#valorInitial2").val();
@@ -240,7 +239,7 @@ function simulador2() {
         tempoAtingir++;
     } while (ValorAumentar < ValAtingir);
     debugger;*/
-    tempoAtingir = (Math.log(ValAtingir / ValInicial) / Math.log(2.71828)) / (ValPerJuro * (Math.log(1 + (ValJuro / ValPerJuro) / Math.log(2.71828))));
+    //tempoAtingir = (Math.log(ValAtingir / ValInicial) / Math.log(2.71828)) / (ValPerJuro * (Math.log(1 + (ValJuro / ValPerJuro) / Math.log(2.71828))));
     taux = tempoAtingir - parseInt(tempoAtingir);
     MesConvert = tempoAtingir - parseInt(tempoAtingir);
     AnoInt = parseInt(tempoAtingir);
