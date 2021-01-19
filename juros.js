@@ -136,19 +136,6 @@ function simulador1() {
                 ArrayDados[i].JuroMes = Valor1 - ValInicial;
                 ArrayDados[i].ValFinal = Valor1;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
-                if ($("#TempoInc").val() == "Anual") {
-                    ArrayDados[i].ValFinal += Anual();
-                    ArrayDados[i].IncrementoAcumul += Anual();
-                } else if ($("#TempoInc").val() == "Mensal") {
-                    ArrayDados[i].ValFinal += Mensal();
-                    ArrayDados[i].IncrementoAcumul += Mensal();
-                } else if ($("#TempoInc").val() == "Semanal") {
-                    ArrayDados[i].ValFinal += Semanal();
-                    ArrayDados[i].IncrementoAcumul += Semanal();
-                } else if ($("#TempoInc").val() == "Diário") {
-                    ArrayDados[i].ValFinal += Diario(i + 1);
-                    ArrayDados[i].IncrementoAcumul += Diario();
-                }
             } else {
                 ValIntermedio = ArrayDados[i - 1].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
                 ArrayDados[i].JuroMes = ValIntermedio - ArrayDados[i - 1].ValFinal;
@@ -181,19 +168,6 @@ function simulador1() {
                 ArrayDados[i].ValFinal = Valor1;
                 ArrayDados[i].JuroMes = Valor1 - ValInicial;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
-                if ($("#TempoInc").val() == "Anual") {
-                    ArrayDados[i].ValFinal += Anual();
-                    ArrayDados[i].IncrementoAcumul += Anual();
-                } else if ($("#TempoInc").val() == "Mensal") {
-                    ArrayDados[i].ValFinal += Mensal();
-                    ArrayDados[i].IncrementoAcumul += Mensal();
-                } else if ($("#TempoInc").val() == "Semanal") {
-                    ArrayDados[i].ValFinal += Semanal();
-                    ArrayDados[i].IncrementoAcumul += Semanal();
-                } else if ($("#TempoInc").val() == "Diário") {
-                    ArrayDados[i].ValFinal += Diario(i + 1);
-                    ArrayDados[i].IncrementoAcumul += Diario();
-                }
             } else {
                 ValIntermedio = ArrayDados[i - 1].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
                 ArrayDados[i].JuroMes = ValIntermedio - ArrayDados[i - 1].ValFinal;
