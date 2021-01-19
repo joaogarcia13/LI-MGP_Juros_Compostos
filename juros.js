@@ -302,8 +302,10 @@ function simulador3(){
 
 function escrever() {
 
-    $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
-    $("#Retorno").val(Retorno);
+    if(($("#simulador1").hasclass("d-none"))){
+        $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
+        $("#Retorno").val(Retorno);
+    }
 
     // Array do Valor Eixo Y
     //Reset/Declaração do Array
