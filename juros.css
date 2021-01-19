@@ -67,56 +67,55 @@ section {
     padding-bottom: 25px;
 }
 
-#img-excel
-{
+#img-excel {
     height: 40px;
-    height: 40px; 
+    height: 40px;
 }
 
-#img-PDF
-{
+#img-PDF {
     height: 40px;
-    height: 40px; 
-    
+    height: 40px;
 }
-.btn-excel
-{
+
+.btn-excel {
     background-color: transparent;
     border-color: transparent;
     border-radius: 50%;
 }
-.btn-pdf
-{
+
+.btn-pdf {
     background-color: transparent;
     border-color: transparent;
     border-radius: 50%;
 }
-#tabGraf
-{
+
+#tabGraf {
     margin-left: 80px;
     margin-right: 80px;
 }
-#fs-frm-inputs
-{
+
+#fs-frm-inputs {
     padding: 5px 5px 20px 20px;
 }
-#chart{
+
+#chart {
     position: relative;
 }
-#resetTabela{
+
+#resetTabela {
     text-align: center;
 }
 
-#Img-informacao
-{
+#Img-informacao {
     height: 10px;
-    width: 10px; 
+    width: 10px;
 }
-#Img-informacao:hover ~ span {
+
+#Img-informacao:hover~span {
     display: block;
-  }
-  
-span {
+}
+
+#spin {
     display: none;
     color: #fff;
     background-color: rgb(63, 60, 60);
@@ -126,45 +125,53 @@ span {
     position: relative;
     top: -100px;
     left: 60%;
-  }
+}
 
-#titulo-form-popup
-{
+#titulo-form-popup {
     margin-left: 10px;
     font-size: 20px;
 }
 
-#Top-form-popup
-{
+#Top-form-popup {
     margin: 0px;
     background-color: #f5b402;
 }
 
-#lbl-slider
-{
+#lbl-slider {
     text-align: center;
     font-size: 20px;
 }
 
+
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<SLIDER>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+
 /* The slider: */
-.slider{
+
+.slider {
     max-width: 100%;
     /* The position of the element is set relative to its original position: */
     position: relative;
     /* Center horizontally: */
     margin: auto;
     height: 300px;
-  }
-  /* The picture is scaled in relation to the parent element: */
-  .slider .item img {
+}
+
+
+/* The picture is scaled in relation to the parent element: */
+
+.slider .item img {
     /* The element is resized to fill the block and maintain proportions: */
     object-fit: cover;
     width: 300px;
     height: 300px;
-  }
-  /* Back and forward buttons: */
-  .slider .previous, .slider .next {
+}
+
+
+/* Back and forward buttons: */
+
+.slider .previous,
+.slider .next {
     /* Adds an icon to the cursor when it is over the button: */
     cursor: pointer;
     /* The position of the element is set relative to the borders of the browser: */
@@ -181,22 +188,30 @@ span {
     transition: 0.6s ease;
     /* Rounding the borders: */
     border-radius: 0 3px 3px 0;
-  }
-  .slider .next {
+}
+
+.slider .next {
     right: 0;
     border-radius: 3px 0 0 3px;
-  }
-  /* When you hover over the buttons, add the background of the buttons: */
-  .slider .previous:hover,
-  .slider .next:hover {
+}
+
+
+/* When you hover over the buttons, add the background of the buttons: */
+
+.slider .previous:hover,
+.slider .next:hover {
     background-color: rgba(0, 0, 0, 0.2);
-  }
-  /* Slide animation: */
-  .slider .item {
+}
+
+
+/* Slide animation: */
+
+.slider .item {
     animation-name: fade;
     animation-duration: 1.5s;
-  }
-  @keyframes fade {
+}
+
+@keyframes fade {
     /* Set and change the transparency: */
     from {
         opacity: 0.4
@@ -204,6 +219,7 @@ span {
     to {
         opacity: 1
     }
-  }
-/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<SLIDER>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/  
-  
+}
+
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<SLIDER>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
