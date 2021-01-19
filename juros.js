@@ -296,7 +296,8 @@ function simulador2() {
 }
 
 function simulador3(){
-
+    if
+    ValInicial = Math.pow(ValFinal/((1 + (ValJuro/ValPerJuro)),(ValPerJuro * 1))
 
 }
 
