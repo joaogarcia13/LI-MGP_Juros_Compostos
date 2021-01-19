@@ -667,6 +667,9 @@ function showSlides(n) {
         slide.style.display = "none";
     }
     /* Making an element block: */
-    slides[slideIndex - 1].style.display = "block";    
+    slides[slideIndex - 1].style.display = "block";
 }
+//intervalo tempo do slider
+setInterval(nextSlide,5000);
+
 
