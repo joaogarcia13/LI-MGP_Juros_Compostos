@@ -1,5 +1,3 @@
-//erro simulador 1 no incremento
-
 var ValInicial = 0.0;
 var ValAtingir = 0.0;
 var Retorno = 0.0;
@@ -19,7 +17,7 @@ var eixoY = new Array();
 //botao de limpar dados
 function limpar() {
     //calculadora 2
-    if ($("#calculadora1").hasClass("d-none")) {
+    if ($("#calculadora2").hasClass("d-none") == false) {
         $("#ValFinal2").val('0');
         $("#valorInitial2").val('0');
         $("#juro2").val('00.00');
@@ -27,7 +25,7 @@ function limpar() {
         $("#incremento2").val('0');
         $("#perincremento2").val('0');
         $("#duracao2").val('');
-    } else {
+    } else if($("#calculadora1").hasClass("d-none") == false){
         //calculadora 1
         $("#valorInitial").val('0');
         $("#tempo").val('0');
@@ -36,6 +34,15 @@ function limpar() {
         $("#ValFinal").val('');
         $("#Retorno").val('');
         $("#incremento").val('0');
+    }else {
+        //calculadora 3
+        $("#valorInitial3").val('0');
+        $("#tempo3").val('0');
+        $("#juro3").val('00.00');
+        $("#periodo3").val('0');
+        $("#ValFinal3").val('');
+        $("#incremento3").val('0');
+        $("#perincremento3").val('0');
     }
     $("#tabGraf").addClass('d-none');
 
@@ -51,13 +58,22 @@ $(document).ready(function() {
 
     $("#simulador1").click(function() {
         $("#calculadora2").addClass("d-none");
+        $("#calculadora3").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
         $("#tabGraf").addClass("d-none");
     });
 
     $("#simulador2").click(function() {
         $("#calculadora1").addClass("d-none");
+        $("#calculadora3").addClass("d-none");
         $("#calculadora2").removeClass("d-none");
+        $("#tabGraf").addClass("d-none");
+    });
+
+    $("#simulador3").click(function() {
+        $("#calculadora1").addClass("d-none");
+        $("#calculadora2").addClass("d-none");
+        $("#calculadora3").removeClass("d-none");
         $("#tabGraf").addClass("d-none");
     });
 })
@@ -66,7 +82,7 @@ $(document).ready(function() {
 function validate() {
     //Escolhe o simulador 2
 
-    if ($("#calculadora1").hasClass("d-none")) {
+    if ($("#calculadora2").hasClass("d-none") == false) {
         ValAtingir = $("#ValFinal2").val();
         ValInicial = $("#valorInitial2").val();
         ValJuro = $("#juro2").val() / 100;
@@ -89,7 +105,7 @@ function validate() {
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
     //Escolhe o simulador 1
-    else {
+    else if($("#calculadora1").hasClass("d-none") == false) {
         ValInicial = $("#valorInitial").val();
         tempo = $("#tempo").val();
         ValJuro = $("#juro").val() / 100;
@@ -109,6 +125,27 @@ function validate() {
             console.log("Os inputs são numeros.");
             //Escolhe a função de cálculo para cada um dos simuladores
             simulador1();
+        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+    }else{
+        //escolhe calculador 3
+        tempo = $("#tempo3").val();
+        ValJuro = $("#juro3").val() / 100;
+        ValPerJuro = $("#periodo3").val();
+        ValIncremento = $("#incremento3").val();
+        ValFinal = $("#ValFinal3").val();
+
+        //verifica se os valores sao positivos
+        if (ValFinal <= 0 || tempo <= 0 || ValJuro <= 0 ||
+            ValPerJuro <= 0 || ValIncremento < 0) {
+            alert("Verifique se todos os valores são positivos.");
+        } else
+        //verifica se são numeros
+        if ($.isNumeric(ValFinal) && $.isNumeric(tempo) &&
+            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+            $.isNumeric(ValIncremento)) {
+            console.log("Os inputs são numeros.");
+            //Escolhe a função de cálculo para cada um dos simuladores
+            simulador3();
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
 }
@@ -256,6 +293,11 @@ function simulador2() {
         tempo = 1;
         simulador1();
     }
+}
+
+function simulador3(){
+
+
 }
 
 function escrever() {
