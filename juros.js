@@ -255,38 +255,12 @@ function simulador1() {
 }
 
 function simulador2() {
-    //var valorDespero = 0.0;
-    //var ValorAumentar = 0.0;
+
     var tempoAtingir = 0.0;
     var MesConvert = 0.0;
     var AnoInt = 0;
     var taux = 0;
 
-    //debugger;
-    /*do {
-        if (tempoAtingir == 0) {
-            valorDespero = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
-            ValorAumentar = valorDespero;
-        } else {
-            if ($("#TempoInc2").val() == "Anual") {
-                //ArrayDados[i].ValFinal += Anual();
-                ValIncremento = Anual();
-            } else if ($("#TempoInc2").val() == "Mensal") {
-                //ArrayDados[i].ValFinal += Mensal();
-                ValIncremento = Mensal();
-            } else if ($("#TempoInc2").val() == "Semanal") {
-                //ArrayDados[i].ValFinal += Semanal();
-                ValIncremento = Semanal();
-            } else if ($("#TempoInc2").val() == "Diário") {
-                //ArrayDados[i].ValFinal += Diario(i + 1);
-                ValIncremento = Diario(i + 1);
-            }
-            ValIntermedio = (ValorAumentar + ValIncremento) * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
-            ValorAumentar += ValIntermedio;
-        }
-        tempoAtingir++;
-    } while (ValorAumentar < ValAtingir);
-    debugger;*/
     tempoAtingir = (Math.log(ValAtingir / ValInicial) / Math.log(2.71828)) / (ValPerJuro * (Math.log(1 + (ValJuro / ValPerJuro) / Math.log(2.71828))));
     taux = tempoAtingir - parseInt(tempoAtingir);
     MesConvert = tempoAtingir - parseInt(tempoAtingir);
@@ -334,12 +308,11 @@ function simulador2() {
         tempo = 1;
         simulador1();
     }
-    //simulador1();
 
 }
 /*
 function simulador3(){
-    
+
     for( var i = 0; i < tempo; i++){
         ValInicial = (Math.pow(ValPerJuro, (ValPerJuro * 1))*(ValAtingir3 * ValJuro - ValPerJuro * (ValIncremento * Math.pow(( 1 + (ValJuro / ValPerJuro)),(ValPerJuro * 1)) - 1 ))) / ( ValJuro * Math.pow((ValPerJuro + ValJuro),(ValPerJuro * 1)));
     }
