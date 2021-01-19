@@ -2,7 +2,7 @@
 <html lang="pt">
 
 <head>
-    <title >
+    <title>
         Simulador Juros Compostos
     </title>
     <meta charset="UTF-8">
@@ -26,7 +26,7 @@
 
     <!--Cabeçalho-->
     <header>
-            <h3 id="titulo" ><img id="Logo-simples"src="./Imagens/Logo-simples.png">      <b>Simulador de Juros compostos</b> </h3>
+        <h3 id="titulo"><img id="Logo-simples" src="./Imagens/Logo-simples.png"> <b>Simulador de Juros compostos</b> </h3>
     </header>
 
     <!--Escolher o simulador-->
@@ -117,6 +117,23 @@
                         <input type="text" class="form-control" id="periodo2" value="0">
                     </div>
                 </div>
+                <div class="row">
+                    <div class="mb-3 col-3">
+                        <label for="incremento" class="form-label">Incremento</label>
+                        <input type="text" class="form-control" id="incremento2" value="0">
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="periodo de incremento" class="form-label" id="perincremento2">Periodo de Incremento</label>
+                        <div class="input-group-append">
+                            <select class="form-select" aria-label="Default select example" id="TempoInc2">
+                            <option selected id="anos">Anual</option>
+                            <option id="meses">Mensal</option>
+                            <option id="meses">Semanal</option>
+                            <option id="meses">Diário</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
                 <div class="mb-3 col-5">
                     <label for="anos a atingir" class="form-label">Anos Atingir o Montante Final</label>
                     <input type="text" class="form-control" id="duracao2" value="0">
@@ -191,6 +208,7 @@
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning"
                         id="simulador3">Simulador 3</button></div>
             </div>
+<<<<<<< HEAD
 
             <div>
                 <label for="slider" id=lbl-slider><b>Investe aqui</b></label>
@@ -223,7 +241,35 @@
                 </div>
 
             </div>
+=======
+            <div class="col-1">
+                <div>
+                    <label for="slider" id=lbl-slider><b>Investe aqui</b></label>
+                    <!-- Main slider block -->
+                    <div class="slider">
+                        <!-- The first slide -->
+                        <div class="item">
+                            <a href="https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE">
+                                <img src="./Imagens/og-image.c18b4adf.png"></a>
+                        </div>
+                        <!-- The second slide -->
+                        <div class="item">
+                            <a href="https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE">
+                                <img src="./Imagens/og-image.c18b4adf.png"></a>
+                            <!-- The third slide -->
+                            <div class="item">
+                                <a href="https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE">
+                                    <img src="./Imagens/og-image.c18b4adf.png"></a>
+                                <!-- Arrow buttons -->
+                                <a class="previous" onclick="previousSlide()">&#10094;</a>
+                                <a class="next" onclick="nextSlide()">&#10095;</a>
+                            </div>
 
+                        </div>
+                    </div>
+>>>>>>> 22ac068c057ee444f6cba86263e9ea9b337b1765
+
+                </div>
     </section>
 
     <!--Secção que mostra a tabela e o gráfico-->
@@ -274,11 +320,17 @@
         <div class="form-popup" id="myForm">
             <div id="Top-form-popup">
                 <label id="titulo-form-popup" for="btnclose"><b>Support</b></label>
+<<<<<<< HEAD
                 <button id="btnclose" type="button" class="btn cancel" onclick="closeForm()"> <img id="close"
                         src="./Imagens/close-button.png"></button>
             </div>
             <form id="fs-frm" name="department-contact-form" accept-charset="utf-8"
                 action="https://formspree.io/f/moqpynoe" method="POST">
+=======
+                <button id="btnclose" type="button" class="btn cancel" onclick="closeForm()"> <img id="close" src="./Imagens/close-button.png"></button>
+            </div>
+            <form id="fs-frm" name="department-contact-form" accept-charset="utf-8" action="https://formspree.io/f/moqpynoe" method="POST">
+>>>>>>> 22ac068c057ee444f6cba86263e9ea9b337b1765
                 <fieldset id="fs-frm-inputs">
 
                     <br>
