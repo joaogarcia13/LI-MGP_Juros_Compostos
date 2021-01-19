@@ -19,6 +19,20 @@ let chart;
 var eixoY = new Array();
 
 //botao de limpar dados
+
+function limpar3() {
+    //calculadora 3
+    $("#valorInitial3").val('0');
+    $("#tempo3").val('0');
+    $("#juro3").val('00.00');
+    $("#periodo3").val('0');
+    $("#ValFinal3").val('');
+    $("#incremento3").val('0');
+    $("#perincremento3").val('0');
+
+    $("#tabGraf").addClass('d-none');
+}
+
 function limpar() {
     //calculadora 2
     if ($("#calculadora1").hasClass("d-none")) {
@@ -44,25 +58,58 @@ function limpar() {
 }
 
 //Botão de Informações e escolha de simuladores
-$(document).ready(function() {
-    $("#Informacoes").click(function() {
+$(document).ready(function () {
+    $("#Informacoes").click(function () {
         $('html, body').animate({
             scrollTop: $("#Inform").offset().top
         }, 2000);
     });
 
-    $("#simulador1").click(function() {
+    $("#simulador1").click(function () {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
+        $("#calculadora3").addClass("d-none");
         $("#tabGraf").addClass("d-none");
     });
 
-    $("#simulador2").click(function() {
+    $("#simulador2").click(function () {
         $("#calculadora1").addClass("d-none");
+        $("#calculadora3").addClass("d-none");
         $("#calculadora2").removeClass("d-none");
         $("#tabGraf").addClass("d-none");
     });
+
+    $("#simulador3").click(function () {
+        $("#calculadora1").addClass("d-none");
+        $("#calculadora2").addClass("d-none");
+        $("#calculadora3").removeClass("d-none");
+        $("#tabGraf").addClass("d-none");
+    });
 })
+
+
+function validate3() {
+    tempo = $("#tempo3").val();
+    ValPerJuro = $("#periodo3").val();
+    ValIncremento = $("#incremento3").val();
+    ValAtingir3 = $("#ValFinal3").val();
+    ValPerIncremento = $("#perincremento3").val();
+    ValJuro = $("#juro3").val();
+
+    //verifica se os valores sao positivos
+    if (ValAtingir3 <= 0 || tempo <= 0 || ValJuro <= 0 ||
+        ValPerJuro <= 0 || ValIncremento <= 0) {
+        alert("Verifique se todos os valores são positivos.");
+    } else
+        //verifica se são numeros
+        if ($.isNumeric(ValAtingir3) && $.isNumeric(tempo) &&
+            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+            $.isNumeric(ValIncremento)) {
+            console.log("Os inputs são numeros.");
+            //Escolhe a função de cálculo para cada um dos simuladores
+            simulador3();
+        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+}
 
 //validação de dados para a função calcular() e botão calcular
 function validate() {
@@ -81,16 +128,16 @@ function validate() {
             ValPerJuro <= 0) {
             alert("Verifique se todos os valores são positivos.");
         } else
-        //verifica se são numeros
-        if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro)) {
-            console.log("Os inputs são numeros.");
-            if (parseFloat(ValAtingir) > ValInicial) {
-                simulador2();
-            } else {
-                alert("O valor a atingir não pode ser menor que o valor inicial");
-            }
-        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+            //verifica se são numeros
+            if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
+                $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro)) {
+                console.log("Os inputs são numeros.");
+                if (parseFloat(ValAtingir) > ValInicial) {
+                    simulador2();
+                } else {
+                    alert("O valor a atingir não pode ser menor que o valor inicial");
+                }
+            } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
     //Escolhe o simulador 1
     else {
@@ -106,14 +153,14 @@ function validate() {
             ValPerJuro <= 0 || ValIncremento < 0) {
             alert("Verifique se todos os valores são positivos.");
         } else
-        //verifica se são numeros
-        if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-            $.isNumeric(ValIncremento)) {
-            console.log("Os inputs são numeros.");
-            //Escolhe a função de cálculo para cada um dos simuladores
-            simulador1();
-        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+            //verifica se são numeros
+            if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
+                $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+                $.isNumeric(ValIncremento)) {
+                console.log("Os inputs são numeros.");
+                //Escolhe a função de cálculo para cada um dos simuladores
+                simulador1();
+            } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
 }
 
@@ -290,6 +337,17 @@ function simulador2() {
     //simulador1();
 
 }
+/*
+function simulador3(){
+    
+    for( var i = 0; i < tempo; i++){
+        ValInicial = (Math.pow(ValPerJuro, (ValPerJuro * 1))*(ValAtingir3 * ValJuro - ValPerJuro * (ValIncremento * Math.pow(( 1 + (ValJuro / ValPerJuro)),(ValPerJuro * 1)) - 1 ))) / ( ValJuro * Math.pow((ValPerJuro + ValJuro),(ValPerJuro * 1)));
+    }
+   ValInicial = ValAtingir3 / Math.pow( 1 + ValJuro / ValPerJuro, ValPerJuro * tempo);
+    console.log(ValInicial);
+    $("#ValInicial3").val(ValInicial);
+    
+}*/
 
 function escrever() {
 
@@ -332,7 +390,7 @@ function escrever() {
     //tabela
     var $tabela = $("#resetTabela");
     //Preenchimento da tabela
-    $(function() {
+    $(function () {
         $tabela.bootstrapTable({ data: ArrayDados })
         $tabela.bootstrapTable('load', ArrayDados);
     })
@@ -357,13 +415,13 @@ function escrever() {
 
     var options = {
         series: [{
-                name: "Valor Acumulado",
-                data: eixoY
-            },
-            {
-                name: "Valor Investido",
-                data: valorInicial()
-            }
+            name: "Valor Acumulado",
+            data: eixoY
+        },
+        {
+            name: "Valor Investido",
+            data: valorInicial()
+        }
         ],
         chart: {
             height: 350,
@@ -410,7 +468,7 @@ function escrever() {
             shared: true,
             intersect: false,
             y: {
-                formatter: function(y) {
+                formatter: function (y) {
                     if (typeof y !== "undefined") {
                         return y + " €";
                     }
