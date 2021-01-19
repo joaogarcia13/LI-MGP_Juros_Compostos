@@ -46,7 +46,6 @@ function limpar() {
         $("#perincremento3").val('0');
     }
     $("#tabGraf").addClass('d-none');
-
 }
 
 //Botão de Informações e escolha de simuladores
@@ -135,12 +134,12 @@ function validate() {
         ValJuro = $("#juro3").val() / 100;
 
         //verifica se os valores sao positivos
-        if (ValAtingir3 <= 0 || tempo <= 0 || ValJuro <= 0 ||
+        if (ValAtingir <= 0 || tempo <= 0 || ValJuro <= 0 ||
             ValPerJuro <= 0) { //|| ValIncremento <= 0 Falta isto que está a dar erro
             alert("Verifique se todos os valores são positivos.");
         } else
         //verifica se são numeros
-        if ($.isNumeric(ValAtingir3) && $.isNumeric(tempo) &&
+        if ($.isNumeric(ValAtingir) && $.isNumeric(tempo) &&
             $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
             $.isNumeric(ValIncremento)) {
             console.log("Os inputs são numeros.");
@@ -168,9 +167,9 @@ function simulador1() {
         for (var i = 0; i < tempo; i++) {
             ArrayDados[i].Tempo = i + 1;
             if (i == 0) {
-                ValInicial = ValAtingir / Math.pow(1 + ValJuro / ValPerJuro, ValPerJuro * tempo);
-                console.log(ValInicial);
-                ValFinal = Valor1;
+                Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
+                ArrayDados[i].JuroMes = Valor1 - ValInicial;
+                ArrayDados[i].ValFinal = Valor1;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[i].ValFinal += Anual();
@@ -186,8 +185,9 @@ function simulador1() {
                     ArrayDados[i].IncrementoAcumul += Diario();
                 }
             } else {
-                ValInicial = ValAtingir / Math.pow(1 + ValJuro / ValPerJuro, ValPerJuro * tempo);
-                console.log(ValInicial); += ArrayDados[i].JuroMes;
+                ValIntermedio = ArrayDados[i - 1].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
+                ArrayDados[i].JuroMes = ValIntermedio - ArrayDados[i - 1].ValFinal;
+                ArrayDados[i].JuroAcumulado += ArrayDados[i].JuroMes;
                 ArrayDados[i].ValFinal = ValIntermedio;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[i].ValFinal += Anual();
@@ -270,6 +270,31 @@ function simulador2() {
     var AnoInt = 0;
     var taux = 0;
 
+    //debugger;
+    /*do {
+        if (tempoAtingir == 0) {
+            valorDespero = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
+            ValorAumentar = valorDespero;
+        } else {
+            if ($("#TempoInc2").val() == "Anual") {
+                //ArrayDados[i].ValFinal += Anual();
+                ValIncremento = Anual();
+            } else if ($("#TempoInc2").val() == "Mensal") {
+                //ArrayDados[i].ValFinal += Mensal();
+                ValIncremento = Mensal();
+            } else if ($("#TempoInc2").val() == "Semanal") {
+                //ArrayDados[i].ValFinal += Semanal();
+                ValIncremento = Semanal();
+            } else if ($("#TempoInc2").val() == "Diário") {
+                //ArrayDados[i].ValFinal += Diario(i + 1);
+                ValIncremento = Diario(i + 1);
+            }
+            ValIntermedio = (ValorAumentar + ValIncremento) * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
+            ValorAumentar += ValIntermedio;
+        }
+        tempoAtingir++;
+    } while (ValorAumentar < ValAtingir);
+    debugger;*/
     tempoAtingir = (Math.log(ValAtingir / ValInicial) / Math.log(2.71828)) / (ValPerJuro * (Math.log(1 + (ValJuro / ValPerJuro) / Math.log(2.71828))));
     taux = tempoAtingir - parseInt(tempoAtingir);
     MesConvert = tempoAtingir - parseInt(tempoAtingir);
@@ -318,7 +343,7 @@ function simulador2() {
 
 function simulador3() {
     //valInicial = 0;
-
+    debugger;
     ValInicial = ValFinal / (1 + Math.pow((ValJuro / ValPerJuro)), (ValPerJuro * tempo));
 
     $("#ValInicial3").val(ValInicial);
@@ -651,7 +676,3 @@ function showSlides(n) {
     /* Making an element block: */
     slides[slideIndex - 1].style.display = "block";
 }
-//intervalo tempo do slider
-setInterval(nextSlide,5000);
-
-
