@@ -149,8 +149,8 @@ h1 {
 
 #Img-informacao:hover~span {
     display: block;
-}
-
+  }
+  
 #spin {
     display: none;
     color: #fff;
