@@ -693,3 +693,7 @@ function showSlides(n) {
     /* Making an element block: */
     slides[slideIndex - 1].style.display = "block";
 }
+//intervalo tempo do slider
+setInterval(nextSlide,5000);
+
+
