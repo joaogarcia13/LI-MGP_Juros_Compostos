@@ -154,12 +154,12 @@ function validate() {
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
 
-        /* Captura o elemento que desejamos ir */
-        var target = $( $("#tabGraf") );
-      
-        $('html, body').animate({
-            scrollTop: target.offset().top //Captura a posição do elemento
-        }, 1000); //Tempo de animação em milissegundos
+    /* Captura o elemento que desejamos ir */
+    var target = $($("#tabGraf"));
+
+    $('html, body').animate({
+        scrollTop: target.offset().top //Captura a posição do elemento
+    }, 1000); //Tempo de animação em milissegundos
 }
 
 //reset variaveis
@@ -299,14 +299,10 @@ function simulador2() {
     var AnoInt = 0;
     var taux = 0;
 
-
-
-    /*
-        tempoAtingir = (Math.log(ValAtingir / ValInicial) / Math.log(2.71828)) / (ValPerJuro * (Math.log(1 + (ValJuro / ValPerJuro) / Math.log(2.71828))));
-        taux = tempoAtingir - parseInt(tempoAtingir);
-        MesConvert = tempoAtingir - parseInt(tempoAtingir);
-        AnoInt = parseInt(tempoAtingir);
-    */
+    tempoAtingir = (Math.log(ValAtingir / ValInicial) / Math.log(2.71828)) / (ValPerJuro * (Math.log(1 + (ValJuro / ValPerJuro) / Math.log(2.71828))));
+    taux = tempoAtingir - parseInt(tempoAtingir);
+    MesConvert = tempoAtingir - parseInt(tempoAtingir);
+    AnoInt = parseInt(tempoAtingir);
 
     //conversão decimal para mês
     if (MesConvert <= 1 / 12) {
@@ -382,7 +378,7 @@ function escrever() {
             $("#simulador2-result").addClass("d-none");
         }
     }
-    
+
 
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
     $("#Retorno").val(Retorno);
