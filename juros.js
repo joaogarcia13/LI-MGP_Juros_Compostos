@@ -352,9 +352,11 @@ function simulador2() {
 }
 
 function simulador3() {
+    debugger;
     ValInicial = ValAtingir / Math.pow((1 + (ValJuro / ValPerJuro)), (ValPerJuro * tempo));
 
     $("#ValInicial3").val(ValInicial.toFixed(2));
+    ValInicial = parseFloat(ValInicial).toFixed(2);
     simulador1();
 }
 
@@ -510,7 +512,6 @@ function escrever() {
 
 //Incremento anual
 function Anual() {
-    debugger;
     if ($("#TempoJuros").val() == "Anos") {
         return parseFloat(ValIncremento);
     } else if ($("#TempoJuros").val() == "Meses") {
