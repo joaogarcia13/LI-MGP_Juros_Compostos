@@ -50,32 +50,35 @@ function limpar() {
 }
 
 //Botão de Informações e escolha de simuladores
-$(document).ready(function() {
-    $("#Informacoes").click(function() {
+$(document).ready(function () {
+    $("#Informacoes").click(function () {
         $('html, body').animate({
             scrollTop: $("#Inform").offset().top
         }, 2000);
     });
 
-    $("#simulador1").click(function() {
+    $("#simulador1").click(function () {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
         $("#calculadora3").addClass("d-none");
         $("#tabGraf").addClass("d-none");
+        reset();
     });
 
-    $("#simulador2").click(function() {
+    $("#simulador2").click(function () {
         $("#calculadora1").addClass("d-none");
         $("#calculadora3").addClass("d-none");
         $("#calculadora2").removeClass("d-none");
         $("#tabGraf").addClass("d-none");
+        reset();
     });
 
-    $("#simulador3").click(function() {
+    $("#simulador3").click(function () {
         $("#calculadora1").addClass("d-none");
         $("#calculadora2").addClass("d-none");
         $("#calculadora3").removeClass("d-none");
         $("#tabGraf").addClass("d-none");
+        reset();
     });
 })
 
@@ -93,16 +96,16 @@ function validate() {
             ValPerJuro <= 0) {
             alert("Verifique se todos os valores são positivos.");
         } else
-        //verifica se são numeros
-        if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro)) {
-            console.log("Os inputs são numeros.");
-            if (parseFloat(ValAtingir) > ValInicial) {
-                simulador2();
-            } else {
-                alert("O valor a atingir não pode ser menor que o valor inicial");
-            }
-        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+            //verifica se são numeros
+            if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
+                $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro)) {
+                console.log("Os inputs são numeros.");
+                if (parseFloat(ValAtingir) > ValInicial) {
+                    simulador2();
+                } else {
+                    alert("O valor a atingir não pode ser menor que o valor inicial");
+                }
+            } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
     //Escolhe o simulador 1
     else if ($("#calculadora2").hasClass("d-none") && $("#calculadora3").hasClass("d-none")) {
@@ -118,14 +121,14 @@ function validate() {
             ValPerJuro <= 0 || ValIncremento < 0) {
             alert("Verifique se todos os valores são positivos.");
         } else
-        //verifica se são numeros
-        if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-            $.isNumeric(ValIncremento)) {
-            console.log("Os inputs são numeros.");
-            //Escolhe a função de cálculo para cada um dos simuladores
-            simulador1();
-        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+            //verifica se são numeros
+            if ($.isNumeric(ValInicial) && $.isNumeric(tempo) &&
+                $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+                $.isNumeric(ValIncremento)) {
+                console.log("Os inputs são numeros.");
+                //Escolhe a função de cálculo para cada um dos simuladores
+                simulador1();
+            } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     } else {
         //Escolhe simulador 3
         tempo = $("#tempo3").val();
@@ -140,19 +143,36 @@ function validate() {
             ValPerJuro <= 0) { //|| ValIncremento <= 0 Falta isto que está a dar erro
             alert("Verifique se todos os valores são positivos.");
         } else
-        //verifica se são numeros
-        if ($.isNumeric(ValAtingir) && $.isNumeric(tempo) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
-            $.isNumeric(ValIncremento)) {
-            console.log("Os inputs são numeros.");
-            //Escolhe a função de cálculo para cada um dos simuladores
-            simulador3();
-        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+            //verifica se são numeros
+            if ($.isNumeric(ValAtingir) && $.isNumeric(tempo) &&
+                $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+                $.isNumeric(ValIncremento)) {
+                console.log("Os inputs são numeros.");
+                //Escolhe a função de cálculo para cada um dos simuladores
+                simulador3();
+            } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
 }
 
+//reset variaveis
+function reset() {
+    ValInicial = 0.0;
+    ValAtingir = 0.0;
+    Retorno = 0.0;
+    tempo = 0.0;
+    ValJuro = 0.0;
+    ValPerJuro = 1.0;
+    ValIncremento = 0.0;
+    ValPerIncremento = 0.0;
+    Valor1 = 0.0;
+    ValIntermedio = 0.0;
+    IncremIntermed = 0.0;
+}
+
+
 //Cálculos e aparece os gráficos (esta função é chamada dentro da função validate()) do simulador 1
 function simulador1() {
+
     //Array dos Valores da tabela
     ArrayDados = new Array();
     for (var i = 0; i < tempo; i++) {
@@ -205,6 +225,7 @@ function simulador1() {
                 ArrayDados[i].ValFinal = Valor1;
                 ArrayDados[i].JuroMes = Valor1 - ValInicial;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
+
             } else {
                 ValIntermedio = ArrayDados[i - 1].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
                 ArrayDados[i].JuroMes = ValIntermedio - ArrayDados[i - 1].ValFinal;
@@ -284,7 +305,9 @@ function simulador2() {
     } else {
         $("#duracao2").val(AnoInt + " anos e " + MesConvert + " meses");
     }
-    
+
+    tempo = (tempoAtingir - taux) + 1;
+    console.log(tempo);
     if (tempo >= 1) {
         simulador1();
     } else {
@@ -342,7 +365,7 @@ function escrever() {
     //tabela
     var $tabela = $("#resetTabela");
     //Preenchimento da tabela
-    $(function() {
+    $(function () {
         $tabela.bootstrapTable({ data: ArrayDados })
         $tabela.bootstrapTable('load', ArrayDados);
     })
@@ -351,7 +374,7 @@ function escrever() {
     if ($("#incremento").val() > 0) {
         document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Ano</th>" +
             "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mes</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
-            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th><th scope='col' data-field='IncrementoAcumul' >Total Incremento</tr></thead><tbody id='tabela'></tbody>";
+            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th><th scope='col' data-field='IncrementoAcumul'>Total Incremento</tr></thead><tbody id='tabela'></tbody>";
     } else {
         document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Anos</th>" +
             "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mes</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
@@ -368,13 +391,13 @@ function escrever() {
 
     var options = {
         series: [{
-                name: "Valor Acumulado",
-                data: eixoY
-            },
-            {
-                name: "Valor Investido",
-                data: valorInicial()
-            }
+            name: "Valor Acumulado",
+            data: eixoY
+        },
+        {
+            name: "Valor Investido",
+            data: valorInicial()
+        }
         ],
         chart: {
             height: 350,
@@ -421,7 +444,7 @@ function escrever() {
             shared: true,
             intersect: false,
             y: {
-                formatter: function(y) {
+                formatter: function (y) {
                     if (typeof y !== "undefined") {
                         return y + " €";
                     }
@@ -629,6 +652,6 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
 }
 //intervalo tempo do slider
-setInterval(nextSlide,5000);
+setInterval(nextSlide, 5000);
 
 
