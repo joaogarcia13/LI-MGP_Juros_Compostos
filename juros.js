@@ -1,4 +1,4 @@
-//erro simulador 1 no incremento
+//erro simulador 1 no incrementooo
 
 var ValInicial = 0.0;
 var ValAtingir = 0.0;
@@ -154,11 +154,10 @@ function validate() {
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
 
-    /* Captura o elemento que desejamos ir */
+    /* escolhe o elemento que desejamos ir */
     var target = $($("#tabGraf"));
-
     $('html, body').animate({
-        scrollTop: target.offset().top //Captura a posição do elemento
+        scrollTop: target.offset().top
     }, 1000); //Tempo de animação em milissegundos
 }
 
@@ -299,10 +298,14 @@ function simulador2() {
     var AnoInt = 0;
     var taux = 0;
 
+
+
+
     tempoAtingir = (Math.log(ValAtingir / ValInicial) / Math.log(2.71828)) / (ValPerJuro * (Math.log(1 + (ValJuro / ValPerJuro) / Math.log(2.71828))));
     taux = tempoAtingir - parseInt(tempoAtingir);
     MesConvert = tempoAtingir - parseInt(tempoAtingir);
     AnoInt = parseInt(tempoAtingir);
+
 
     //conversão decimal para mês
     if (MesConvert <= 1 / 12) {
@@ -423,17 +426,6 @@ function escrever() {
         $tabela.bootstrapTable({ data: ArrayDados })
         $tabela.bootstrapTable('load', ArrayDados);
     })
-
-    //Esconder Coluna do Incremento se o Incremento for Nulo
-    if ($("#incremento").val() > 0) {
-        document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Ano</th>" +
-            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mes</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
-            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th><th scope='col' data-field='IncrementoAcumul'>Total Incremento</tr></thead><tbody id='tabela'></tbody>";
-    } else {
-        document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Anos</th>" +
-            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mes</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
-            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
-    }
 
     if ($("#TempoJuros").val() == "Meses") {
         $("#PerTabela").text("Mes");
