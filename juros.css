@@ -54,18 +54,41 @@ h1 {
 #simulador1 {
     margin-bottom: 5%;
 }
-
-#btn-calcular {
-    background-color: #645fce;
-    border-color: #645fce;
+#btn-calcular1
+{
+    background-color: #645fce ;
+    border-color:    #645fce ;
 }
 
-#btn-limpar {
+#btn-limpar1
+{
     color: #ffffff;
     background-color: #a29fe2;
     border-color: #a29fe2;
 }
+#btn-calcular2
+{
+    background-color: #645fce ;
+    border-color:    #645fce ;
+}
 
+#btn-limpar2
+{
+    color: #ffffff;
+    background-color: #a29fe2 ;
+    border-color:    #a29fe2;
+}#btn-calcular3
+{
+    background-color: #645fce ;
+    border-color:    #645fce ;
+}
+
+#btn-limpar3
+{
+    color: #ffffff;
+    background-color: #a29fe2 ;
+    border-color:    #a29fe2;
+}
 .btnEscolhe {
     background-color: beige;
     size: 150px;
@@ -284,7 +307,7 @@ h1 {
 .slider .item img {
     /* The element is resized to fill the block and maintain proportions: */
     object-fit: cover;
-    width: 600px;
+    width: 460px;
     height: 300px;
 }
 
