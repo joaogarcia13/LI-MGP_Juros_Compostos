@@ -65,7 +65,7 @@
                         <label for="incremento" class="form-label">Incremento</label>
                         <input type="text" class="form-control" id="incremento" value="0">
                     </div>
-                    <div class="mb-3 col-4">
+                    <div class="mb-3 col-5">
                         <label for="periodo de incremento" class="form-label" id="perincremento">Periodo de
                             Incremento</label>
                         <div class="input-group-append">
@@ -83,7 +83,7 @@
                         <label for="montante" class="form-label">Montante Final</label>
                         <input type="text" class="form-control" id="ValFinal">
                     </div>
-                    <div class="mb-3 col-4">
+                    <div class="mb-3 col-5">
                         <label for="retorno" class="form-label">Retorno</label>
                         <input type="text" class="form-control" id="Retorno">
                     </div>
@@ -114,7 +114,7 @@
                         <input type="text" class="form-control" id="periodo2" value="0">
                     </div>
                 </div>
-                <div class="mb-3 col-5">
+                <div class="mb-3 col-6">
                     <label for="anos a atingir" class="form-label">Anos Atingir o Montante Final</label>
                     <input type="text" class="form-control" id="duracao2" value="0">
                 </div>
@@ -129,27 +129,26 @@
                         <label for="tempo" class="form-label">Tempo (em Anos)</label>
                         <input type="text" class="form-control" id="tempo3" value="0">
                     </div>
-                </div>
-                <div class="row">
-                    <div class="mb-3 col-3">
+                    <div class="mb-3 col-5">
                         <label for="juro" class="form-label">Juro</label>
                         <input type="text" class="form-control" id="juro3" value="00.00">
                     </div>
+                </div>
+                <div class="row">
                     <div class="mb-3 col-4">
                         <label for="periocidade" class="form-label" id="Periodicidade">Periodicidade</label>
                         <img src="./Imagens/icone-de-informacao.png" id="Img-informacao">
                         <span id="spin">Numero de vezes que o juro é aplicado por ano</span>
                         <input type="text" class="form-control" id="periodo3" value="0">
                     </div>
-                </div>
-                <div class="row">
-                    <div class="mb-3 col-3">
+                    <div class="mb-3 col-5">
                         <label for="incremento" class="form-label">Incremento</label>
                         <input type="text" class="form-control" id="incremento3" value="0">
                     </div>
-                    <div class="mb-3 col-4">
-                        <label for="periodo de incremento" class="form-label" id="perincremento3">Periodo de
-                            Incremento</label>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-5">
+                        <label for="periodo de incremento" class="form-label" id="perincremento3">Periodo de Incremento</label>
                         <div class="input-group-append">
                             <select class="form-select" aria-label="Default select example" id="TempoInc3">
                                 <option selected id="anos">Anual</option>
@@ -159,22 +158,19 @@
                             </select>
                         </div>
                     </div>
+                    <div class="mb-3 col-6">
+                        <label for="montante" class="form-label">Valor a investir</label>
+                        <input type="text" class="form-control" id="ValInicial3" valua="0">
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="mb-3 col-3">
+                    <div class="mb-3 col-11">
                         <label for="montante" class="form-label">Montante a Atingir</label>
                         <input type="text" class="form-control" id="ValFinal3">
                     </div>
-                    <div class="row">
-                        <div class="mb-3 col-3">
-                            <label for="montante" class="form-label">Valor a investir</label>
-                            <input type="text" class="form-control" id="ValInicial3" valua="0">
-                        </div>
-                    </div>
-
-                    <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
-                    <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
                 </div>
+                <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
             </div>
 
             <div class="col-0"></div>
@@ -184,8 +180,13 @@
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador2">Simulador 2</button></div>
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador3">Simulador 3</button></div>
             </div>
+<<<<<<< HEAD
             <div id=lbl-slider2 class="col-4">
                 <label for="lbl-slider" ><b>Investe aqui</b></label>
+=======
+            <div  class="col-1">
+                <label for="lbl-slider" id=lbl-slider2>Investe aqui</label>
+>>>>>>> ec70469eee8d08fef476ebe7eb3f60566266d188
                 <div>
                     <!-- Main slider block -->
                     <div class="slider">
@@ -219,7 +220,6 @@
                 </div>
         </div>
     </section>
-
     <!--Secção que mostra a tabela e o gráfico-->
     <section id="tabGraf" class="row d-none">
         <div>
