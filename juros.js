@@ -692,12 +692,8 @@ function showSlides(n) {
     }
     /* Making an element block: */
     slides[slideIndex - 1].style.display = "block";
-<<<<<<< HEAD
 }
 //intervalo tempo do slider
 setInterval(nextSlide,5000);
 
 
-=======
-}
->>>>>>> 15a522efc5eb589794c5e4e282a2fd1332cdba1f
