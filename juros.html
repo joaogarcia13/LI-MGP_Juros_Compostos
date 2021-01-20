@@ -55,7 +55,11 @@
                     </div>
                     <div class="mb-3 col-7">
                         <label for="periocidade" class="form-label" id="Periodicidade">Periodicidade</label>
+<<<<<<< HEAD
                         <img src="./Imagens/icone-de-informacao.png" alt="Informação de parametros" class="Img-informacao">
+=======
+                        <img src="./Imagens/icone-de-informacao.png" id="Img-informacao">
+>>>>>>> 2b7b4abca24783ebacf1b5a347ca700d4d9f220a
                         <span class="spin">Numero de vezes que o juro é aplicado por ano</span>
                         <input type="text" class="form-control" id="periodo" value="0">
                     </div>
@@ -65,8 +69,13 @@
                         <label for="incremento" class="form-label">Incremento</label>
                         <input type="text" class="form-control" id="incremento" value="0">
                     </div>
+<<<<<<< HEAD
                     <div class="mb-3 col-4">
                         <label for="periodo-de-incremento" class="form-label" id="perincremento">Periodo de
+=======
+                    <div class="mb-3 col-5">
+                        <label for="periodo de incremento" class="form-label" id="perincremento">Periodo de
+>>>>>>> 2b7b4abca24783ebacf1b5a347ca700d4d9f220a
                             Incremento</label>
                         <div class="input-group-append">
                             <select class="form-select" aria-label="Default select example" id="TempoInc">
@@ -83,13 +92,13 @@
                         <label for="montante" class="form-label">Montante Final</label>
                         <input type="text" class="form-control" id="ValFinal">
                     </div>
-                    <div class="mb-3 col-4">
+                    <div class="mb-3 col-5">
                         <label for="retorno" class="form-label">Retorno</label>
                         <input type="text" class="form-control" id="Retorno">
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
+                <button type="button" id="btn-calcular" class="btn btn-primary" onclick="validate()">Calcular</button>
+                <button type="button" id="btn-limpar" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
             </div>
 
             <!--Simulador 2-->
@@ -114,8 +123,13 @@
                         <input type="text" class="form-control" id="periodo2" value="0">
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="mb-3 col-5">
                     <label for="anos-a-atingir" class="form-label">Anos Atingir o Montante Final</label>
+=======
+                <div class="mb-3 col-6">
+                    <label for="anos a atingir" class="form-label">Anos Atingir o Montante Final</label>
+>>>>>>> 2b7b4abca24783ebacf1b5a347ca700d4d9f220a
                     <input type="text" class="form-control" id="duracao2" value="0">
                 </div>
                 <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
@@ -129,13 +143,14 @@
                         <label for="tempo" class="form-label">Tempo (em Anos)</label>
                         <input type="text" class="form-control" id="tempo3" value="0">
                     </div>
-                </div>
-                <div class="row">
-                    <div class="mb-3 col-3">
+                    <div class="mb-3 col-5">
                         <label for="juro" class="form-label">Juro</label>
                         <input type="text" class="form-control" id="juro3" value="00.00">
                     </div>
+                </div>
+                <div class="row">
                     <div class="mb-3 col-4">
+<<<<<<< HEAD
                         <label for="periocidade" class="form-label" id="Periodicidade2">Periodicidade</label>
                         <img src="./Imagens/icone-de-informacao.png" alt="Icone Informação" class="Img-informacao">
                         <span class="spin">Numero de vezes que o juro é aplicado por ano</span>
@@ -156,7 +171,43 @@
 
                     <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
                     <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
+=======
+                        <label for="periocidade" class="form-label" id="Periodicidade">Periodicidade</label>
+                        <img src="./Imagens/icone-de-informacao.png" id="Img-informacao">
+                        <span class="spin">Numero de vezes que o juro é aplicado por ano</span>
+                        <input type="text" class="form-control" id="periodo3" value="0">
+                    </div>
+                    <div class="mb-3 col-5">
+                        <label for="incremento" class="form-label">Incremento</label>
+                        <input type="text" class="form-control" id="incremento3" value="0">
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="mb-3 col-5">
+                        <label for="periodo de incremento" class="form-label" id="perincremento3">Periodo de Incremento</label>
+                        <div class="input-group-append">
+                            <select class="form-select" aria-label="Default select example" id="TempoInc3">
+                                <option selected id="anos">Anual</option>
+                                <option id="meses">Mensal</option>
+                                <option id="meses">Semanal</option>
+                                <option id="meses">Diário</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3 col-6">
+                        <label for="montante" class="form-label">Valor a investir</label>
+                        <input type="text" class="form-control" id="ValInicial3" valua="0">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-11">
+                        <label for="montante" class="form-label">Montante a Atingir</label>
+                        <input type="text" class="form-control" id="ValFinal3">
+                    </div>
+>>>>>>> 2b7b4abca24783ebacf1b5a347ca700d4d9f220a
+                </div>
+                <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
             </div>
 
             <div class="col-0"></div>
@@ -166,6 +217,7 @@
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador2">Simulador 2</button></div>
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador3">Simulador 3</button></div>
             </div>
+<<<<<<< HEAD
             <div  class="col-1">
                 <label for="lbl-slider" id="lbl-slider2"><b>Investe aqui</b></label>
                 <div>
@@ -191,11 +243,49 @@
                     <div id="btn-slide">
                         <button id="btn-slider-esquerda" type="button" onclick="previousSlide()"> <img class="close" src="./Imagens/seta-esquerda.png"></button>
                         <button id="btn-slider-direita" type="button" onclick="nextSlide()"> <img class="close" src="./Imagens/seta-direita.png"></button>
+=======
+            <div class="col-1">
+                <label for="lbl-slider" id=lbl-slider2><b>Investe aqui</b></label>
+
+                <div id=lbl-slider2 class="col-4">
+                    <label for="lbl-slider"><b>Investe aqui</b></label>
+
+                    <div class="col-1">
+                        <label for="lbl-slider" id=lbl-slider2>Investe aqui</label>
+
+                        <div>
+                            <!-- Main slider block -->
+                            <div class="slider">
+                                <!-- The first slide -->
+                                <div id=div-slider class="item">
+                                    <a href="https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE">
+                                        <img src="./Imagens/og-image.c18b4adf.png"></a>
+                                </div>
+                                <!-- The second slide -->
+                                <div class="item">
+                                    <a href="https://www.revolut.com/pt-PT/">
+                                        <img id="revolut" src="./Imagens/revolut-logo-min.jpg"></a>
+                                </div>
+                            </div>
+                            <div id="btn-slide">
+                                <button id="btn-slider-esquerda" type="button" onclick="previousSlide()"> <img id="close" src="./Imagens/seta-esquerda.png"></button>
+                                <button id="btn-slider-direita" type="button" onclick="nextSlide()"> <img id="close" src="./Imagens/seta-direita.png"></button>
+                                <hr>
+                            </div>
+                            <div>
+                                <h3 id="titulo-disclamer">Disclamer</h3>
+                                <p id="disclamer-p">O nosso site não se responsabiliza por possiveis perdas ou roubos no decorrer dos investimentos nos sites sugeridos.</p>
+                                <p id="disclamer-p">As simulações realizadas neste site não são vinculativas</p>
+                            </div>
+                        </div>
+                        <div id="btn-slide">
+                            <button id="btn-slider-esquerda" type="button" onclick="previousSlide()"> <img id="close" src="./Imagens/seta-esquerda.png"></button>
+                            <button id="btn-slider-direita" type="button" onclick="nextSlide()"> <img id="close" src="./Imagens/seta-direita.png"></button>
+                        </div>
+>>>>>>> 2b7b4abca24783ebacf1b5a347ca700d4d9f220a
                     </div>
                 </div>
-        </div>
     </section>
-
     <!--Secção que mostra a tabela e o gráfico-->
     <section id="tabGraf" class="row d-none">
         <div>
@@ -206,7 +296,7 @@
                         <th scope="col" data-field="JuroMes" id="PerTabela2">Juros por Mes</th>
                         <th scope="col" data-field="JuroAcumulado">Juros Acumulados</th>
                         <th scope="col" data-field="ValFinal">Montante Acumulado</th>
-                        <th scope="col" data-field="IncrementoAcumul" id="Inc" class="">Total Incremento</th>
+                        <th scope="col" data-field="IncrementoAcumul" id="Inc">Total Incremento</th>
                     </tr>
                 </thead>
                 <tbody id="corpo"></tbody>
