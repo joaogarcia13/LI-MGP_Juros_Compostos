@@ -92,7 +92,7 @@ h1 {
     height: 75px;
 }
 
-#close {
+.close {
     height: 25px;
     height: 25px;
 }
@@ -165,16 +165,16 @@ h1 {
     text-align: center;
 }
 
-#Img-informacao {
+.Img-informacao {
     height: 10px;
     width: 10px;
 }
 
-#Img-informacao:hover~span {
+.Img-informacao:hover~span {
     display: block;
   }
   
-#spin {
+.spin {
     display: none;
     color: #fff;
     background-color: rgb(63, 60, 60);
