@@ -46,6 +46,7 @@ function limpar() {
         $("#perincremento3").val('0');
     }
     $("#tabGraf").addClass('d-none');
+
 }
 
 //Botão de Informações e escolha de simuladores
@@ -168,6 +169,7 @@ function reset() {
     IncremIntermed = 0.0;
 }
 
+
 //Cálculos e aparece os gráficos (esta função é chamada dentro da função validate()) do simulador 1
 function simulador1() {
 
@@ -279,7 +281,7 @@ function simulador1() {
         }
     }
 
-    Retorno = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
+    Retorno = ArrayDados[ArrayDados.length - 1].JuroAcumulado;
     Retorno = Retorno.toFixed(2);
 
     console.log(ArrayDados);
@@ -343,10 +345,11 @@ function simulador2() {
 }
 
 function simulador3() {
-    ValInicial = ValAtingir / Math.pow((1 + (ValJuro / ValPerJuro)), (ValPerJuro * tempo));
+    valInicial = 0;
 
-    $("#ValInicial3").val(ValInicial.toFixed(2));
-    simulador1();
+    ValInicial = ValFinal / (1 + (ValJuro / ValPerJuro));
+
+    $("#ValInicial3").val(ValInicial);
 }
 
 function escrever() {
@@ -394,17 +397,6 @@ function escrever() {
         $tabela.bootstrapTable({ data: ArrayDados })
         $tabela.bootstrapTable('load', ArrayDados);
     })
-
-    //Esconder Coluna do Incremento se o Incremento for Nulo
-    if ($("#incremento").val() > 0) {
-        document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Ano</th>" +
-            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mes</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
-            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th><th scope='col' data-field='IncrementoAcumul'>Total Incremento</tr></thead><tbody id='tabela'></tbody>";
-    } else {
-        document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Anos</th>" +
-            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mes</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
-            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
-    }
 
     if ($("#TempoJuros").val() == "Meses") {
         $("#PerTabela").text("Mes");

@@ -55,8 +55,8 @@
                     </div>
                     <div class="mb-3 col-7">
                         <label for="periocidade" class="form-label" id="Periodicidade">Periodicidade</label>
-                        <img src="./Imagens/icone-de-informacao.png" id="Img-informacao">
-                        <span id="spin">Numero de vezes que o juro é aplicado por ano</span>
+                        <img src="./Imagens/icone-de-informacao.png" class="Img-informacao">
+                        <span class="spin d-none">Numero de vezes que o juro é aplicado por ano</span>
                         <input type="text" class="form-control" id="periodo" value="0">
                     </div>
                 </div>
@@ -80,6 +80,7 @@
                 </div>
                 <button type="button" id="btn-calcular1" class="btn btn-primary" onclick="validate()">Calcular</button>
                 <button type="button" id="btn-limpar1" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
+                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_zWCXLL.json"  background="transparent"  speed="0.5"  style="width: 600px; height: 200px;"  loop  autoplay></lottie-player>
             </div>
 
             <!--Simulador 2-->
@@ -106,6 +107,8 @@
                 </div>
                 <button type="button" id="btn-calcular2" class="btn btn-primary" onclick="validate()">Calcular</button>
                 <button type="button" id="btn-limpar2" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
+
+                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_zWCXLL.json"  background="transparent"  speed="0.5"  style="width: 600px; height: 300px;"  loop autoplay></lottie-player>
             </div>
 
             <!--Simulador3-->
@@ -123,7 +126,7 @@
                 <div class="row">
                     <div class="mb-3 col-4">
                         <label for="periocidade" class="form-label" id="Periodicidade">Periodicidade</label>
-                        <img src="./Imagens/icone-de-informacao.png" id="Img-informacao">
+                        <img src="./Imagens/icone-de-informacao.png" class="Img-informacao">
                         <span id="spin">Numero de vezes que o juro é aplicado por ano</span>
                         <input type="text" class="form-control" id="periodo3" value="0">
                     </div>
@@ -151,6 +154,8 @@
                 </div>
                 <button type="button" id="btn-calcular3" class="btn btn-primary" onclick="validate()">Calcular</button>
                 <button type="button" id="btn-limpar3" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
+
+                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_zWCXLL.json"  background="transparent"  speed="0.5"  style="width: 400px; height: 200px;"  loop autoplay></lottie-player>
             </div>
 
             <div class="col-0"></div>
@@ -183,8 +188,8 @@
                         </div>
                     </div>
                     <div id="btn-slide">
-                        <button id="btn-slider-esquerda" type="button" onclick="previousSlide()"> <img id="close" src="./Imagens/seta-esquerda.png"></button>
-                        <button id="btn-slider-direita" type="button" onclick="nextSlide()"> <img id="close" src="./Imagens/seta-direita.png"></button>
+                        <button id="btn-slider-esquerda" type="button" onclick="previousSlide()"> <img class="close" src="./Imagens/seta-esquerda.png"></button>
+                        <button id="btn-slider-direita" type="button" onclick="nextSlide()"> <img class="close" src="./Imagens/seta-direita.png"></button>
                         <hr>
                     </div>
                     <div>
@@ -248,7 +253,7 @@
     <!--Informações-->
     <section id="Inform">
         <h1>Juro Composto</h1>
-        <p> Ao contrario dos juros simples no juros compostos existe um reinvestimento dos juros, ou seja, os tais juros simples em vez de serem pagos, por exemplo, na sua conta à ordem, são adicionados ao depósito a prazo, criando assim um novo capital maior que o anterior. Existe, assim,  uma capitalização dos juros simples.
+        <p id="BueTexto"> Ao contrario dos juros simples no juros compostos existe um reinvestimento dos juros, ou seja, os tais juros simples em vez de serem pagos, por exemplo, na sua conta à ordem, são adicionados ao depósito a prazo, criando assim um novo capital maior que o anterior. Existe, assim,  uma capitalização dos juros simples.
 
             É fácil perceber que quanto maior o investimento maior o retorno, certo? O que os juros compostos proporcionam é isso mesmo: ao reinvestir o dinheiro acaba por obter um retorno superior. 
             
@@ -333,6 +338,7 @@
     <script src="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.11/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="juros.js"></script>
 </body>
 
