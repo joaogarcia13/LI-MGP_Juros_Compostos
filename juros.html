@@ -105,6 +105,21 @@
                         <input type="text" class="form-control" id="periodo2" value="0">
                     </div>
                 </div>
+                <div class="row">
+                    <div class="mb-3 col-3">
+                        <label for="incremento" class="form-label">Incremento</label>
+                        <input type="text" class="form-control" id="incremento3" value="0">
+                    </div>
+                    <div class="mb-3 col-5">
+                        <label for="periodo de incremento" class="form-label" id="perincremento3">Periodo de
+                            Incremento</label>
+                        <div class="input-group-append">
+                            <select class="form-select" aria-label="Default select example" id="TempoInc">
+                                <option selected id="anos">Anual</option>
+                                <option id="meses">Mensal</option>
+                                <option id="meses">Semanal</option>
+                                <option id="meses">Diário</option>
+                            </select>
                 <button type="button" id="btn-calcular2" class="btn btn-primary" onclick="validate()">Calcular</button>
                 <button type="button" id="btn-limpar2" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
 
