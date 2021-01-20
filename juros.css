@@ -207,7 +207,12 @@ h1 {
 
 .Img-informacao:hover~span {
     display: block;
+<<<<<<< HEAD
 } 
+=======
+  }
+  
+>>>>>>> 74977df1a4685792d21842d392cccc63b837223d
 .spin {
     padding: 10px;
     border-radius: 4px;
@@ -279,6 +284,10 @@ h1 {
     border-radius: 5px;
     background-color: #40356F;
     color: white;
+}
+#BueTexto
+{
+    padding: 15px;
 }
 
 
