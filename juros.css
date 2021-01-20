@@ -33,14 +33,15 @@ header {
 }
 
 h1 {
-    background-color: #003249;
-    color: #9AD1D4;
+    background-color: #40356F;
+    color: #ffffff;
     padding: 0px 0px 10px 10px;
     border-radius: 15px;
 }
 
 #Inform {
     padding: 50px 20px 25px 20px;
+    
 }
 
 .table td {
@@ -53,6 +54,18 @@ h1 {
 
 #simulador1 {
     margin-bottom: 5%;
+}
+#btn-calcular
+{
+    background-color: #645fce ;
+    border-color:    #645fce ;
+}
+
+#btn-limpar
+{
+    color: #ffffff;
+    background-color: #a29fe2 ;
+    border-color:    #a29fe2;
 }
 
 .btnEscolhe {
@@ -199,7 +212,7 @@ h1 {
 
 #lbl-slider2 {
     font-size: 19px;
-    color: #ffffff;
+    color: #665d8c;
     background-color: #665d8c;
 }
 
@@ -274,7 +287,7 @@ h1 {
 .slider .item img {
     /* The element is resized to fill the block and maintain proportions: */
     object-fit: cover;
-    width: 300px;
+    width: 600px;
     height: 300px;
 }
 
@@ -331,10 +344,16 @@ h1 {
         opacity: 1
     }
 }
-#revolut
+#btn-slider-esquerda
 {
-    width: 300px;
-    height: 300px;
+    color: #ffffff;
+    background-color: #a29fe2 ;
+    border-color:    #a29fe2;
+}
+#btn-slider-direita
+{
+    background-color: #a29fe2 ;
+    border-color:    #a29fe2;
 }
 
 

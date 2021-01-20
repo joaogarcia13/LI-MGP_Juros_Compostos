@@ -88,8 +88,8 @@
                         <input type="text" class="form-control" id="Retorno">
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
+                <button type="button" id="btn-calcular" class="btn btn-primary" onclick="validate()">Calcular</button>
+                <button type="button" id="btn-limpar" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
             </div>
 
             <!--Simulador 2-->
@@ -184,8 +184,8 @@
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador2">Simulador 2</button></div>
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador3">Simulador 3</button></div>
             </div>
-            <div  class="col-1">
-                <label for="lbl-slider" id=lbl-slider2><b>Investe aqui</b></label>
+            <div id=lbl-slider2 class="col-4">
+                <label for="lbl-slider" ><b>Investe aqui</b></label>
                 <div>
                     <!-- Main slider block -->
                     <div class="slider">
@@ -209,6 +209,12 @@
                     <div id="btn-slide">
                         <button id="btn-slider-esquerda" type="button" onclick="previousSlide()"> <img id="close" src="./Imagens/seta-esquerda.png"></button>
                         <button id="btn-slider-direita" type="button" onclick="nextSlide()"> <img id="close" src="./Imagens/seta-direita.png"></button>
+                        <hr>
+                    </div>
+                    <div>
+                        <h3 id="titulo-disclamer">Disclamer</h3>
+                        <p id="disclamer-p">O nosso site não se responsabiliza por possiveis perdas ou roubos no decorrer dos investimentos nos sites sugeridos.</p>
+                        <p id="disclamer-p">As simulações realizadas neste site não são vinculativas</p>
                     </div>
                 </div>
         </div>
