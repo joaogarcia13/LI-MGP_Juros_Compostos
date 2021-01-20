@@ -369,8 +369,6 @@ function escrever() {
         }
     }
 
-
-
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
     $("#Retorno").val(Retorno);
 

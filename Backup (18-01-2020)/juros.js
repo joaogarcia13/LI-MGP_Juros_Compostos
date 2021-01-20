@@ -1,6 +1,4 @@
-//Notas Tabela desaparece segunda vez que se clicka calcular
-//alert ta buggado quando o simulador 2 da menos de 1 ano
-//falta por exceção do simulador 2 para menos de um ano
+//erro simulador 1 no incremento
 
 var ValInicial = 0.0;
 var ValAtingir = 0.0;
@@ -18,10 +16,9 @@ var eixoY = new Array();
 let chart;
 var eixoY = new Array();
 
-//botao de limpar dados
 function limpar() {
     //calculadora 2
-    if ($("#calculadora1").hasClass("d-none")) {
+    if ($("#calculadora1").hasClass("d-none") && $("#calculadora3").hasClass("d-none")) {
         $("#ValFinal2").val('0');
         $("#valorInitial2").val('0');
         $("#juro2").val('00.00');
@@ -29,7 +26,7 @@ function limpar() {
         $("#incremento2").val('0');
         $("#perincremento2").val('0');
         $("#duracao2").val('');
-    } else {
+    } else if ($("#calculadora2").hasClass("d-none") && $("#calculadora3").hasClass("d-none")) {
         //calculadora 1
         $("#valorInitial").val('0');
         $("#tempo").val('0');
@@ -38,9 +35,17 @@ function limpar() {
         $("#ValFinal").val('');
         $("#Retorno").val('');
         $("#incremento").val('0');
+    } else {
+        //calculadora 3
+        $("#valorInitial3").val('0');
+        $("#tempo3").val('0');
+        $("#juro3").val('00.00');
+        $("#periodo3").val('0');
+        $("#ValFinal3").val('');
+        $("#incremento3").val('0');
+        $("#perincremento3").val('0');
     }
     $("#tabGraf").addClass('d-none');
-
 }
 
 //Botão de Informações e escolha de simuladores
@@ -54,21 +59,32 @@ $(document).ready(function() {
     $("#simulador1").click(function() {
         $("#calculadora2").addClass("d-none");
         $("#calculadora1").removeClass("d-none");
+        $("#calculadora3").addClass("d-none");
         $("#tabGraf").addClass("d-none");
+        reset();
     });
 
     $("#simulador2").click(function() {
         $("#calculadora1").addClass("d-none");
+        $("#calculadora3").addClass("d-none");
         $("#calculadora2").removeClass("d-none");
         $("#tabGraf").addClass("d-none");
+        reset();
+    });
+
+    $("#simulador3").click(function() {
+        $("#calculadora1").addClass("d-none");
+        $("#calculadora2").addClass("d-none");
+        $("#calculadora3").removeClass("d-none");
+        $("#tabGraf").addClass("d-none");
+        reset();
     });
 })
 
 //validação de dados para a função calcular() e botão calcular
 function validate() {
     //Escolhe o simulador 2
-
-    if ($("#calculadora1").hasClass("d-none")) {
+    if ($("#calculadora1").hasClass("d-none") && $("#calculadora3").hasClass("d-none")) {
         ValAtingir = $("#ValFinal2").val();
         ValInicial = $("#valorInitial2").val();
         ValJuro = $("#juro2").val() / 100;
@@ -83,7 +99,6 @@ function validate() {
         if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
             $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro)) {
             console.log("Os inputs são numeros.");
-            debugger;
             if (parseFloat(ValAtingir) > ValInicial) {
                 simulador2();
             } else {
@@ -92,7 +107,7 @@ function validate() {
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
     //Escolhe o simulador 1
-    else {
+    else if ($("#calculadora2").hasClass("d-none") && $("#calculadora3").hasClass("d-none")) {
         ValInicial = $("#valorInitial").val();
         tempo = $("#tempo").val();
         ValJuro = $("#juro").val() / 100;
@@ -113,12 +128,49 @@ function validate() {
             //Escolhe a função de cálculo para cada um dos simuladores
             simulador1();
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
+    } else {
+        //Escolhe simulador 3
+        tempo = $("#tempo3").val();
+        ValPerJuro = $("#periodo3").val();
+        ValIncremento = $("#incremento3").val();
+        ValAtingir = $("#ValFinal3").val();
+        ValPerIncremento = $("#perincremento3").val();
+        ValJuro = $("#juro3").val() / 100;
+
+        //verifica se os valores sao positivos
+        if (ValAtingir <= 0 || tempo <= 0 || ValJuro <= 0 ||
+            ValPerJuro <= 0) { //|| ValIncremento <= 0 Falta isto que está a dar erro
+            alert("Verifique se todos os valores são positivos.");
+        } else
+        //verifica se são numeros
+        if ($.isNumeric(ValAtingir) && $.isNumeric(tempo) &&
+            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) &&
+            $.isNumeric(ValIncremento)) {
+            console.log("Os inputs são numeros.");
+            //Escolhe a função de cálculo para cada um dos simuladores
+            simulador3();
+        } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
 }
 
+//reset variaveis
+function reset() {
+    ValInicial = 0.0;
+    ValAtingir = 0.0;
+    Retorno = 0.0;
+    tempo = 0.0;
+    ValJuro = 0.0;
+    ValPerJuro = 1.0;
+    ValIncremento = 0.0;
+    ValPerIncremento = 0.0;
+    Valor1 = 0.0;
+    ValIntermedio = 0.0;
+    IncremIntermed = 0.0;
+}
 
 //Cálculos e aparece os gráficos (esta função é chamada dentro da função validate()) do simulador 1
 function simulador1() {
+
     //Array dos Valores da tabela
     ArrayDados = new Array();
     for (var i = 0; i < tempo; i++) {
@@ -131,100 +183,101 @@ function simulador1() {
         $("#PerTabela").text("Ano");
         $("#PerTabela2").text("Juro por Ano");
 
+        debugger;
         //Calculo Primeiro ano (i == 0), e o resto dos anos no else
         for (var i = 0; i < tempo; i++) {
+            var t = i - 1;
             ArrayDados[i].Tempo = i + 1;
             if (i == 0) {
-                Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
-                ArrayDados[i].JuroMes = Valor1 - ValInicial;
-                ArrayDados[i].ValFinal = Valor1;
+                ArrayDados[i].ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
+                ArrayDados[i].JuroMes = ArrayDados[i].ValFinal - ValInicial;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
-                    ArrayDados[i].ValFinal += Anual();
-                    ArrayDados[i].IncrementoAcumul += Anual();
+                    ArrayDados[i].ValFinal += parseFloat(Anual());
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i].IncrementoAcumul + parseFloat(Anual());
                 } else if ($("#TempoInc").val() == "Mensal") {
-                    ArrayDados[i].ValFinal += Mensal();
-                    ArrayDados[i].IncrementoAcumul += Mensal();
+                    ArrayDados[i].ValFinal += parseFloat(Mensal());
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i].IncrementoAcumul + parseFloat(Mensal());
                 } else if ($("#TempoInc").val() == "Semanal") {
-                    ArrayDados[i].ValFinal += Semanal();
-                    ArrayDados[i].IncrementoAcumul += Semanal();
+                    ArrayDados[i].ValFinal += parseFloat(Semanal());
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i].IncrementoAcumul + parseFloat(Semanal());
                 } else if ($("#TempoInc").val() == "Diário") {
-                    ArrayDados[i].ValFinal += Diario(i + 1);
-                    ArrayDados[i].IncrementoAcumul += Diario();
+                    ArrayDados[i].ValFinal += parseFloat(Diario(i + 1));
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i].IncrementoAcumul + parseFloat(Diario());
                 }
             } else {
-                ValIntermedio = ArrayDados[i - 1].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
-                ArrayDados[i].JuroMes = ValIntermedio - ArrayDados[i - 1].ValFinal;
-                ArrayDados[i].JuroAcumulado += ArrayDados[i].JuroMes;
-                ArrayDados[i].ValFinal = ValIntermedio;
+                ArrayDados[i].ValFinal = ArrayDados[t].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
+                ArrayDados[i].JuroMes = ArrayDados[i].ValFinal - ArrayDados[t].ValFinal;
+                ArrayDados[i].JuroAcumulado = ArrayDados[t].JuroAcumulado + ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
-                    ArrayDados[i].ValFinal += Anual();
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Anual();
+                    ArrayDados[i].ValFinal += parseFloat(Anual());
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[t].IncrementoAcumul + parseFloat(Anual());
                 } else if ($("#TempoInc").val() == "Mensal") {
-                    ArrayDados[i].ValFinal += Mensal();
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Mensal();
+                    ArrayDados[i].ValFinal += parseFloat(Mensal());
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[t].IncrementoAcumul + parseFloat(Mensal());
                 } else if ($("#TempoInc").val() == "Semanal") {
-                    ArrayDados[i].ValFinal += Semanal();
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Semanal();
+                    ArrayDados[i].ValFinal += parseFloat(Semanal());
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[t].IncrementoAcumul + parseFloat(Semanal());
                 } else if ($("#TempoInc").val() == "Diário") {
-                    ArrayDados[i].ValFinal += Diario(i + 1);
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Diario();
+                    ArrayDados[i].ValFinal += parseFloat(Diario(i + 1));
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[t].IncrementoAcumul + parseFloat(Diario());
                 }
             }
         }
-        Retorno
-        ValIncreme = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
-
     } else {
         //Cálculo para os Mesess
         for (var i = 0; i < tempo; i++) {
+            var t = i - 1;
             ArrayDados[i].Tempo = i + 1;
             if (i == 0) {
-                Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
-                ArrayDados[i].ValFinal = Valor1;
-                ArrayDados[i].JuroMes = Valor1 - ValInicial;
+                ArrayDados[i].ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
+                ArrayDados[i].JuroMes = ArrayDados[i].ValFinal - ValInicial;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
-                if ($("#TempoInc").val() == "Anual") {
-                    ArrayDados[i].ValFinal += Anual();
-                    ArrayDados[i].IncrementoAcumul += Anual();
-                } else if ($("#TempoInc").val() == "Mensal") {
-                    ArrayDados[i].ValFinal += Mensal();
-                    ArrayDados[i].IncrementoAcumul += Mensal();
-                } else if ($("#TempoInc").val() == "Semanal") {
-                    ArrayDados[i].ValFinal += Semanal();
-                    ArrayDados[i].IncrementoAcumul += Semanal();
-                } else if ($("#TempoInc").val() == "Diário") {
-                    ArrayDados[i].ValFinal += Diario(i + 1);
-                    ArrayDados[i].IncrementoAcumul += Diario();
-                }
-            } else {
-                ValIntermedio = ArrayDados[i - 1].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
-                ArrayDados[i].JuroMes = ValIntermedio - ArrayDados[i - 1].ValFinal;
-                ArrayDados[i].JuroAcumulado += ArrayDados[i].JuroMes;
-                ArrayDados[i].ValFinal = ValIntermedio;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[0].IncrementoAcumul = 0.0;
                     if (i % 12 == 0 && i >= 12) {
                         ArrayDados[i].ValFinal += Anual();
-                        ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Anual();
+                        ArrayDados[i].IncrementoAcumul = ArrayDados[i].IncrementoAcumul + Anual();
                     } else {
-                        ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul
+                        ArrayDados[i].IncrementoAcumul = ArrayDados[i].IncrementoAcumul
                     }
                 } else if ($("#TempoInc").val() == "Mensal") {
                     ArrayDados[i].ValFinal += Mensal();
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Mensal();
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i].IncrementoAcumul + Mensal();
                 } else if ($("#TempoInc").val() == "Semanal") {
                     ArrayDados[i].ValFinal += Semanal();
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Semanal();
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i].IncrementoAcumul + Semanal();
                 } else if ($("#TempoInc").val() == "Diário") {
                     ArrayDados[i].ValFinal += Diario(i + 1);
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Diario();
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i].IncrementoAcumul + Diario();
+                }
+            } else {
+                ArrayDados[i].ValFinal = ArrayDados[t].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
+                ArrayDados[i].JuroMes = ArrayDados[i].ValFinal - ArrayDados[t].ValFinal;
+                ArrayDados[i].JuroAcumulado = ArrayDados[t].JuroAcumulado + ArrayDados[i].JuroMes;
+                if ($("#TempoInc").val() == "Anual") {
+                    ArrayDados[0].IncrementoAcumul = 0.0;
+                    if (i % 12 == 0 && i >= 12) {
+                        ArrayDados[i].ValFinal += Anual();
+                        ArrayDados[i].IncrementoAcumul = ArrayDados[t].IncrementoAcumul + Anual();
+                    } else {
+                        ArrayDados[i].IncrementoAcumul = ArrayDados[t].IncrementoAcumul
+                    }
+                } else if ($("#TempoInc").val() == "Mensal") {
+                    ArrayDados[i].ValFinal += Mensal();
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[t].IncrementoAcumul + Mensal();
+                } else if ($("#TempoInc").val() == "Semanal") {
+                    ArrayDados[i].ValFinal += Semanal();
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[t].IncrementoAcumul + Semanal();
+                } else if ($("#TempoInc").val() == "Diário") {
+                    ArrayDados[i].ValFinal += Diario(i + 1);
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[t].IncrementoAcumul + Diario();
                 }
             }
         }
     }
 
-    Retorno = ArrayDados[ArrayDados.length - 1].JuroAcumulado;
+    Retorno = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
     Retorno = Retorno.toFixed(2);
 
     console.log(ArrayDados);
@@ -287,7 +340,34 @@ function simulador2() {
     }
 }
 
+function simulador3() {
+    ValInicial = ValAtingir / Math.pow((1 + (ValJuro / ValPerJuro)), (ValPerJuro * tempo));
+
+    $("#ValInicial3").val(ValInicial.toFixed(2));
+    simulador1();
+}
+
 function escrever() {
+    if (($("#calculadora2").hasClass("d-none") && $("#calculadora3").hasClass("d-none"))) {
+        $("#simulador1-result").removeClass("d-none");
+        $("#simulador1-result1").removeClass("d-none");
+        $("#simulador2-result").addClass("d-none");
+        $("#simulador3-result").addClass("d-none");
+    } else {
+        if (($("#calculadora1").hasClass("d-none") && $("#calculadora3").hasClass("d-none"))) {
+            $("#simulador2-result").removeClass("d-none");
+            $("#simulador1-result").addClass("d-none");
+            $("#simulador1-result1").addClass("d-none");
+            $("#simulador3-result").addClass("d-none");
+        } else
+        if (($("#calculadora1").hasClass("d-none") && $("#calculadora2").hasClass("d-none"))) {
+
+            $("#simulador3-result").removeClass("d-none");
+            $("#simulador1-result").addClass("d-none");
+            $("#simulador1-result1").addClass("d-none");
+            $("#simulador2-result").addClass("d-none");
+        }
+    }
 
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
     $("#Retorno").val(Retorno);
@@ -336,15 +416,16 @@ function escrever() {
     //Esconder Coluna do Incremento se o Incremento for Nulo
     if ($("#incremento").val() > 0) {
         document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Ano</th>" +
-            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
-            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th><th scope='col' data-field='IncrementoAcumul' >Total Incremento</tr></thead><tbody id='tabela'></tbody>";
+            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mes</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
+            "<th scope='col' data-field='ValFinal' >Montante Acumulado</th><th scope='col' data-field='IncrementoAcumul'>Total Incremento</tr></thead><tbody id='tabela'></tbody>";
     } else {
         document.getElementById("resetTabela").innerHTML = "<thead><tr><th scope='col' data-field='Tempo' id='PerTabela'>Anos</th>" +
-            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mês</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
+            "<th scope='col' data-field='JuroMes' id='PerTabela2'>Juros por Mes</th><th scope='col' data-field='JuroAcumulado' >Juros Acumulados</th>" +
             "<th scope='col' data-field='ValFinal' >Montante Acumulado</th></tr></thead><tbody id='tabela'></tbody>";
     }
+
     if ($("#TempoJuros").val() == "Meses") {
-        $("#PerTabela").text("Mês");
+        $("#PerTabela").text("Mes");
     }
 
     //reset EixoX Nao funciona como deve
@@ -428,6 +509,7 @@ function escrever() {
 
 //Incremento anual
 function Anual() {
+    debugger;
     if ($("#TempoJuros").val() == "Anos") {
         return parseFloat(ValIncremento);
     } else if ($("#TempoJuros").val() == "Meses") {
@@ -542,15 +624,14 @@ function valorInicial() {
 //Exportação excell
 function ExportarExcel() {
     var table = document.getElementById('resetTabela');
-    //var URImagem = chart.dataURI().then((uri) => { console.log(uri);});
     var html1 = table.outerHTML;
-    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html1)); //+ encodeURIComponent(URImagem));
+    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html1));
 }
+
 //exportação PDF
 function ExportarPDF() {
     var doc = new jsPDF()
     doc.autoTable({ html: '#resetTabela' })
-
     alturaPagina = doc.internal.pageSize.height;
     y = 500
     if (y >= alturaPagina) {
@@ -562,8 +643,6 @@ function ExportarPDF() {
         doc.addImage(imgURI, 'PNG', 15, 15, 180, 90);
         doc.save("JurosCompostos.PDF")
     })
-
-
 }
 
 //botão suporte
@@ -577,3 +656,44 @@ function closeForm() {
 
 
 }
+
+//slider onde investir
+/* Setting the default slide start index: */
+let slideIndex = 1;
+/* We call the function that is implemented below: */
+showSlides(slideIndex);
+/* Increase the index by 1 - show the next slide: */
+function nextSlide() {
+    showSlides(slideIndex += 1);
+}
+/* Decrease the index by 1 - show the previous slide: */
+function previousSlide() {
+    showSlides(slideIndex -= 1);
+}
+/* Set the current slide: */
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+/* Flip function: */
+function showSlides(n) {
+    let i;
+    /* We refer to the elements with the class name "item", that is, to the pictures: */
+    let slides = document.getElementsByClassName("item");
+
+    /* Checking the number of slides: */
+    if (n > slides.length) {
+        slideIndex = 1
+    }
+    if (n < 1) {
+        slideIndex = slides.length
+    }
+
+    /* Loop through each slide in a for loop: */
+    for (let slide of slides) {
+        slide.style.display = "none";
+    }
+    /* Making an element block: */
+    slides[slideIndex - 1].style.display = "block";
+}
+//intervalo tempo do slider
+setInterval(nextSlide, 5000);

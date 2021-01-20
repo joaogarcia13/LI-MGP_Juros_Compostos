@@ -2,15 +2,45 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-header {
-    margin: 0;
-    padding: 35px;
-    text-align: center;
-    background-color: beige;
+div,
+section {
+    background-color: #ffffff;
 }
 
-section {
-    margin: 50px 80px 25px 80px;
+header {
+    margin: 0px;
+    padding: 20px;
+    text-align: left;
+    background-color: #665d8c;
+    border-bottom: 1px solid #9AD1D4;
+}
+
+#titulo {
+    font-family: Didot;
+    color: #ffffff;
+}
+
+#Logo-simples {
+    width: 80px;
+    width: 90px;
+    height: 80px;
+}
+
+.d-flex {
+    margin: 0px 80px 0px 80px;
+    padding-top: 50px;
+    padding-bottom: 25px;
+}
+
+h1 {
+    background-color: #40356F;
+    color: #ffffff;
+    padding: 0px 0px 10px 10px;
+    border-radius: 15px;
+}
+
+#Inform {
+    padding: 50px 20px 25px 20px;
 }
 
 .table td {
@@ -24,10 +54,48 @@ section {
 #simulador1 {
     margin-bottom: 5%;
 }
+#btn-calcular1
+{
+    background-color: #645fce ;
+    border-color:    #645fce ;
+}
 
+#btn-limpar1
+{
+    color: #ffffff;
+    background-color: #a29fe2;
+    border-color: #a29fe2;
+}
+#btn-calcular2
+{
+    background-color: #645fce ;
+    border-color:    #645fce ;
+}
+
+#btn-limpar2
+{
+    color: #ffffff;
+    background-color: #a29fe2 ;
+    border-color:    #a29fe2;
+}#btn-calcular3
+{
+    background-color: #645fce ;
+    border-color:    #645fce ;
+}
+
+#btn-limpar3
+{
+    color: #ffffff;
+    background-color: #a29fe2 ;
+    border-color:    #a29fe2;
+}
 .btnEscolhe {
     background-color: beige;
     size: 150px;
+}
+
+#escolhe {
+    padding-right: 50px;
 }
 
 .form-popup {
@@ -35,7 +103,7 @@ section {
     position: fixed;
     bottom: 0;
     right: 15px;
-    border: 3px solid #f5b402;
+    border: 3px solid #665d8c;
     background-color: white;
     z-index: 9;
 }
@@ -44,6 +112,7 @@ section {
     position: fixed;
     bottom: 0;
     right: 3px;
+    background-color: transparent;
 }
 
 #abrir {
@@ -57,7 +126,7 @@ section {
     height: 75px;
 }
 
-#close {
+.close {
     height: 25px;
     height: 25px;
 }
@@ -65,44 +134,251 @@ section {
 #btnclose {
     margin-left: 250px;
     padding-bottom: 25px;
+    padding-top: 20px;
 }
 
-#img-excel
-{
+#img-excel {
     height: 40px;
-    height: 40px; 
+    height: 40px;
 }
 
-#img-PDF
-{
+#img-PDF {
     height: 40px;
-    height: 40px; 
-    
+    height: 40px;
 }
-.btn-excel
-{
+
+.btn-excel {
     background-color: transparent;
     border-color: transparent;
     border-radius: 50%;
 }
-.btn-pdf
-{
+
+.btn-pdf {
     background-color: transparent;
     border-color: transparent;
     border-radius: 50%;
 }
-#tabGraf
-{
+
+#tabGraf {
     margin-left: 80px;
     margin-right: 80px;
 }
-#fs-frm-inputs
-{
+
+#fs-frm-inputs {
     padding: 5px 5px 20px 20px;
 }
-#chart{
+
+#calculadora1 {
+    border: 3px solid #665D8C;
+    border-radius: 5px;
+    padding: 30px;
+    border-left: hidden;
+    border-right: hidden;
+}
+
+#calculadora2 {
+    border: 3px solid #665D8C;
+    border-radius: 5px;
+    padding: 25px;
+    border-left: hidden;
+    border-right: hidden;
+}
+
+#calculadora3 {
+    border: 3px solid #665D8C;
+    border-radius: 5px;
+    padding: 25px;
+    border-left: hidden;
+    border-right: hidden;
+}
+
+#chart {
     position: relative;
 }
-#resetTabela{
+
+#resetTabela {
     text-align: center;
 }
+
+.Img-informacao {
+    height: 10px;
+    width: 10px;
+}
+
+.Img-informacao:hover~span {
+    display: block;
+  }
+  
+.spin {
+    display: none;
+    color: #fff;
+    background-color: rgb(63, 60, 60);
+    width: 200px;
+    padding: 10px;
+    border-radius: 4px;
+    position: relative;
+    top: -100px;
+    left: 60%;
+}
+
+#titulo-form-popup {
+    margin-left: 10px;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+#Top-form-popup {
+    margin: 0px;
+    background-color: #665d8c;
+}
+
+#lbl-slider2 {
+    font-size: 19px;
+    color: #665d8c;
+    background-color: #665d8c;
+}
+
+#div-slider {
+    border: 5px;
+}
+
+.margem {
+    margin-left: 15px;
+}
+
+#Informacoes {
+    width: 160px;
+    padding: 15px;
+    margin-top: -25px;
+    border: 3px solid;
+    border-radius: 5px;
+    background-color: #40356F;
+    color: white;
+}
+
+#simulador1 {
+    width: 160px;
+    padding: 15px;
+    margin-top: -25px;
+    border: 3px solid;
+    border-radius: 5px;
+    background-color: #40356F;
+    color: white;
+}
+
+#simulador2 {
+    width: 160px;
+    padding: 15px;
+    margin-top: -25px;
+    border: 3px solid;
+    border-radius: 5px;
+    background-color: #40356F;
+    color: white;
+}
+
+#simulador3 {
+    width: 160px;
+    padding: 15px;
+    margin-top: -25px;
+    border: 3px solid;
+    border-radius: 5px;
+    background-color: #40356F;
+    color: white;
+}
+#BueTexto
+{
+    padding: 15px;
+}
+
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<SLIDER>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+
+/* The slider: */
+
+.slider {
+    max-width: 100%;
+    /* The position of the element is set relative to its original position: */
+    position: relative;
+    /* Center horizontally: */
+    margin: auto;
+    height: 300px;
+}
+
+
+/* The picture is scaled in relation to the parent element: */
+
+.slider .item img {
+    /* The element is resized to fill the block and maintain proportions: */
+    object-fit: cover;
+    width: 460px;
+    height: 300px;
+}
+
+
+/* Back and forward buttons: */
+
+.slider .previous,
+.slider .next {
+    /* Adds an icon to the cursor when it is over the button: */
+    cursor: pointer;
+    /* The position of the element is set relative to the borders of the browser: */
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    /* Styling the buttons themselves: */
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    /* Background fading on hover: */
+    transition: 0.6s ease;
+    /* Rounding the borders: */
+    border-radius: 0 3px 3px 0;
+}
+
+.slider .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+
+/* When you hover over the buttons, add the background of the buttons: */
+
+.slider .previous:hover,
+.slider .next:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+/* Slide animation: */
+
+.slider .item {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    /* Set and change the transparency: */
+    from {
+        opacity: 0.4
+    }
+    to {
+        opacity: 1
+    }
+}
+
+#btn-slider-esquerda {
+    color: #ffffff;
+    background-color: #a29fe2;
+    border-color: #a29fe2;
+}
+
+#btn-slider-direita {
+    background-color: #a29fe2;
+    border-color: #a29fe2;
+}
+
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<SLIDER>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
