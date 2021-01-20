@@ -192,7 +192,7 @@ function simulador1() {
             if (i == 0) {
                 ArrayDados[i].ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
                 ArrayDados[i].JuroMes = ArrayDados[i].ValFinal - ValInicial;
-                ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
+                ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroAcumulado +  ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[i].ValFinal += parseFloat(Anual());
                     ArrayDados[i].IncrementoAcumul = ArrayDados[i].IncrementoAcumul + parseFloat(Anual());
@@ -209,7 +209,7 @@ function simulador1() {
             } else {
                 ArrayDados[i].ValFinal = ArrayDados[t].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
                 ArrayDados[i].JuroMes = ArrayDados[i].ValFinal - ArrayDados[t].ValFinal;
-                ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
+                ArrayDados[i].JuroAcumulado = ArrayDados[i-1].JuroAcumulado + ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[i].ValFinal += parseFloat(Anual());
                     ArrayDados[i].IncrementoAcumul = ArrayDados[t].IncrementoAcumul + parseFloat(Anual());
@@ -233,7 +233,7 @@ function simulador1() {
             if (i == 0) {
                 ArrayDados[i].ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
                 ArrayDados[i].JuroMes = ArrayDados[i].ValFinal - ValInicial;
-                ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
+                ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroAcumulado + ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[0].IncrementoAcumul = 0.0;
                     if (i % 12 == 0 && i >= 12) {
@@ -255,7 +255,7 @@ function simulador1() {
             } else {
                 ArrayDados[i].ValFinal = ArrayDados[t].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
                 ArrayDados[i].JuroMes = ArrayDados[i].ValFinal - ArrayDados[t].ValFinal;
-                ArrayDados[i].JuroAcumulado += ArrayDados[i].JuroMes;
+                ArrayDados[i].JuroAcumulado = ArrayDados[i-1].JuroAcumulado + ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[0].IncrementoAcumul = 0.0;
                     if (i % 12 == 0 && i >= 12) {
