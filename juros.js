@@ -209,7 +209,7 @@ function simulador1() {
             } else {
                 ArrayDados[i].ValFinal = ArrayDados[t].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
                 ArrayDados[i].JuroMes = ArrayDados[i].ValFinal - ArrayDados[t].ValFinal;
-                ArrayDados[i].JuroAcumulado = ArrayDados[i - 1].JuroAcumulado + ArrayDados[i].JuroMes;
+                ArrayDados[i].JuroAcumulado = ArrayDados[t].JuroAcumulado + ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[i].ValFinal += parseFloat(Anual());
                     ArrayDados[i].IncrementoAcumul = ArrayDados[t].IncrementoAcumul + parseFloat(Anual());
@@ -255,7 +255,7 @@ function simulador1() {
             } else {
                 ArrayDados[i].ValFinal = ArrayDados[t].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * (1 / 12)));
                 ArrayDados[i].JuroMes = ArrayDados[i].ValFinal - ArrayDados[t].ValFinal;
-                ArrayDados[i].JuroAcumulado = ArrayDados[i - 1].JuroAcumulado + ArrayDados[i].JuroMes;
+                ArrayDados[i].JuroAcumulado = ArrayDados[t].JuroAcumulado + ArrayDados[i].JuroMes;
                 if ($("#TempoInc").val() == "Anual") {
                     ArrayDados[0].IncrementoAcumul = 0.0;
                     if (i % 12 == 0 && i >= 12) {
@@ -356,26 +356,24 @@ function simulador3() {
 
 function escrever() {
     if (($("#calculadora2").hasClass("d-none") && $("#calculadora3").hasClass("d-none"))) {
-
         $("#simulador1-result").removeClass("d-none");
         $("#simulador1-result1").removeClass("d-none");
         $("#simulador2-result").addClass("d-none");
         $("#simulador3-result").addClass("d-none");
-    } else if (($("#calculadora1").hasClass("d-none") && $("#calculadora3").hasClass("d-none"))) {
-
-        $("#simulador2-result").removeClass("d-none");
-        $("#simulador1-result").addClass("d-none");
-        $("#simulador1-result1").addClass("d-none");
-        $("#simulador3-result").addClass("d-none");
-    }
-    else if (($("#calculadora1").hasClass("d-none") && $("#calculadora2").hasClass("d-none"))) {
+    } else {
+        if (($("#calculadora1").hasClass("d-none") && $("#calculadora3").hasClass("d-none"))) {
+            $("#simulador2-result").removeClass("d-none");
+            $("#simulador1-result").addClass("d-none");
+            $("#simulador1-result1").addClass("d-none");
+            $("#simulador3-result").addClass("d-none");
+        } else
+        if (($("#calculadora1").hasClass("d-none") && $("#calculadora2").hasClass("d-none"))) {
 
         $("#simulador3-result").removeClass("d-none");
         $("#simulador1-result").addClass("d-none");
         $("#simulador1-result1").addClass("d-none");
         $("#simulador2-result").addClass("d-none");
     }
-
 
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
     $("#Retorno").val(Retorno);
