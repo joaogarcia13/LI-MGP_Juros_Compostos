@@ -183,37 +183,35 @@ function simulador1() {
         $("#PerTabela").text("Ano");
         $("#PerTabela2").text("Juro por Ano");
 
+        debugger;
         //Calculo Primeiro ano (i == 0), e o resto dos anos no else
         for (var i = 0; i < tempo; i++) {
             ArrayDados[i].Tempo = i + 1;
             if (i == 0) {
                 Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
-                ArrayDados[i].JuroMes = Valor1 - ValInicial;
+                ArrayDados[i].JuroMes = parseFloat(Valor1) - ValInicial;
                 ArrayDados[i].ValFinal = Valor1;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
             } else {
                 ValIntermedio = ArrayDados[i - 1].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
-                ArrayDados[i].JuroMes = ValIntermedio - ArrayDados[i - 1].ValFinal;
+                ArrayDados[i].JuroMes = parseFloat(ValIntermedio) - ArrayDados[i - 1].ValFinal;
                 ArrayDados[i].JuroAcumulado += ArrayDados[i].JuroMes;
-                ArrayDados[i].ValFinal = ValIntermedio;
+                ArrayDados[i].ValFinal += ValIntermedio;
                 if ($("#TempoInc").val() == "Anual") {
-                    ArrayDados[i].ValFinal += Anual();
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Anual();
+                    ArrayDados[i].ValFinal += parseFloat(Anual());
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + parseFloat(Anual());
                 } else if ($("#TempoInc").val() == "Mensal") {
-                    ArrayDados[i].ValFinal += Mensal();
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Mensal();
+                    ArrayDados[i].ValFinal += parseFloat(Mensal());
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + parseFloat(Mensal());
                 } else if ($("#TempoInc").val() == "Semanal") {
-                    ArrayDados[i].ValFinal += Semanal();
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Semanal();
+                    ArrayDados[i].ValFinal += parseFloat(Semanal());
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + parseFloat(Semanal());
                 } else if ($("#TempoInc").val() == "Diário") {
-                    ArrayDados[i].ValFinal += Diario(i + 1);
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Diario();
+                    ArrayDados[i].ValFinal += parseFloat(Diario(i + 1));
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + parseFloat(Diario());
                 }
             }
         }
-        Retorno
-        ValIncreme = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
-
     } else {
         //Cálculo para os Mesess
         for (var i = 0; i < tempo; i++) {
@@ -251,7 +249,7 @@ function simulador1() {
         }
     }
 
-    Retorno = ArrayDados[ArrayDados.length - 1].JuroAcumulado;
+    Retorno = ArrayDados[ArrayDados.length - 1].ValFinal - ValInicial;
     Retorno = Retorno.toFixed(2);
 
     console.log(ArrayDados);
@@ -265,31 +263,6 @@ function simulador2() {
     var AnoInt = 0;
     var taux = 0;
 
-    //debugger;
-    /*do {
-        if (tempoAtingir == 0) {
-            valorDespero = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
-            ValorAumentar = valorDespero;
-        } else {
-            if ($("#TempoInc2").val() == "Anual") {
-                //ArrayDados[i].ValFinal += Anual();
-                ValIncremento = Anual();
-            } else if ($("#TempoInc2").val() == "Mensal") {
-                //ArrayDados[i].ValFinal += Mensal();
-                ValIncremento = Mensal();
-            } else if ($("#TempoInc2").val() == "Semanal") {
-                //ArrayDados[i].ValFinal += Semanal();
-                ValIncremento = Semanal();
-            } else if ($("#TempoInc2").val() == "Diário") {
-                //ArrayDados[i].ValFinal += Diario(i + 1);
-                ValIncremento = Diario(i + 1);
-            }
-            ValIntermedio = (ValorAumentar + ValIncremento) * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
-            ValorAumentar += ValIntermedio;
-        }
-        tempoAtingir++;
-    } while (ValorAumentar < ValAtingir);
-    debugger;*/
     tempoAtingir = (Math.log(ValAtingir / ValInicial) / Math.log(2.71828)) / (ValPerJuro * (Math.log(1 + (ValJuro / ValPerJuro) / Math.log(2.71828))));
     taux = tempoAtingir - parseInt(tempoAtingir);
     MesConvert = tempoAtingir - parseInt(tempoAtingir);
@@ -340,7 +313,6 @@ function simulador2() {
 }
 
 function simulador3() {
-    debugger;
     ValInicial = ValAtingir / Math.pow((1 + (ValJuro / ValPerJuro)), (ValPerJuro * tempo));
 
     $("#ValInicial3").val(ValInicial.toFixed(2));
