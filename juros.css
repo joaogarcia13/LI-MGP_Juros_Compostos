@@ -207,18 +207,8 @@ h1 {
 
 .Img-informacao:hover~span {
     display: block;
-<<<<<<< HEAD
-  }
-  
-=======
-}
-
->>>>>>> 2b7b4abca24783ebacf1b5a347ca700d4d9f220a
+} 
 .spin {
-    display: none;
-    color: #fff;
-    background-color: rgb(63, 60, 60);
-    width: 200px;
     padding: 10px;
     border-radius: 4px;
     position: relative;

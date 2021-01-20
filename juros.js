@@ -185,6 +185,7 @@ function simulador1() {
         $("#PerTabela").text("Ano");
         $("#PerTabela2").text("Juro por Ano");
 
+
         //Calculo Primeiro ano (i == 0), e o resto dos anos no else
         for (var i = 0; i < tempo; i++) {
             ArrayDados[i].Tempo = i + 1;
@@ -233,19 +234,19 @@ function simulador1() {
                     ArrayDados[0].IncrementoAcumul = 0.0;
                     if (i % 12 == 0 && i >= 12) {
                         ArrayDados[i].ValFinal += Anual();
-                        ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Anual();
+                        ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + parseFloat(Anual());
                     } else {
                         ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul;
                     }
                 } else if ($("#TempoInc").val() == "Mensal") {
-                    ArrayDados[i].ValFinal = ArrayDados[i].ValFinal + Mensal();
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Mensal();
+                    ArrayDados[i].ValFinal = ArrayDados[i].ValFinal + parseFloat(Mensal());
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + parseFloat(Mensal());
                 } else if ($("#TempoInc").val() == "Semanal") {
-                    ArrayDados[i].ValFinal = ArrayDados[i].ValFinal + Semanal();
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Semanal();
+                    ArrayDados[i].ValFinal = ArrayDados[i].ValFinal + parseFloat(Semanal());
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + parseFloat(Semanal());
                 } else if ($("#TempoInc").val() == "Diário") {
-                    ArrayDados[i].ValFinal = ArrayDados[i].ValFinal + Diario(i + 1);
-                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + Diario();
+                    ArrayDados[i].ValFinal = ArrayDados[i].ValFinal + parseFloat(Diario(i + 1));
+                    ArrayDados[i].IncrementoAcumul = ArrayDados[i - 1].IncrementoAcumul + parseFloat(Diario());
                 }
             }
         }
