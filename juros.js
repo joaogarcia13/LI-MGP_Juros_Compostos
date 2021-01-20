@@ -188,12 +188,11 @@ function simulador1() {
         for (var i = 0; i < tempo; i++) {
             ArrayDados[i].Tempo = i + 1;
             if (i == 0) {
-                Valor1 = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
+                ArrayDados[i].ValFinal = ValInicial * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
                 ArrayDados[i].JuroMes = parseFloat(Valor1) - ValInicial;
-                ArrayDados[i].ValFinal = Valor1;
                 ArrayDados[i].JuroAcumulado = ArrayDados[i].JuroMes;
             } else {
-                ValIntermedio = ArrayDados[i - 1].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
+                ArrayDados[i].ValFinal = ArrayDados[i].ValFinal * Math.pow(1 + (ValJuro / ValPerJuro), (ValPerJuro * 1));
                 ArrayDados[i].JuroMes = parseFloat(ValIntermedio) - ArrayDados[i - 1].ValFinal;
                 ArrayDados[i].JuroAcumulado += ArrayDados[i].JuroMes;
                 ArrayDados[i].ValFinal += ValIntermedio;
@@ -213,6 +212,7 @@ function simulador1() {
             }
         }
     } else {
+        debugger;
         //Cálculo para os Mesess
         for (var i = 0; i < tempo; i++) {
             ArrayDados[i].Tempo = i + 1;
