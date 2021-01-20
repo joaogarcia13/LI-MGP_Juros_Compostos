@@ -347,7 +347,7 @@ function simulador2() {
 function simulador3() {
     valInicial = 0;
 
-    ValInicial = ValFinal / (1 + (ValJuro / ValPerJuro));
+    ValInicial = ValFinal / Math.pow((1 + (ValJuro / ValPerJuro)), (ValPerJuro * Tempo));
 
     $("#ValInicial3").val(ValInicial);
 }
