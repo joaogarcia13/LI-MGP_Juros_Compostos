@@ -89,19 +89,17 @@ function validate() {
         ValInicial = $("#valorInitial2").val();
         ValJuro = $("#juro2").val() / 100;
         ValPerJuro = $("#periodo2").val();
-        ValIncremento = $("#incremento3").val();
-        ValPerIncremento = $("#perincremento3").val();
 
         //verifica se os valores sao positivos
         if (ValAtingir <= 0 || ValInicial <= 0 || ValJuro <= 0 ||
-            ValPerJuro <= 0 || ValIncremento <= 0) {
+            ValPerJuro <= 0) {
             alert("Verifique se todos os valores são positivos.");
         } else
         //verifica se são numeros
         if ($.isNumeric(ValAtingir) && $.isNumeric(ValInicial) &&
-            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro) && $.isNumeric(ValIncremento)) {
+            $.isNumeric(ValJuro) && $.isNumeric(ValPerJuro)) {
             console.log("Os inputs são numeros.");
-            if (parseFloat(ValAtingir > ValInicial)) {
+            if (parseFloat(ValAtingir) > ValInicial) {
                 simulador2();
             } else {
                 alert("O valor a atingir não pode ser menor que o valor inicial");
