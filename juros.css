@@ -207,13 +207,8 @@ h1 {
 
 .Img-informacao:hover~span {
     display: block;
-<<<<<<< HEAD
   }
   
-=======
-}
-
->>>>>>> 2b7b4abca24783ebacf1b5a347ca700d4d9f220a
 .spin {
     display: none;
     color: #fff;
@@ -289,6 +284,10 @@ h1 {
     border-radius: 5px;
     background-color: #40356F;
     color: white;
+}
+#BueTexto
+{
+    padding: 15px;
 }
 
 
