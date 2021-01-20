@@ -348,6 +348,34 @@ function simulador3() {
 }
 
 function escrever() {
+    if(($("#calculadora2").hasClass("d-none") && $("#calculadora3").hasClass("d-none")))
+    {
+        $("#simulador1-result").removeClass("d-none");
+        $("#simulador1-result1").removeClass("d-none");
+        $("#simulador2-result").addClass("d-none");
+        $("#simulador3-result").addClass("d-none");
+    }
+    else
+    {
+        if (($("#calculadora1").hasClass("d-none") && $("#calculadora3").hasClass("d-none"))) 
+        {
+            $("#simulador2-result").removeClass("d-none");
+            $("#simulador1-result").addClass("d-none");
+            $("#simulador1-result1").addClass("d-none");
+            $("#simulador3-result").addClass("d-none");
+        } 
+        else
+        if(($("#calculadora1").hasClass("d-none") && $("#calculadora2").hasClass("d-none"))) 
+        {
+
+            $("#simulador3-result").removeClass("d-none");
+            $("#simulador1-result").addClass("d-none");
+            $("#simulador1-result1").addClass("d-none");
+            $("#simulador2-result").addClass("d-none");
+        }
+    }
+    
+
 
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
     $("#Retorno").val(Retorno);

@@ -78,18 +78,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="mb-3 col-3">
-                        <label for="montante" class="form-label">Montante Final</label>
-                        <input type="text" class="form-control" id="ValFinal">
-                    </div>
-                    <div class="mb-3 col-5">
-                        <label for="retorno" class="form-label">Retorno</label>
-                        <input type="text" class="form-control" id="Retorno">
-                    </div>
-                </div>
-                <button type="button" id="btn-calcular" class="btn btn-primary" onclick="validate()">Calcular</button>
-                <button type="button" id="btn-limpar" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
+                <button type="button" id="btn-calcular1" class="btn btn-primary" onclick="validate()">Calcular</button>
+                <button type="button" id="btn-limpar1" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
             </div>
 
             <!--Simulador 2-->
@@ -114,12 +104,8 @@
                         <input type="text" class="form-control" id="periodo2" value="0">
                     </div>
                 </div>
-                <div class="mb-3 col-6">
-                    <label for="anos a atingir" class="form-label">Anos Atingir o Montante Final</label>
-                    <input type="text" class="form-control" id="duracao2" value="0">
-                </div>
-                <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
+                <button type="button" id="btn-calcular2" class="btn btn-primary" onclick="validate()">Calcular</button>
+                <button type="button" id="btn-limpar2" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
             </div>
 
             <!--Simulador3-->
@@ -163,14 +149,8 @@
                         <input type="text" class="form-control" id="ValInicial3" valua="0">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="mb-3 col-11">
-                        <label for="montante" class="form-label">Montante a Atingir</label>
-                        <input type="text" class="form-control" id="ValFinal3">
-                    </div>
-                </div>
-                <button type="button" class="btn btn-primary" onclick="validate()">Calcular</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
+                <button type="button" id="btn-calcular3" class="btn btn-primary" onclick="validate()">Calcular</button>
+                <button type="button" id="btn-limpar3" class="btn btn-outline-secondary" onclick="limpar()">Limpar</button>
             </div>
 
             <div class="col-0"></div>
@@ -180,16 +160,11 @@
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador2">Simulador 2</button></div>
                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-warning" id="simulador3">Simulador 3</button></div>
             </div>
-<<<<<<< HEAD
             <div id=lbl-slider2 class="col-4">
                 <label for="lbl-slider" ><b>Investe aqui</b></label>
-=======
-            <div  class="col-1">
-                <label for="lbl-slider" id=lbl-slider2>Investe aqui</label>
->>>>>>> ec70469eee8d08fef476ebe7eb3f60566266d188
                 <div>
                     <!-- Main slider block -->
-                    <div class="slider">
+                    <div class="slider" >
                         <!-- The first slide -->
                         <div id=div-slider class="item">
                             <a href="https://pt.xtb.com/acoes-reais-zero-de-comissao-xtb-online-trading?utm_source=google&utm_medium=cpc&utm_campaign=search_stocks_zero&gclid=CjwKCAiAo5qABhBdEiwAOtGmbkRmBnU9tdKA-piZJ13aYaXDkkqPrWfStH_sJlCRaamQgN74cIfSZxoCkdgQAvD_BwE">
@@ -223,6 +198,26 @@
     <!--Secção que mostra a tabela e o gráfico-->
     <section id="tabGraf" class="row d-none">
         <div>
+            <div class="row">
+                <div class="row">
+                    <div id="simulador3-result" class="mb-3 col-11 d-none">
+                        <label for="montante" class="form-label">Montante a Atingir</label>
+                        <input type="text" class="form-control" id="ValFinal3">
+                    </div>
+                </div>
+                <div id="simulador2-result" class="mb-3 col-6 d-none">
+                    <label for="anos a atingir" class="form-label">Anos Atingir o Montante Final</label>
+                    <input type="text" class="form-control" id="duracao2" value="0">
+                </div>
+                <div id="simulador1-result" class="mb-3 col-4 d-none">
+                    <label for="montante" class="form-label">Montante Final</label>
+                    <input type="text" class="form-control" id="ValFinal">
+                </div>
+                <div id="simulador1-result1" class="mb-3 col-4 d-none" >
+                    <label for="retorno" class="form-label">Retorno</label>
+                    <input type="text" class="form-control" id="Retorno">
+                </div>
+            </div>
             <table class="table table-bordered" id="resetTabela">
                 <thead id="titulos">
                     <tr>
@@ -253,10 +248,30 @@
     <!--Informações-->
     <section id="Inform">
         <h1>Juro Composto</h1>
-        <p>Lorem ipsum dolor sit amet. Aut repellendus suscipit At aliquid doloribus hic pariatur exercitationem. Ea itaque voluptatem a quasi veniam est accusantium alias et iste porro vel repudiandae autem. Est quia repudiandae aut molestiae aliquam et
-            totam omnis. </p>
-        <p>Et similique impedit 33 sunt veritatis et laboriosam fugiat nam galisum velit. Nam internos dignissimos aut veniam nobis in quam consequatur ab quam voluptates? Ut dolorem voluptatem nam dolor adipisci sed voluptate tenetur et magni minima aut
-            aperiam voluptatem. Et dolorem animi ut nostrum provident a velit molestiae. </p>
+        <p> Ao contrario do juro simples nos juros compostos existe um reinvestimento dos juros, ou seja, os tais juros simples em vez de serem pagos, por exemplo, na sua conta à ordem, são adicionados ao depósito a prazo, criando assim um novo capital maior que o anterior. Existe, assim,  uma capitalização dos juros simples.
+
+            É fácil perceber que quanto maior o investimento maior o retorno, certo? O que os juros compostos proporcionam é isso mesmo: ao reinvestir o dinheiro acaba por obter um retorno superior. 
+            
+            Vamos a contas. O juro composto calcula-se da seguinte forma:
+            
+            Juro composto = (capital inicial + juro do período anterior) x TANB
+            
+            Estamos a falar de juros sobre juros, na medida em que adicionamos os juros resultantes do período anterior ao nosso “bolo”, o que significa que no próximo vencimento o juro será maior que o anterior. Vamos pegar de novo no exemplo acima do investimento dos 5000 euros. No primeiro período de um ano, o valor de juros bruto seria 200 euros.
+            
+            Juro simples: 5000 x 0,04 = 200
+            
+            No segundo ano, vamos reinvestir os 200 euros, portanto:
+            
+            Ano 2: (5000+200) x 0,04 = 208
+            
+            No terceiro ano, ao capital inicial somamos todos os juros obtidos anteriormente, ou seja:
+            
+            Ano 3: (5000+200+208) x 0,04 = 216,32 
+            
+            E assim sucessivamente. Calcular os juros compostos é basicamente adicionar o juro obtido anteriormente ao capital existente e calcular pela taxa. 
+            
+            Esta é uma forma de acelerar o crescimento do depósito já que em vez de receber os juros na conta à ordem, está novamente a investir esse valor, o que, a longo prazo irá gerar maior receita. </p>
+        
     </section>
 
     <!--Secção do form-->
