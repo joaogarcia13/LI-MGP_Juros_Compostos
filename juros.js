@@ -153,6 +153,13 @@ function validate() {
             simulador3();
         } else alert("Os campos têm de ser preenchidos com valores numéricos.");
     }
+
+        /* Captura o elemento que desejamos ir */
+        var target = $( $("#tabGraf") );
+      
+        $('html, body').animate({
+            scrollTop: target.offset().top //Captura a posição do elemento
+        }, 1000); //Tempo de animação em milissegundos
 }
 
 //reset variaveis
@@ -375,6 +382,7 @@ function escrever() {
             $("#simulador2-result").addClass("d-none");
         }
     }
+    
 
     $("#ValFinal").val(ArrayDados[ArrayDados.length - 1].ValFinal.toFixed(2));
     $("#Retorno").val(Retorno);
